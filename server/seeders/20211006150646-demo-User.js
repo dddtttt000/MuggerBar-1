@@ -13,7 +13,7 @@ module.exports = {
     */
     return queryInterface.bulkInsert("Users", [
       {
-        id: 0,
+        id: 1,
         User_Email: "first@project.com",
         User_Password: "1234",
         User_Nickname: "kimcoding",

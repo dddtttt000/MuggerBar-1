@@ -13,7 +13,7 @@ module.exports = {
     */
     return queryInterface.bulkInsert("Likes", [
       {
-        id: 0,
+        id: 1,
         User_id: 1,
         createdAt: new Date(),
         updatedAt: new Date(),

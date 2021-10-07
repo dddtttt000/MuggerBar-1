@@ -13,6 +13,7 @@ module.exports = {
     */
     return queryInterface.bulkInsert("Posts_Comments", [
       {
+        id:1,
         Post_id: 1,
         Comment_id: 1,
         createdAt: new Date(),

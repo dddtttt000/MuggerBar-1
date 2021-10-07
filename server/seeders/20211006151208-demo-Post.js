@@ -13,7 +13,7 @@ module.exports = {
     */
     return queryInterface.bulkInsert("Posts", [
       {
-        id: 0,
+        id: 1,
         User_id: 1,
         Post_title: "사리곰탕 콩국수",
         Post_subTitle: "사리곰탕으로 만드는 콩국수",
