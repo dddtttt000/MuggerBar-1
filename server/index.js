@@ -6,11 +6,12 @@ const cookieParser = require('cookie-parser');
 const express = require('express');
 const app = express();
 const userRouter = require("./routes/userRouter");
-
-const controllers = require('./controllers');
+const postRouter = require("./routes/postRouter");
+const profileRouter = require("./routes/profileRouter");
+const recommendcontroller = require("./controllers/recommend.js");
+const searchcontroller = require("./controllers/search.js");
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
 app.use(
   cors({
     origin: ["https://MuggerBar.ml", "http://localhost:3000"],
@@ -20,20 +21,12 @@ app.use(
 );
 
 app.use(cookieParser());
-app.post('/user/login', controllers.login);
-app.post('/user/Logout', controllers.Logout);
-app.post('/user/Signup', controllers.Signup);
-app.get('/user/info', controllers.info);
-app.get('/search', controllers.search);
-app.post('/post/make/content', controllers.make)
-app.get('/post/get/content', controllers.get)
-app.delete('/post/delete/content', controllers.delete)
-app.post('/recommend', controllers.recommend)
-app.post('/post/make/comment', controllers.comment)
-app.get('/post/get/comment', controllers.수정)
-app.post('/profile/get/content-list', controllers.list)
-app.put('/profile/edit', controllers.edit)
-app.delete('/profile/delete', controllers.delete)
+
+app.use('/user', userRouter)
+app.use('/post', postRouter)
+app.use('/profile', profileRouter)
+app.post('/recommend', recommendcontroller)
+app.get('/search', searchcontroller);
 
 
 
