@@ -13,7 +13,7 @@ module.exports = {
     */
     return queryInterface.bulkInsert("Comments", [
       {
-        id :0,
+        id :1,
         User_id: 1,
         Comment_Content: "맛있어 보이네요",
         createdAt: new Date(),
