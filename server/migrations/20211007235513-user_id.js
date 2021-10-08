@@ -40,8 +40,8 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.removeColumn("recipes", "user_id");
-    await queryInterface.removeColumn("comments", "user_id");
-    await queryInterface.removeColumn("likes", "user_id");
+    await queryInterface.removeConstraint("recipes", "fk_recipe_user_id");
+    await queryInterface.removeConstraint("comments", "fk_comment_user_id");
+    await queryInterface.removeConstraint("likes", "fk_like_user_id");
   }
 };

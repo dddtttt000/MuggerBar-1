@@ -1,11 +1,11 @@
 const express = require("express");
-const recipecontroller= require('./controllers/recipes');
+const recipecontroller= require('../controllers/recipes/recipe');
 const router = express.Router();
 
 
-router.post('/recipe', recipecontroller.recipe.post);
-router.get('/recipe', recipecontroller.recipe.get);
-router.delete('/recipe:id', recipecontroller.recipe.delete);
-router.post('/recipe:id/like', recipecontroller.recipe.like);
+router.post('/', recipecontroller.post);
+router.get('/', recipecontroller.get);
+router.delete('/recipe:id', recipecontroller.delete);
+router.post('/recipe:id/like', recipecontroller.like);
 
 module.exports = router;

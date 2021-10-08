@@ -5,7 +5,7 @@ module.exports = {
     await queryInterface.addConstraint("likes", {
       fields: ["recipe_id"],
       type: "foreign key",
-      name: "fk_likes_user_id",
+      name: "fk_likes_recipes_id",
       references: {
         table: "recipes",
         field: "id",
@@ -17,7 +17,7 @@ module.exports = {
     await queryInterface.addConstraint("comments", {
       fields: ["recipe_id"],
       type: "foreign key",
-      name: "fk_comments_user_id",
+      name: "fk_comments_recipes_id",
       references: {
         table: "recipes",
         field: "id",
@@ -28,7 +28,7 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.removeColumn("recipes", "recipe_id");
-    await queryInterface.removeColumn("comments", "recipe_id");
+    await queryInterface.removeConstraint("recipes", "fk_likes_recipes_id");
+    await queryInterface.removeConstraint("comments", "fk_comments_recipes_id");
   }
 };
