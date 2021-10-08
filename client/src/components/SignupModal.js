@@ -26,7 +26,7 @@ export const ModalBtn = styled.button`
   padding: 20px;
   color: white;
   border-radius: 30px;
-  cursor: grab;
+  cursor: pointer;
 `;
 
 export const ModalView = styled.div.attrs((props) => ({
@@ -51,6 +51,7 @@ export const ModalView = styled.div.attrs((props) => ({
 
 function SignupModal() {
   const [isOpen, setIsOpen] = useState(false);
+
   const openModalHandler = () => {
     setIsOpen(!isOpen);
   };

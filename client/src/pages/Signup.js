@@ -23,6 +23,7 @@ function Signup() {
   const handleInputValue = (key) => (e) => {
     setuserinfo({ ...userinfo, [key]: e.target.value });
   };
+
   const handleSignup = () => {
     // TODO : 서버에 회원가입을 요청 후 로그인 페이지로 이동하세요.
     //        회원가입 성공 후 로그인 페이지 이동은 다음 코드를 이용하세요.
@@ -109,7 +110,6 @@ function Signup() {
             </div>
           </div>
         </form>
-        <SignupModal />
       </center>
     </div>
   );
