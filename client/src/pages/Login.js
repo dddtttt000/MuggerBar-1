@@ -27,35 +27,36 @@ function Login() {
     <div>
       <center>
         <div className="container">
-          <div className="logo">로고자리</div>
+          <div className="logo"></div>
           <form onSubmit={(e) => e.preventDefault()}>
             <div className="login-wrap">
-              <input
-                type="email"
-                className="login-input"
-                id="login-email"
-                placeholder="email"
-                onChange={handleInputValue("email")}
-              ></input>
-
-              <div>
+              <div className="login-inner">
                 <input
-                  type="password"
+                  type="email"
                   className="login-input"
-                  id="login-password"
-                  placeholder="password"
-                  onChange={handleInputValue("password")}
+                  id="login-email"
+                  placeholder="email"
+                  onChange={handleInputValue("email")}
                 ></input>
-              </div>
-              {errorMessage ? (
-                <div className="errmgs">{errorMessage}</div>
-              ) : null}
-              <button type="submit" id="btn-login" onClick={handleLogin}>
-                로그인
-              </button>
-              <div className="login-signup">
-                <Link to="/signup">회원가입</Link>
-                <Test />
+
+                <div>
+                  <input
+                    type="password"
+                    className="login-input"
+                    id="login-password"
+                    placeholder="password"
+                    onChange={handleInputValue("password")}
+                  ></input>
+                </div>
+                {errorMessage ? (
+                  <div className="errmgs">{errorMessage}</div>
+                ) : null}
+                <button type="submit" id="btn-login" onClick={handleLogin}>
+                  로그인
+                </button>
+                <div className="login-signup">
+                  <Link to="/signup">회원가입</Link>
+                </div>
               </div>
             </div>
           </form>
