@@ -1,37 +1,43 @@
-const express = require('express')
-const app = express()
-const port = 80
+require('dotenv').config();
+const fs = require('fs');
+const https = require('https');
+const cors = require('cors');
+const cookieParser = require('cookie-parser');
+const express = require('express');
+const app = express();
+const userRouter = require("./routes/userRouter");
+const recipeRouter = require("./routes/recipeRouter");
+const commentRouter = require("./routes/commentRouter");
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+app.use(express.json());
+app.use(
+  cors({
+    origin: ["https://MuggerBar.ml", "http://localhost:3000"],
+    credentials: true,
+    methods: ["GET", "POST", "PATCH", "DELETE", "OPTIONS"]
+  })
+);
 
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
-})
+app.use(cookieParser());
 
+app.use('/', userRouter)
+app.use('/recipe', recipeRouter)
+app.use('/comment', commentRouter)
 
-const userRouter = require('./routes/userRouter')
-const searchRouter = require('./routes/searchRouter')
-const postRouter = require('./routes/postRouter')
+// api수정 확인
 
-const recommentController = require('./Controller/recommend.js')
+const HTTPS_PORT = process.env.HTTPS_PORT || 4000;
 
-//'/user/login' , '/user/logout', '/user/signup', '/user/info'
-app.use('/user', userRouter)
+let server;
+if (fs.existsSync("./key.pem") && fs.existsSync("./cert.pem")) {
+  const privateKey = fs.readFileSync(__dirname + "/key.pem", "utf8");
+  const certificate = fs.readFileSync(__dirname + "/cert.pem", "utf8");
+  const credentials = { key: privateKey, cert: certificate };
 
-//'/search'
-app.use('/search', searchRouter)
-
-//'/post/make/content', '/post/get/content', '/post/delete/content'
-//'/post/make/comment', '/post/get/comment'
-app.use('/post', postRouter)
-
-// '/recommend'
-app.use('/recommend', recommentController )
-
-
-
-
-
+  server = https.createServer(credentials, app);
+  server.listen(HTTPS_PORT, () => console.log("https server runnning"));
+} else {
+  server = app.listen(HTTPS_PORT, () => console.log("http server runnning"));
+}
+module.exports = server;
 

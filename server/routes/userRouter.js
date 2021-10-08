@@ -1,22 +1,13 @@
-const express = require('express');
+const express = require("express");
+const usercontroller= require('../controllers/users/index.js');
 const router = express.Router();
 
-const controllersUser = require('../controllers/user.js')
+// https:://muggerbar.ml/login
+router.post('/login', usercontroller.login);
+router.post('/logout', usercontroller.logout);
+router.post('/signup', usercontroller.signup);
+router.delete('/signout', usercontroller.signout);
+router.get('/userinfo', usercontroller.userinfo);
+router.patch('/edit', usercontroller.edit);
 
-// total 들어오는 경로
-//'/user/login' , '/user/logout', '/user/signup', '/user/info'
-
-//'/user/login'
-router.post('/login', controllersUser.login)
-
-
-//'/user/logout'
-router.post('/logout', controllersUser.logout)
-
-
-//'/user/signup'
-router.post('/signup', controllersUser.signup)
-
-
-//'/user/info'
-router.post('/info', controllersUser.info)
+module.exports = router;
