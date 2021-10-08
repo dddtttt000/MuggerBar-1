@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import Test from "../components/Test";
 import axios from "axios";
 
 axios.defaults.withCredentials = true;
@@ -38,7 +37,6 @@ function Login() {
                   placeholder="email"
                   onChange={handleInputValue("email")}
                 ></input>
-
                 <div>
                   <input
                     type="password"

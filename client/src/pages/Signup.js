@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
+import SignupModal from "../components/SignupModal";
 
 axios.defaults.withCredentials = true;
 
@@ -11,10 +12,10 @@ function Signup() {
     passwordCheck: "",
     nickname: "",
   });
-  const [emailErrMessage, setEmailErrMessage] = useState("");
+  // const [emailErrMessage, setEmailErrMessage] = useState("");
   const [passwordErrMessage, setPasswordErrMessage] = useState("");
   const [passwordCheckErrMessage, setPasswordCheckErrMessage] = useState("");
-  const [nicknameErrMessage, setNicknameErrMessage] = useState("");
+  // const [nicknameErrMessage, setNicknameErrMessage] = useState("");
   const [errMessage, setErrMessage] = useState("");
 
   const history = useHistory();
@@ -108,6 +109,7 @@ function Signup() {
             </div>
           </div>
         </form>
+        <SignupModal />
       </center>
     </div>
   );
