@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken")
 module.exports = async (req, res) => {
     const userInfo = await user.findOne({ 
         where : {user_email : req.body.user_email, user_password:req.body.user_password}
+
     })
     //유저정보가 바디에 담긴데이터에 유저정보가 있는지확인
     if(!userInfo){ //없으면 에러메시지
