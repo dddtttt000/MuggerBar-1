@@ -377,7 +377,36 @@ input::placeholder {
   bottom: 0;
   right: 0;
   display: grid;
-  place-items: center;
+}
+
+.rp-wrap {
+  background-color: #fff;
+  width: 768px;
+  border: 1px solid red;
+  margin-bottom: 8px;
+  padding: 20px;
+  text-align: left;
+}
+.r-box {
+  border: 1px solid red;
+  padding-left: 10px;
+}
+.rp-reply {
+  border: 1px solid red;
+}
+
+.rp-reply > textarea {
+  position: relative;
+  float: left;
+  width: 621px;
+  height: 102px;
+  font-family: "Noto Sans KR", sans-serif, "Apple SD Gothic Neo",
+    apple sd gothic neo;
+}
+.rp-reply > button {
+  position: relative;
+  width: 102px;
+  height: 102px;
 }
 
 /* http://meyerweb.com/eric/tools/css/reset/ 
