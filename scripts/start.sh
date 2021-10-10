@@ -6,5 +6,5 @@ export DATABASE_PASSWORD=$(aws ssm get-parameters --region us-east-2 --names DAT
 export DATABASE_DATABASE=$(aws ssm get-parameters --region us-east-2 --names DATABASE_PORT --query Parameters[0].Value | sed 's/"//g')
 export DATABASE_HOST=$(aws ssm get-parameters --region us-east-2 --names DATABASE_HOST --query Parameters[0].Value | sed 's/"//g')
 
-authbind --deep pm2 start app.js
+authbind --deep pm2 start index.js
 authbind --deep pm2 start index.js
