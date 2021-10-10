@@ -30,8 +30,8 @@ module.exports = { development, test, production };
 // 기존 config.json 파일 당시 설정
 // {
 //   "development": {
-//     "username": "root",
-//     "password": null,
+//     "username": "admin",
+//     "password": "1234",
 //     "database": "database_development",
 //     "host": "127.0.0.1",
 //     "dialect": "mysql"
