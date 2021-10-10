@@ -91,6 +91,11 @@ body {
   padding-top: 20px;
 }
 
+.login-signup > a {
+  color: rgb(141, 141, 141);
+  text-decoration: underline;
+  text-underline-position: below;
+}
 .signup-wrap {
   /* border: 1px solid red; */
   width: 460px;
@@ -134,6 +139,7 @@ body {
 }
 
 .my-wrap {
+  margin-top: 30px;
   border: 1px solid red;
   width: 852px;
 }
@@ -178,7 +184,7 @@ body {
   background-color: #f1e067;
   width: 100%;
   padding: 10px;
-  margin-bottom: 20px;
+
   border: 1px solid #f5df4d;
   border-radius: 5px;
   font-size: 18px;
@@ -188,7 +194,7 @@ body {
 
 .btn-wrap {
   /* border: 1px solid red; */
-  margin-top: 50px;
+  margin-top: 30px;
 }
 
 #plus {
@@ -202,15 +208,15 @@ body {
   color: #9b9b9b;
   text-decoration: underline;
   text-underline-position: under;
+  margin-top: 40px;
 }
 
 .mylist-wrap {
   z-index: 1;
   padding: 10px;
   width: 714px;
-  border: 1px solid red;
+  /* border: 1px solid red; */
   position: relative;
-  right: 286px;
   background-color: #f4f4f4;
 }
 
@@ -223,6 +229,117 @@ body {
 
 .list {
   display: none;
+}
+
+.modal-back {
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(8, 4, 4, 0.9);
+  display: grid;
+  place-items: center;
+}
+
+.modal-wrap {
+  background-color: #fff;
+  height: 15rem;
+  text-align: center;
+  margin: 100px auto;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.modal-x {
+  position: relative;
+  cursor: pointer;
+  left: 160px;
+}
+
+.modal-text {
+  font-size: 24px;
+  padding-top: 30px;
+  padding-bottom: 20px;
+  font-weight: bold;
+}
+
+.modal-btn-c {
+  background-color: #424242;
+  text-decoration: none;
+  border: none;
+  padding: 10px;
+  color: white;
+  border-radius: 5px;
+  width: 175px;
+  height: 43px;
+  cursor: pointer;
+  font-size: 18px;
+  margin: 20px 20px 0px;
+  width: 140px;
+}
+.modal-btn-y {
+  background-color: #fff;
+  text-decoration: none;
+  border: none;
+  padding: 10px;
+  color: black;
+  border: 1px solid #424242;
+  border-radius: 5px;
+  width: 175px;
+  height: 43px;
+  cursor: pointer;
+  font-size: 18px;
+  margin: 20px 20px 0px;
+  width: 140px;
+}
+.modal-info {
+  position: relative;
+  font-size: 12px;
+  margin-top: 14px;
+  right: 57px;
+}
+
+.welcome-img {
+  display: block;
+  margin: 10px auto;
+  position: relative;
+  width: 90px;
+  height: 90px;
+  background: url("./img/welcome.png");
+}
+
+.welcome-btn {
+  background-color: #424242;
+  text-decoration: none;
+  border: none;
+  padding: 10px;
+  color: white;
+  border-radius: 5px;
+  width: 175px;
+  height: 43px;
+  cursor: pointer;
+  font-size: 18px;
+  margin: 20px 20px 0px;
+  width: 140px;
+}
+
+.welcome-wrap {
+  width: 400px;
+  background-color: #fff;
+  height: 300px;
+  text-align: center;
+  margin: 100px auto;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.welcome-text {
+  font-size: 24px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-weight: normal;
 }
 
 /* http://meyerweb.com/eric/tools/css/reset/ 

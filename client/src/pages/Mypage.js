@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import Mylist from "../components/Mylist";
+import Footer from "../components/Footer";
+import Withdrawal from "../components/Withdrawal";
+import Navbar from "../components/Navbar";
 
 function Mypage(props) {
   const [isOpen, setIsOpen] = useState(false);
@@ -9,6 +12,7 @@ function Mypage(props) {
     password: "",
     nickname: "",
   });
+  console.log("mypage userinfo", userinfo);
 
   const handleUpdate = () => {
     // TODO: 유저 정보를 서버에 업데이트 요청하고, 성공한 경우 history.push("/")
@@ -33,7 +37,7 @@ function Mypage(props) {
   console.log("mypage props", props);
   return (
     <div>
-      <span>네브 바 영역</span>
+      <Navbar />
       <center>
         <div className="my-wrap">
           <span className="myinfo-top">
@@ -52,7 +56,7 @@ function Mypage(props) {
             ) : (
               <input
                 type="password"
-                className=""
+                className="myinfo-props"
                 placeholder="프랍스"
                 onChange={handleInputValue("password")}
               ></input>
@@ -64,7 +68,7 @@ function Mypage(props) {
             ) : (
               <input
                 type="text"
-                className=""
+                className="myinfo-props"
                 placeholder="props"
                 onChange={handleInputValue("nickname")}
               ></input>
@@ -80,18 +84,20 @@ function Mypage(props) {
                   내가 쓴 글 목록
                   <span id="plus">
                     {isOpen ? (
-                      <>
-                        <i class="fas fa-minus"></i>
-                        <Mylist />
-                      </>
+                      <i class="fas fa-minus"></i>
                     ) : (
-                      <>
-                        <i class="fas fa-plus"></i>
-                      </>
+                      <i class="fas fa-plus"></i>
                     )}
                   </span>
                 </button>
               </div>
+            </div>
+            {isOpen ? (
+              <div className="my-inner-wrapper">
+                <Mylist />
+              </div>
+            ) : null}
+            <div className="btn-wrap">
               {clickToEdit ? (
                 <div>
                   <button
@@ -118,13 +124,14 @@ function Mypage(props) {
                   <p className="getout" onClick={showModalHandler}>
                     회원탈퇴
                   </p>
-                  {showModal ? "모달창이 뜬다!" : null}
                 </div>
               ) : null}
             </div>
           </div>
         </div>
       </center>
+      {showModal ? <Withdrawal showModalHandler={showModalHandler} /> : null}
+      <Footer />
     </div>
   );
 }
