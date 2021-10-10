@@ -6,6 +6,7 @@ import Newrecipe from "./pages/Newrecipe";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Mypage from "./pages/Mypage";
+import Recipes from "./pages/Recipes";
 
 function App() {
   const [userInfo, setUserInfo] = useState(null);
@@ -24,6 +25,9 @@ function App() {
         </Route>
         <Route path="/newrecipe">
           <Newrecipe />
+        </Route>
+        <Route path="/recipes">
+          <Recipes />
         </Route>
       </Switch>
     </div>

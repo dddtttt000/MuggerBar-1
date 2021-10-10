@@ -7,34 +7,60 @@
 }
 
 body {
+  /* 사파리에서 폰트가 못생겨보임 - 해결못함 */
+  font-family: "Noto Sans KR", sans-serif, "Apple SD Gothic Neo",
+    apple sd gothic neo;
   height: 100%;
   margin: 0;
 }
 
 .login-wrap {
   display: block;
-  /* border: 2px solid red; */
+  border: 1px solid #646464;
   width: 553px;
-  margin: 0 auto;
+  margin: 20px auto;
+  border-radius: 10px;
+  padding: 15px;
 }
 
 .login-inner {
   display: block;
-  /* border: 1px solid red; */
   margin: 20px;
 }
 
 .login-input {
-  font-size: 17px;
+  display: table;
+  table-layout: fixed;
+  position: relative;
+  text-align: left;
   width: 100%;
   border: 1px solid #8f8f8f;
   padding: 17px 18px 17px 19px;
-  margin-top: 10px;
+  margin-top: 15px;
   border-radius: 6px;
 }
+.login-text {
+  position: relative;
+  font-size: 18px;
+  width: 100%;
+  border: none;
+  background: 0 0;
+  line-height: 24px;
+  appearance: none;
+  outline: 0;
+  cursor: pointer;
+}
 
-.login-input.focus {
-  border: 1px solid greenyellow;
+input::placeholder {
+  color: #979797;
+  vertical-align: middle;
+}
+
+.login-icon {
+  display: table-cell;
+  width: 26px;
+  vertical-align: middle;
+  color: rgb(185, 185, 185);
 }
 
 .logo {
@@ -340,6 +366,18 @@ body {
   padding-top: 10px;
   padding-bottom: 10px;
   font-weight: normal;
+}
+
+.rp {
+  background-color: #dcdcdc;
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  display: grid;
+  place-items: center;
 }
 
 /* http://meyerweb.com/eric/tools/css/reset/ 

@@ -33,7 +33,7 @@ function Signup() {
     // TODO: 서버에 회원가입을 요청 후 로그인 페이지로 이동하세요.
 
     // TODO: 회원가입 성공 시 모달 창 띄우고 확인 버튼 누르면 로그인페이지로 이동
-    showModalHandler();
+    //showModalHandler();
 
     const { email, password, passwordCheck, nickname } = userinfo;
     // 모든 항목을 입력하지 않았을 경우 에러를 표시해야 합니다.
