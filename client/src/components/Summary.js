@@ -8,10 +8,12 @@ function Summery() {
         요리명
         <input placeholder="요리의 이름을 정해주세요." type="text" />
       </div>
+
       <div id="brief-description-container">
         한줄설명
         <input placeholder="20글자 이내로 작성해 주세요." type="text" />
       </div>
+      
       <div id="select-catgory-container">
         카테고리 선택
         <select name="category">
