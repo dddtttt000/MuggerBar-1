@@ -388,15 +388,18 @@ input::placeholder {
   text-align: left;
 }
 .r-box {
-  border: 1px solid red;
+  /* border: 1px solid red; */
   padding-left: 10px;
 }
 .rp-reply {
-  border: 1px solid red;
+  /* border: 1px solid red; */
+  margin-top: 20px;
+  margin-bottom: 30px;
 }
 
 .rp-reply > textarea {
   position: relative;
+  padding: 10px;
   float: left;
   width: 621px;
   height: 102px;
@@ -407,6 +410,11 @@ input::placeholder {
   position: relative;
   width: 102px;
   height: 102px;
+}
+
+.r-title {
+  font-size: 18px;
+  font-weight: bold;
 }
 
 /* http://meyerweb.com/eric/tools/css/reset/ 

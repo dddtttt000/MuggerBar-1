@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import Comment from "../components/Comment";
 
 function Recipes() {
   return (
@@ -24,19 +25,16 @@ function Recipes() {
           </div>
         </div>
         <div className="rp-wrap pic">이미지 불러와서 띄우기</div>
-        <div className="rp-wrap desc">본문 텍스트 불러오기</div>
-        <div className="rp-wrap reply">
-          <div>댓글</div> <hr></hr>
-          <div className="r-box">
-            <div>닉네임</div>
-            <div>댓글내용</div> <hr></hr>
-          </div>
+        <div className="rp-wrap desc">
+          본문 텍스트 불러오기
+          <div className="r-likes">추천</div>
+        </div>
+        <div className="rp-wrap ">
+          <div className="r-title">댓글</div> <hr></hr>
+          <Comment />
           <div className="rp-reply">
             <textarea
-              name=""
               id=""
-              cols="30"
-              rows="10"
               placeholder="레시피가 마음에 드셨나요? 댓글을 남겨주세요."
             ></textarea>
             <button>등록</button>
