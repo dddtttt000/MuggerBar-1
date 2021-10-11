@@ -16,7 +16,7 @@ let sequelize;
 // } else {
 //   sequelize = new Sequelize(config.database, config.username, config.password, config);
 // }
-
+console.log(config.database)
 // config.js 적용
 sequelize = new Sequelize(
   config.database,
