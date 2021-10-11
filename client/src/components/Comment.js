@@ -1,10 +1,10 @@
 import React from "react";
 
-function Comment() {
+function Comment({ comment }) {
   return (
     <div className="r-box">
-      <div>닉네임</div>
-      <div>댓글내용</div> <hr></hr>
+      <div className="r-name">{comment.user_nickname}</div>
+      <div>{comment.comment_content}</div> <hr></hr>
     </div>
   );
 }

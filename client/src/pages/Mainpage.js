@@ -5,14 +5,6 @@ import MainSearch from "../components/MainSearch";
 import MainContentsbox from "../components/MainContentsBox";
 import Footer from "../components/Footer";
 
-// import React, { useState } from "react";
-// import { Link } from "react-router-dom";
-// import Navbar from "../components/Navbar";
-// import Image from "../components/Image";
-// import Searchbar from "../components/Searchbar";
-// import Contentsbox from "../components/Contentsbox";
-// import Footer from "../components/Footer";
-
 function Mainpage() {
   return (
     <>
@@ -29,6 +21,7 @@ function Mainpage() {
       </div>
 
       <MainContentsbox />
+      <Link to="./Recipes">컨텐츠 클릭시</Link>
       <Footer />
     </>
   );
