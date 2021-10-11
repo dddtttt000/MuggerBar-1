@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Finder from '../components/Finder';
+import PostingNav from '../components/PostingNav';
 import Summery from '../components/Summary';
 import { CKEditor } from 'ckeditor4-react';
 import Footer from '../components/Footer';
 
-function Newrecipe() {
+
+function Posting() {
 
   const [post, setPost] = useState('');
 
@@ -13,11 +14,13 @@ function Newrecipe() {
 
   return (
   <>
-    <div>
-      Navbar 자리 ( 이 페이지에 맞게 변경되어야 함 )
-    </div>
+    <PostingNav />
 
-    <Finder />
+    <div class="PostingImgFinder">
+      <input type="file" />
+      <input type="submit" value="첨부하기" />
+    </div>
+    
     <Summery />
     
     <CKEditor 
@@ -26,12 +29,13 @@ function Newrecipe() {
       config={ { height: 750 },{ width: 700 }, { allowedContent: true } }
     />
 
-    <div className="publish">
+    <div className="publishBtn">
       <button onClick={ (e) => { setPost(e.target.value) } }>저장하기</button>
     </div>
+
     <Footer />
   </>
   )
 };
 
-export default Newrecipe;
+export default Posting;

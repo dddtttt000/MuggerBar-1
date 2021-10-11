@@ -157,6 +157,7 @@ input::placeholder {
   margin-top: 20px;
   font-size: 20px;
 }
+
 .err-box {
   color: red;
   font-size: 12px;
@@ -421,6 +422,153 @@ input::placeholder {
    v2.0 | 20110126
    License: none (public domain)
 */
+
+/* * 현진 작성 👇🏻 */
+
+.mainNav {
+  background-color: #8f8f8f;
+  display: flex;
+}
+
+.button-mainNav {
+  display: flex;
+  margin: 80px 0 0 50px;
+}
+
+.logo-mainNav {
+  position: relative;
+  width: 260px;
+  margin: 0 550px 0 50px;
+  text-align: center;
+  padding-top: 150px;
+  padding-bottom: 30px;
+  background-color: #8f8f8f;
+  background: url(../src/img/MuggerBar-Logo-White.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.mainBtn {
+  padding: 1px;
+}
+
+.main-btn-posting {
+  position: relative;
+  width: 149px;
+  background: url(../src/img/pencil-icon.png);
+  background-repeat: no-repeat;
+  background-position: 10% 50%;
+  border: 1px solid #e7d65c;
+  background-color: #f1e067;
+  border-radius: 6px;
+  padding: 10px 10px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.before-login-btn {
+  position: relative;
+  width: 149px;
+  background-repeat: no-repeat;
+  background-position: 10% 50%;
+  background-color: silver;
+  border: 1px solid gray;
+  border-radius: 6px;
+  padding: 10px 10px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.before-signup-btn {
+  position: relative;
+  width: 149px;
+  background-repeat: no-repeat;
+  background-position: 10% 50%;
+  background-color: silver;
+  border: 1px solid gray;
+  border-radius: 6px;
+  padding: 10px 10px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.postingNav {
+  background-color: #8f8f8f;
+  display: flex;
+}
+
+.logo-postingNav {
+  position: relative;
+  width: 260px;
+  margin: 0 550px 0 50px;
+  text-align: center;
+  padding-top: 150px;
+  padding-bottom: 30px;
+  background-color: #8f8f8f;
+  background: url(../src/img/MuggerBar-Logo-White.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.button-postingNav {
+  display: flex;
+  margin: 80px 0 0 50px;
+}
+
+.submit-btn-posting {
+  position: relative;
+  width: 149px;
+  background-repeat: no-repeat;
+  background-position: 10% 50%;
+  border: 1px solid #e7d65c;
+  background-color: #f1e067;
+  border-radius: 6px;
+  padding: 10px 10px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.mypage-btn {
+  position: relative;
+  width: 149px;
+  background-repeat: no-repeat;
+  background-position: 10% 50%;
+  color: white;
+  background-color: silver;
+  border: 1px solid gray;
+  border-radius: 6px;
+  padding: 10px 10px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.logout-btn {
+  position: relative;
+  width: 149px;
+  background-repeat: no-repeat;
+  background-position: 10% 50%;
+  color: white;
+  background-color: silver;
+  border: 1px solid gray;
+  border-radius: 6px;
+  padding: 10px 10px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.main-searchbar {
+  background-color: #f1e067;
+  display: flex;
+  padding: 30px;
+  /* width: 1200px;
+  height: 130px; */
+}
+
+.main-img {
+  margin-top: 50px;
+}
 
 html,
 body,
