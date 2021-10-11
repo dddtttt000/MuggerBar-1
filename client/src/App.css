@@ -2,37 +2,547 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+* {
+  box-sizing: border-box;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+body {
+  /* 사파리에서 폰트가 못생겨보임 - 해결못함 */
+  font-family: "Noto Sans KR", sans-serif, "Apple SD Gothic Neo",
+    apple sd gothic neo;
+  height: 100%;
+  margin: 0;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.login-wrap {
+  display: block;
+  border: 1px solid #646464;
+  width: 553px;
+  margin: 20px auto;
+  border-radius: 10px;
+  padding: 15px;
+}
+
+.login-inner {
+  display: block;
+  margin: 20px;
+}
+
+.login-input {
+  display: table;
+  table-layout: fixed;
+  position: relative;
+  text-align: left;
+  width: 100%;
+  border: 1px solid #8f8f8f;
+  padding: 17px 18px 17px 19px;
+  margin-top: 15px;
+  border-radius: 6px;
+}
+.login-text {
+  position: relative;
+  font-size: 18px;
+  width: 100%;
+  border: none;
+  background: 0 0;
+  line-height: 24px;
+  appearance: none;
+  outline: 0;
+  cursor: pointer;
+}
+
+input::placeholder {
+  color: #979797;
+  vertical-align: middle;
+}
+
+.login-icon {
+  display: table-cell;
+  width: 26px;
+  vertical-align: middle;
+  color: rgb(185, 185, 185);
+}
+
+.logo {
+  position: relative;
+  width: 743px;
+  margin: 0 auto;
+  text-align: center;
+  padding-top: 150px;
+  padding-bottom: 30px;
+  background: url(../src/img/MuggerBar-logo\ 1\ 1.png);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.logo-signup {
+  position: relative;
+  width: 200px;
+  margin: 0 auto;
+  text-align: center;
+  padding-top: 150px;
+  padding-bottom: 30px;
+  background: url(../src/img/MuggerBar-logo\ 1\ 1.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.errmgs {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  font-size: 14px;
+  color: red;
+}
+.container {
+  position: relative;
+  padding: 20px 30px;
+  margin: 0 auto;
+  letter-spacing: -0.2px;
+}
+
+#btn-login {
+  position: relative;
+  width: 100%;
+  display: block;
+  border: 1px solid #e7d65c;
+  background-color: #f1e067;
+  border-radius: 6px;
+  padding: 17px 0 15px;
+  cursor: pointer;
+  margin-top: 20px;
+  font-size: 20px;
+}
+
+.login-signup {
+  padding-top: 20px;
+}
+
+.login-signup > a {
+  color: rgb(141, 141, 141);
+  text-decoration: underline;
+  text-underline-position: below;
+}
+.signup-wrap {
+  /* border: 1px solid red; */
+  width: 460px;
+}
+.signup-box {
+  padding-bottom: 10px;
+}
+.signup-input {
+  width: 100%;
+  font-size: 17px;
+  height: 51px;
+  border-radius: 5px;
+  border: 1px solid rgb(141, 141, 141);
+}
+
+.signup-text {
+  position: relative;
+  padding: 5px 0px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: left;
+}
+
+.btn-signup {
+  position: relative;
+  width: 100%;
+  display: block;
+  border: 1px solid #e7d65c;
+  background-color: #f1e067;
+  border-radius: 6px;
+  padding: 17px 0 15px;
+  cursor: pointer;
+  margin-top: 20px;
+  font-size: 20px;
+}
+.err-box {
+  color: red;
+  font-size: 12px;
+  text-align: left;
+  margin-top: 10px;
+}
+
+.my-wrap {
+  margin-top: 30px;
+  border: 1px solid red;
+  width: 852px;
+}
+
+.myinfo-top {
+  position: relative;
+  right: 395px;
+  text-align: left;
+  font-size: 20px;
+}
+
+.myinfo-top > hr {
+  width: 61px;
+  border: 3px solid black;
+}
+.my-inner-wrap {
+  /* border: 1px solid red; */
+  width: 714px;
+}
+
+.myinfo {
+  display: inline-block;
+  font-size: 18px;
+  font-weight: bold;
+  position: relative;
+  /* border: 1px solid red; */
+  width: 125px;
+  height: 21px;
+  text-align: left;
+}
+
+.myinfo-props {
+  display: inline-block;
+  /* border: 1px solid red; */
+  height: 21px;
+  font-size: 20px;
+  text-align: left;
+  width: 582px;
+}
+
+.my-btn {
+  background-color: #f1e067;
+  width: 100%;
+  padding: 10px;
+
+  border: 1px solid #f5df4d;
+  border-radius: 5px;
+  font-size: 18px;
+  cursor: pointer;
+  z-index: 0;
+}
+
+.btn-wrap {
+  /* border: 1px solid red; */
+  margin-top: 30px;
+}
+
+#plus {
+  position: relative;
+  left: 275px;
+}
+
+.getout {
+  font-size: 18px;
+  cursor: pointer;
+  color: #9b9b9b;
+  text-decoration: underline;
+  text-underline-position: under;
+  margin-top: 40px;
+}
+
+.mylist-wrap {
+  z-index: 1;
+  padding: 10px;
+  width: 714px;
+  /* border: 1px solid red; */
+  position: relative;
+  background-color: #f4f4f4;
+}
+
+.mylist-wrap > ul > li > a {
+  position: relative;
+  right: 230px;
+  text-decoration: none;
+  color: #000;
+}
+
+.list {
+  display: none;
+}
+
+.modal-back {
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(8, 4, 4, 0.9);
+  display: grid;
+  place-items: center;
+}
+
+.modal-wrap {
+  background-color: #fff;
+  height: 15rem;
+  text-align: center;
+  margin: 100px auto;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.modal-x {
+  position: relative;
+  cursor: pointer;
+  left: 160px;
+}
+
+.modal-text {
+  font-size: 24px;
+  padding-top: 30px;
+  padding-bottom: 20px;
+  font-weight: bold;
+}
+
+.modal-btn-c {
+  background-color: #424242;
+  text-decoration: none;
+  border: none;
+  padding: 10px;
   color: white;
+  border-radius: 5px;
+  width: 175px;
+  height: 43px;
+  cursor: pointer;
+  font-size: 18px;
+  margin: 20px 20px 0px;
+  width: 140px;
+}
+.modal-btn-y {
+  background-color: #fff;
+  text-decoration: none;
+  border: none;
+  padding: 10px;
+  color: black;
+  border: 1px solid #424242;
+  border-radius: 5px;
+  width: 175px;
+  height: 43px;
+  cursor: pointer;
+  font-size: 18px;
+  margin: 20px 20px 0px;
+  width: 140px;
+}
+.modal-info {
+  position: relative;
+  font-size: 12px;
+  margin-top: 14px;
+  right: 57px;
 }
 
-.App-link {
-  color: #61dafb;
+.welcome-img {
+  display: block;
+  margin: 10px auto;
+  position: relative;
+  width: 90px;
+  height: 90px;
+  background: url("./img/welcome.png");
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.welcome-btn {
+  background-color: #424242;
+  text-decoration: none;
+  border: none;
+  padding: 10px;
+  color: white;
+  border-radius: 5px;
+  width: 175px;
+  height: 43px;
+  cursor: pointer;
+  font-size: 18px;
+  margin: 20px 20px 0px;
+  width: 140px;
+}
+
+.welcome-wrap {
+  width: 400px;
+  background-color: #fff;
+  height: 300px;
+  text-align: center;
+  margin: 100px auto;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.welcome-text {
+  font-size: 24px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-weight: normal;
+}
+
+.rp {
+  background-color: #dcdcdc;
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  display: grid;
+}
+
+.rp-wrap {
+  background-color: #fff;
+  width: 768px;
+  border: 1px solid red;
+  margin-bottom: 8px;
+  padding: 20px;
+  text-align: left;
+}
+.r-box {
+  /* border: 1px solid red; */
+  padding-left: 10px;
+}
+.rp-reply {
+  /* border: 1px solid red; */
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+.rp-reply > textarea {
+  position: relative;
+  padding: 10px;
+  float: left;
+  width: 621px;
+  height: 102px;
+  font-family: "Noto Sans KR", sans-serif, "Apple SD Gothic Neo",
+    apple sd gothic neo;
+}
+.rp-reply > button {
+  position: relative;
+  width: 102px;
+  height: 102px;
+}
+
+.r-title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
 }
