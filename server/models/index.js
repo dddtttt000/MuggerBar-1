@@ -18,6 +18,8 @@ let sequelize;
 // }
 
 // config.js 적용
+console.log("config = ", config)
+
 sequelize = new Sequelize(
   config.database,
   config.username,

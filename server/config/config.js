@@ -1,32 +1,33 @@
-require("dotenv").config();
+const dotenv = require('dotenv');
+dotenv.config();
 
-const env = process.env;
+console.log("process.env.DATABASE_USERNAME =", process.env.DATABASE_USERNAME)
 
 const development = {
-  username: env.DATABASE_USERNAME,
-  password: env.DATABASE_PASSWORD,
-  database: env.DATABASE_DATABASE,
-  host: env.DATABASE_HOST,
+  username: process.env.DATABASE_USERNAME,
+  password: process.env.DATABASE_PASSWORD,
+  database: process.env.DATABASE_DATABASE,
+  host: process.env.DATABASE_HOST,
   dialect: "mysql",
-  port: env.DATABASE_PORT,
+  port: process.env.DATABASE_PORT,
 };
 
 const test = {
-  username: env.DATABASE_USERNAME,
-  password: env.DATABASE_PASSWORD,
-  database: env.DATABASE_DATABASE,
-  host: env.DATABASE_HOST,
+  username: process.env.DATABASE_USERNAME,
+  password: process.env.DATABASE_PASSWORD,
+  database: process.env.DATABASE_DATABASE,
+  host: process.env.DATABASE_HOST,
   dialect: "mysql",
-  port: env.DATABASE_PORT,
+  port: process.env.DATABASE_PORT,
 };
 
 const production = {
-  username: env.DATABASE_USERNAME,
-  password: env.DATABASE_PASSWORD,
-  database: env.DATABASE_DATABASE,
-  host: env.DATABASE_HOST,
+  username: process.env.DATABASE_USERNAME,
+  password: process.env.DATABASE_PASSWORD,
+  database: process.env.DATABASE_DATABASE,
+  host: process.env.DATABASE_HOST,
   dialect: "mysql",
-  port: env.DATABASE_PORT,
+  port: process.env.DATABASE_PORT,
 };
 
 module.exports = { development, test, production };
