@@ -5,11 +5,11 @@ const path = require('path');
 const Sequelize = require('sequelize');
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
-// const config = require(__dirname + '/../config/config.json')[env]; // config.json
-const config = require('../config/config.js')[env]; //config.js
+const config = require('../config/config.js')[env];
 const db = {};
 
 let sequelize;
+<<<<<<< HEAD
 // config.json 적용
 // if (config.use_env_variable) {
 //   sequelize = new Sequelize(process.env[config.use_env_variable], config);
@@ -18,6 +18,9 @@ let sequelize;
 // }
 console.log(config.database)
 // config.js 적용
+=======
+
+>>>>>>> 32608acc574be5dc504ac079f488ffb7dc23778d
 sequelize = new Sequelize(
   config.database,
   config.username,
