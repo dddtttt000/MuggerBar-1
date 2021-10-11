@@ -1,6 +1,6 @@
 #!/bin/bash
 cd /home/ubuntu/MuggerBar/server
-npm install
+npm install -g
 npm install pm2@latest -g
 sudo apt-get update
 sudo apt-get install authbind
