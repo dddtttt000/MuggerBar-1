@@ -1,12 +1,13 @@
-import "./App.css";
-import { Switch, Route } from "react-router-dom";
-import Mainpage from './pages/Mainpage';
+import React, { useEffect, useState } from "react";
+// import "./App.css";
+// import { Switch, Route } from "react-router-dom";
+// import Mainpage from './pages/Mainpage';
 import Posting from './pages/Posting';
-import Login from "./pages/Login";
-import Signup from "./pages/Signup";
+// import Login from "./pages/Login";
+// import Signup from "./pages/Signup";
 // import axios from 'axios';
 
-function App() {
+// function App() {
 
     // HA3-Client-App.js 참고.
     // const [isLogin, setIsLogin] = useState(false);
@@ -30,16 +31,41 @@ function App() {
     //   isAuthenticated();
     // }, []);
 
+
+import { Switch, Route, useHistory, Redirect, Link } from "react-router-dom";
+import Mainpage from "./pages/Mainpage";
+import Newrecipe from "./pages/Newrecipe";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import Mypage from "./pages/Mypage";
+import Recipes from "./pages/Recipes";
+
+function App() {
+  const [userInfo, setUserInfo] = useState(null);
+  const [isLogin, setIsLogin] = useState(false);
+
   return (
     <div>
       <Switch>
         <Route exact path="/" component={Mainpage}></Route>
         {/* <Route exact path="/" component={Mainpage} userinfo={userinfo} handleLogout={handleLogout}></Route> */}
         <Route path="/posting" component={Posting}></Route>
+        <Route exact path="/">
+          <Mainpage />
+        </Route>
         <Route path="/login" component={Login}></Route>
         {/* <Route path="/login" component={Login} isLogin={isLogin} handleResponseSuccess={handleResponseSuccess}></Route> */}
         <Route path="/signup" component={Signup}></Route>
         
+        <Route path="/mypage">
+          <Mypage userInfo={userInfo} />
+        </Route>
+        <Route path="/newrecipe">
+          <Newrecipe />
+        </Route>
+        <Route path="/recipes">
+          <Recipes />
+        </Route>
       </Switch>
     </div>
   );

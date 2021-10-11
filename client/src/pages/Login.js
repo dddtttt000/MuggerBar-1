@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import Footer from "../components/Footer";
 import axios from "axios";
 
 axios.defaults.withCredentials = true;
@@ -30,18 +31,24 @@ function Login() {
           <form onSubmit={(e) => e.preventDefault()}>
             <div className="login-wrap">
               <div className="login-inner">
-                <input
-                  type="email"
-                  className="login-input"
-                  id="login-email"
-                  placeholder="email"
-                  onChange={handleInputValue("email")}
-                ></input>
-                <div>
+                <div className="login-input">
+                  <div className="login-icon">
+                    <i class="far fa-envelope"></i>
+                  </div>
+                  <input
+                    type="email"
+                    className="login-text"
+                    placeholder="email"
+                    onChange={handleInputValue("email")}
+                  ></input>
+                </div>
+                <div className="login-input">
+                  <div className="login-icon">
+                    <i class="fas fa-lock"></i>
+                  </div>
                   <input
                     type="password"
-                    className="login-input"
-                    id="login-password"
+                    className="login-text"
                     placeholder="password"
                     onChange={handleInputValue("password")}
                   ></input>
@@ -60,6 +67,7 @@ function Login() {
           </form>
         </div>
       </center>
+      <Footer />
     </div>
   );
 }
