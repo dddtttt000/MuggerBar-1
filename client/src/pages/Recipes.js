@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar from "../components/Navbar";
+import MainNav from "../components/MainNav";
 import Footer from "../components/Footer";
 import Comment from "../components/Comment";
 
@@ -7,7 +7,7 @@ function Recipes() {
   return (
     <div className="rp">
       <center>
-        <Navbar />
+        <MainNav />
         <div className="rp-wrap title">
           타이틀공간
           <div className="rp-title">
