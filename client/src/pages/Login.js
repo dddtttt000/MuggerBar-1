@@ -5,21 +5,37 @@ import axios from "axios";
 
 axios.defaults.withCredentials = true;
 
-function Login() {
+function Login({ handleResponseSuccess }) {
+  const [errorMessage, setErrorMessage] = useState("");
   const [loginInfo, setLoginInfo] = useState({
-    email: "",
-    password: "",
+    user_email: "",
+    user_password: "",
   });
+
   const handleInputValue = (key) => (e) => {
     setLoginInfo({ ...loginInfo, [key]: e.target.value });
   };
-  const [errorMessage, setErrorMessage] = useState("");
+
+  // console.log("loginInfo", loginInfo);
 
   const handleLogin = () => {
     // 이메일 및 비밀번호를 입력하지 않았을 경우 에러를 표시해야 합니다.
-    const { email, password } = loginInfo;
-    if (email === "" || password === "") {
+    const { user_email, user_password } = loginInfo;
+    if (user_email === "" || user_password === "") {
       setErrorMessage("이메일과 비밀번호를 정확히 입력해 주세요.");
+    } else {
+      axios
+        .post("https://localhost:80/signin", {
+          user_email: user_email,
+          user_password: user_password,
+        })
+        .then((res) => {
+          //console.log("res ???", res.status, "로그인성공");
+          handleResponseSuccess();
+        })
+        .catch((err) => {
+          //console.log("err message =>", err);
+        });
     }
     // 서버에 로그인을 요청하고, props로 전달된 callback을 호출합니다.
   };
@@ -39,7 +55,7 @@ function Login() {
                     type="email"
                     className="login-text"
                     placeholder="email"
-                    onChange={handleInputValue("email")}
+                    onChange={handleInputValue("user_email")}
                   ></input>
                 </div>
                 <div className="login-input">
@@ -50,7 +66,7 @@ function Login() {
                     type="password"
                     className="login-text"
                     placeholder="password"
-                    onChange={handleInputValue("password")}
+                    onChange={handleInputValue("user_password")}
                   ></input>
                 </div>
                 {errorMessage ? (
