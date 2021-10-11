@@ -16,7 +16,7 @@ function Signup() {
   // const [emailErrMessage, setEmailErrMessage] = useState("");
   const [passwordErrMessage, setPasswordErrMessage] = useState("");
   const [passwordCheckErrMessage, setPasswordCheckErrMessage] = useState("");
-  const [nicknameErrMessage, setNicknameErrMessage] = useState("");
+  //const [nicknameErrMessage, setNicknameErrMessage] = useState("");
   const [errMessage, setErrMessage] = useState("");
   // 회원가입 성공 시 웰컴 모달 보여주기
   const [showModal, setShowModal] = useState(false);

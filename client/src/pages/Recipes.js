@@ -9,6 +9,9 @@ function Recipes({ userInfo }) {
   const [msg, setMsg] = useState("");
   const [like, setLike] = useState(0);
   const [isClick, setIsClick] = useState(false);
+  const [isMyContent, setIsMyContent] = useState(false);
+  // TODO: props 로 받아온 userInfo 의 email 과 게시물을 작성한 유저의 email 이 같으면,
+  // 삭제하기 버튼을 보여주고, 아니면 안보여준다. -> isMyContent
 
   const handleButtonClick = () => {
     const comment = {
@@ -34,12 +37,18 @@ function Recipes({ userInfo }) {
     setIsClick(false);
   };
 
+  const handleDelete = () => {
+    // TODO: 삭제하기 버튼을 누르면 해당 게시물이 삭제되어야함
+    // 서버에 post 요청을 보낸다.
+    // 메인페이지로 리디렉션한다.
+    console.log("delete");
+  };
+
   return (
     <div className="rp">
       <center>
         <MainNav />
         <div className="rp-wrap title">
-          타이틀공간
           <div className="rp-title">
             <div>제목</div>
             <div>한줄설명</div>
@@ -52,14 +61,16 @@ function Recipes({ userInfo }) {
               <span className="rp-category">카테고리</span>
               <span className="rp-category-value">선택한것</span>
             </div>
-            <div>
-              <button className="rp-delete">삭제하기</button>
-            </div>
+            <span className="rp-delete">
+              <button className="btn-delete" onClick={handleDelete}>
+                삭제하기
+              </button>
+            </span>
           </div>
         </div>
         <div className="rp-wrap pic">이미지 불러와서 띄우기</div>
-        <div className="rp-wrap desc">
-          본문 텍스트 불러오기
+        <div className="rp-wrap">
+          <div className="rp-desc">본문 텍스트 불러오기</div>
           <div className="r-likes">
             <div
               className="r-img"

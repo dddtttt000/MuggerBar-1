@@ -27,7 +27,6 @@ function App() {
         <Route path="/signup">
           <Signup />
         </Route>
-
         <Route path="/mypage">
           <Mypage userInfo={userInfo} />
         </Route>

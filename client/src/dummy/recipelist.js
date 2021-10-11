@@ -1,7 +1,7 @@
 const dummyRecipes = [
   {
     id: 1,
-    user_id: "cookingking",
+    user_nickname: "cookingking",
     recipe_title:
       "부드러운 오징어는 청양고추 마요네즈 소스와 함께 먹어야 제맛~!",
     recipe_subtitle:
@@ -16,7 +16,7 @@ const dummyRecipes = [
 
   {
     id: 2,
-    user_id: "cookingking2222",
+    user_nickname: "cookingking2222",
     recipe_title:
       "부드러운 오징어는 청양고추 마요네즈 소스와 함께 먹어야 제맛~!",
     recipe_subtitle:

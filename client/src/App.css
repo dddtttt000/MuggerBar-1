@@ -444,6 +444,21 @@ input::placeholder {
   margin-left: 5px;
 }
 
+.rp-desc {
+  border: 1px solid #e7e7e7;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.rp-delete {
+  position: relative;
+  left: 650px;
+}
+
+.btn-delete {
+  cursor: pointer;
+}
+
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
