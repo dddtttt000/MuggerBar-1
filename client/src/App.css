@@ -426,7 +426,10 @@ input::placeholder {
 /* * 현진 작성 👇🏻 */
 
 .mainNav {
+  width: 100%;
+  height: 127px;
   background-color: #8f8f8f;
+  border: 1px solid red;
   display: flex;
 }
 
