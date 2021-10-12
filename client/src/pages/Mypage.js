@@ -9,7 +9,7 @@ import axios from "axios";
 
 axios.defaults.withCredentials = true;
 
-function Mypage({ userInfo }) {
+function Mypage({ userInfo, isLogin }) {
   const [isOpen, setIsOpen] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [clickToEdit, setClickToEdit] = useState(true);
@@ -21,6 +21,7 @@ function Mypage({ userInfo }) {
   const [hasLists, setHasLists] = useState(recipeList.length);
   const [errMsg, setErrMsg] = useState("");
   const history = useHistory();
+  const [islogin, setislogin] = useState(isLogin);
 
   //console.log("haslists", hasLists);
   //console.log("dummy", recipeList);
@@ -33,7 +34,7 @@ function Mypage({ userInfo }) {
     // https://muggerbar.ml/recipe
     // 성공한 경우
     // setRecipeList(data)
-    if (!userInfo.user_id) {
+    if (!userInfo) {
       return;
     } else {
       axios
@@ -95,6 +96,7 @@ function Mypage({ userInfo }) {
         //console.log("res data ???", res.data.message);
         console.log("탈퇴완료");
         history.push("/");
+        setislogin(false);
       })
       .catch((err) => {
         console.log("err message =>", err);
@@ -103,7 +105,6 @@ function Mypage({ userInfo }) {
 
   return (
     <div>
-      <MainNav />
       <center>
         <div className="my-wrap">
           <span className="myinfo-top">
@@ -216,7 +217,6 @@ function Mypage({ userInfo }) {
           withdrawHandler={withdrawHandler}
         />
       ) : null}
-      <Footer />
     </div>
   );
 }

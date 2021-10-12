@@ -7,6 +7,8 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Mypage from "./pages/Mypage";
 import Recipes from "./pages/Recipes";
+import MainNav from "./components/MainNav";
+import Footer from "./components/Footer";
 import axios from "axios";
 import dummyUserInfo from "./dummy/userInfo";
 
@@ -50,26 +52,30 @@ function App() {
           <Posting />
         </Route>
         <Route exact path="/">
-          <Mainpage
-            userInfo={userInfo}
-            handleLogout={handleLogout}
-            isLogin={isLogin}
-          />
+          <MainNav isLogin={isLogin} handleLogout={handleLogout} />
+          <Mainpage userInfo={userInfo} isLogin={isLogin} />
+          <Footer />
         </Route>
         <Route path="/login">
           <Login handleResponseSuccess={handleResponseSuccess} />
+          <Footer />
         </Route>
         <Route path="/signup">
-          <Signup />
+          <Signup isLogin={isLogin} />
+          <Footer />
         </Route>
         <Route path="/mypage">
-          <Mypage userInfo={userInfo} />
+          <MainNav isLogin={isLogin} handleLogout={handleLogout} />
+          <Mypage userInfo={userInfo} isLogin={isLogin} />
+          <Footer />
         </Route>
         <Route path="/Posting">
           <Posting />
+          <Footer />
         </Route>
         <Route path="/recipes">
           <Recipes userInfo={userInfo} />
+          <Footer />
         </Route>
       </Switch>
     </div>

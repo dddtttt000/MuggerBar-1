@@ -11,11 +11,6 @@ function Mainpage({ handleLogout, isLogin, userInfo }) {
 
   return (
     <>
-      <MainNav
-        handleLogout={handleLogout}
-        isLogin={isLogin}
-        userInfo={userInfo}
-      />
       <div className="main-img">
         <img src="" alt="MuggerBar-Main image" />
       </div>
@@ -26,7 +21,6 @@ function Mainpage({ handleLogout, isLogin, userInfo }) {
 
       <MainContentsbox />
       <Link to="./Recipes">컨텐츠 클릭시</Link>
-      <Footer />
     </>
   );
 }
