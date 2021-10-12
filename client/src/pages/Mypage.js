@@ -19,11 +19,13 @@ function Mypage({ userInfo }) {
   });
   const [recipeList, setRecipeList] = useState(dummyRecipes);
   const [hasLists, setHasLists] = useState(recipeList.length);
+  const [errMsg, setErrMsg] = useState("");
   const history = useHistory();
 
-  console.log("haslists", hasLists);
-  console.log("dummy", recipeList);
-  console.log("props userinfo", userInfo);
+  //console.log("haslists", hasLists);
+  //console.log("dummy", recipeList);
+  console.log("mypage userinfo", userinfo);
+  console.log("mypage props userInfo", userInfo);
 
   // TODO: recipe list 를 서버에 요청해서 받아온다.
   // req.query.user_id 내가 쓴 게시물 목록 반환
@@ -31,14 +33,16 @@ function Mypage({ userInfo }) {
     // https://muggerbar.ml/recipe
     // 성공한 경우
     // setRecipeList(data)
-    axios
-      .get(`https://muggerbar.ml/recipe/${userInfo.user_id}`)
-      .then((data) => {
-        console.log("getRecipeLists data", data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (userInfo.user_id) {
+      axios
+        .get(`https://muggerbar.ml/recipe/${userInfo.user_id}`)
+        .then((data) => {
+          console.log("getRecipeLists data", data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   };
 
   useEffect(() => {
@@ -47,8 +51,22 @@ function Mypage({ userInfo }) {
 
   const handleUpdate = () => {
     // TODO: 유저 정보를 서버에 업데이트 요청하고, 성공한 경우
-    setClickToEdit(true);
-    console.log("userinfo update");
+    if (!userinfo.nickname || !userinfo.password) {
+      setErrMsg("모든 정보를 입력해 주세요.");
+    } else {
+      axios
+        .post("https://muggerbar.ml/edit", {
+          user_nickname: userinfo.nickname,
+          user_password: userinfo.password,
+        })
+        .then((res) => {
+          console.log("userinfo updated", res);
+          setClickToEdit(true);
+        })
+        .catch((err) => {
+          console.log("err ->", err);
+        });
+    }
   };
 
   const handleInputValue = (key) => (e) => {
@@ -94,7 +112,9 @@ function Mypage({ userInfo }) {
           <div className="my-inner-wrap">
             <div className="">
               <span className="myinfo">이메일</span>
-              <span className="myinfo-props">{userInfo.user_email}</span>
+              <span className="myinfo-props">
+                {userInfo === null ? "" : userInfo.user_email}
+              </span>
             </div>
             <hr></hr>
             <span className="myinfo">비밀번호</span>
@@ -104,14 +124,16 @@ function Mypage({ userInfo }) {
               <input
                 type="password"
                 className="myinfo-props"
-                placeholder="변경하실 비밀번호를 입력해 주세요."
+                placeholder={userInfo.user_password}
                 onChange={handleInputValue("password")}
               ></input>
             )}
             <hr></hr>
             <span className="myinfo">닉네임</span>
             {clickToEdit ? (
-              <span className="myinfo-props">{userInfo.user_nickname}</span>
+              <span className="myinfo-props">
+                {userInfo === null ? "" : userInfo.user_nickname}
+              </span>
             ) : (
               <input
                 type="text"
@@ -166,6 +188,7 @@ function Mypage({ userInfo }) {
                 </div>
               ) : (
                 <div>
+                  {errMsg}
                   <button
                     type="submit"
                     className="my-btn"

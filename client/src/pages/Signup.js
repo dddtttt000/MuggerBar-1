@@ -75,7 +75,7 @@ function Signup() {
           //console.log("res data ???", res.data.message);
           console.log("가입완료");
           showModalHandler();
-          history.push("/login");
+          // history.push("/login");
         })
         .catch((err) => {
           console.log("err message =>", err);
