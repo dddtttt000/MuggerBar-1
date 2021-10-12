@@ -13,7 +13,7 @@ function Mainpage({ handleLogout, isLogin, userInfo }) {
   console.log("main page userInfo", userInfo);
 
   const [receivedRecipe, setReceivedRecipe] = useState(dummyRecipes);
-  const [recipes, setRecipe] = useState(dummyRecipes);
+  const [recipes, setRecipe] = useState(receivedRecipe);
 
   const isSearchingRecipe = (arr, text) => {
     return arr.filter((ele) => {
@@ -47,12 +47,14 @@ function Mainpage({ handleLogout, isLogin, userInfo }) {
 
   return (
     <>
-      <div className="main-img">
-        <img
-          src="https://user-images.githubusercontent.com/78816754/136383285-422914ee-9724-4500-aea6-ffff157ba759.png"
-          alt="MuggerBar-Main image"
-        />
-      </div>
+      <center>
+        <div className="main-top">
+          <div className="main-img"></div>
+          <div className="main-text">
+            둘이먹다 하나가 죽어도 모를만한 특별한 레시피만 모았다!
+          </div>
+        </div>
+      </center>
 
       <div className="main-search-bar">
         <MainSearch
@@ -60,10 +62,10 @@ function Mainpage({ handleLogout, isLogin, userInfo }) {
           handleResetRecipe={handleResetRecipe}
         />
       </div>
-
-      <MainContentsbox recipes={recipes} />
-      {/* <Link to="./Recipes">컨텐츠 클릭시</Link> */}
-      <Footer />
+      <div className="main-content-wrap">
+        <MainContentsbox recipes={recipes} />
+        {/* <Link to="./Recipes">컨텐츠 클릭시</Link> */}
+      </div>
     </>
   );
 }

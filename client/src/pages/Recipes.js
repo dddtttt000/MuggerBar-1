@@ -7,6 +7,7 @@ import axios from "axios";
 
 function Recipes({ userInfo }) {
   const [comments, setComments] = useState(dummyComments);
+  const [commentContent, setCommentContent] = useState("");
   const [msg, setMsg] = useState("");
   const [like, setLike] = useState(0);
   const [isClick, setIsClick] = useState(false);
@@ -25,7 +26,18 @@ function Recipes({ userInfo }) {
       });
   };
 
-  // 서버에 댓글 등록
+  // TODO: 서버에 댓글 등록 post 요청 후 성공 시 댓글 목록에 포함
+  const postComment = () => {
+    axios
+      .post("https://muggerbar.ml/comment", {
+        recipe_id: "recipe_id",
+        comment_content: commentContent,
+      })
+      .then((res) => {
+        console.log("post success", res);
+      });
+  };
+
   const handleButtonClick = () => {
     const comment = {
       id: comments.length + 1,

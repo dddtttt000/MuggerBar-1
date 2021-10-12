@@ -10,7 +10,8 @@ function MainNav({ handleLogout, isLogin }) {
         <div className="logo-mainNav"></div>
         <div className="nav-btn-wrap">
           <div className="">
-            <Link to={isLogin ? "./posting" : "./login"}>
+            {/* <Link to={isLogin ? "./posting" : "./login"}> */}
+            <Link to="./posting">
               <button type="submit" className="mainBtn">
                 레시피 등록
               </button>

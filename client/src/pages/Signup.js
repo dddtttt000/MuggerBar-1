@@ -140,7 +140,6 @@ function Signup() {
         </form>
       </center>
       {showModal ? <WelcomeModal /> : null}
-      <Footer />
     </div>
   );
 }

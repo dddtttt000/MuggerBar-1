@@ -83,7 +83,6 @@ function Login({ handleResponseSuccess }) {
           </form>
         </div>
       </center>
-      <Footer />
     </div>
   );
 }
