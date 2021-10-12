@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Switch, Route, useHistory } from "react-router-dom";
 import Mylist from "../components/Mylist";
-import Footer from "../components/Footer";
 import Withdrawal from "../components/Withdrawal";
-import MainNav from "../components/MainNav";
-import dummyRecipes from "../dummy/recipelist";
 import axios from "axios";
 
 axios.defaults.withCredentials = true;
 
-function Mypage({ userInfo, isLogin }) {
+function Mypage({ userInfo, recipes }) {
   const [isOpen, setIsOpen] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [clickToEdit, setClickToEdit] = useState(true);
@@ -17,11 +14,10 @@ function Mypage({ userInfo, isLogin }) {
     user_nickname: "",
     user_password: "",
   });
-  const [recipeList, setRecipeList] = useState(dummyRecipes);
+  const [recipeList, setRecipeList] = useState(recipes);
   const [hasLists, setHasLists] = useState(recipeList.length);
   const [errMsg, setErrMsg] = useState("");
   const history = useHistory();
-  const [islogin, setislogin] = useState(isLogin);
 
   //console.log("haslists", hasLists);
   //console.log("dummy", recipeList);
@@ -30,27 +26,6 @@ function Mypage({ userInfo, isLogin }) {
 
   // TODO: recipe list 를 서버에 요청해서 받아온다.
   // req.query.user_id 내가 쓴 게시물 목록 반환
-  const getRecipeLists = () => {
-    // https://muggerbar.ml/recipe
-    // 성공한 경우
-    // setRecipeList(data)
-    if (!userInfo) {
-      return;
-    } else {
-      axios
-        .get(`https://muggerbar.ml/recipe/${userInfo.user_id}`)
-        .then((data) => {
-          console.log("getRecipeLists data", data);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-  };
-
-  useEffect(() => {
-    getRecipeLists();
-  }, []);
 
   const handleUpdate = () => {
     // TODO: 유저 정보를 서버에 업데이트 요청하고, 성공한 경우
@@ -58,7 +33,7 @@ function Mypage({ userInfo, isLogin }) {
       setErrMsg("모든 정보를 입력해 주세요.");
     } else {
       axios
-        .post("https://muggerbar.ml/edit", {
+        .patch("https://muggerbar.ml/edit", {
           user_nickname: userinfo.user_nickname,
           user_password: userinfo.user_password,
         })
@@ -96,7 +71,6 @@ function Mypage({ userInfo, isLogin }) {
         //console.log("res data ???", res.data.message);
         console.log("탈퇴완료");
         history.push("/");
-        setislogin(false);
       })
       .catch((err) => {
         console.log("err message =>", err);

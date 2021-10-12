@@ -15,6 +15,8 @@ import dummyUserInfo from "./dummy/userInfo";
 function App() {
   const [userInfo, setUserInfo] = useState(null);
   const [isLogin, setIsLogin] = useState(false);
+  const [recipes, setRecipes] = useState(null);
+
   const history = useHistory();
 
   // TODO: 서버에 유저정보 get 요청 후 로그인 상태 변경
@@ -41,16 +43,34 @@ function App() {
     });
   };
 
+  // TODO: 서버에 내가 쓴 레시피만 요청해서 받아오기
+  const getRecipeLists = () => {
+    // https://muggerbar.ml/recipe
+    // 성공한 경우
+    // setRecipeList(data)
+    if (!userInfo) {
+      return;
+    } else {
+      axios
+        .get(`https://muggerbar.ml/recipe/user_id=${userInfo.user_id}`)
+        .then((data) => {
+          console.log("getRecipeLists data", data);
+          setRecipes(data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  };
+
   useEffect(() => {
+    getRecipeLists();
     isAuthenticated();
   }, []);
 
   return (
     <div>
       <Switch>
-        <Route path="/posting">
-          <Posting />
-        </Route>
         <Route exact path="/">
           <MainNav isLogin={isLogin} handleLogout={handleLogout} />
           <Mainpage userInfo={userInfo} isLogin={isLogin} />
@@ -66,14 +86,15 @@ function App() {
         </Route>
         <Route path="/mypage">
           <MainNav isLogin={isLogin} handleLogout={handleLogout} />
-          <Mypage userInfo={userInfo} isLogin={isLogin} />
+          <Mypage userInfo={userInfo} recipes={recipes} />
           <Footer />
         </Route>
-        <Route path="/Posting">
+        <Route path="/posting">
           <Posting />
           <Footer />
         </Route>
-        <Route path="/recipes">
+        <Route path="/recipe">
+          <MainNav isLogin={isLogin} handleLogout={handleLogout} />
           <Recipes userInfo={userInfo} />
           <Footer />
         </Route>

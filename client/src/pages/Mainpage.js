@@ -20,7 +20,7 @@ function Mainpage({ handleLogout, isLogin, userInfo }) {
       </div>
 
       <MainContentsbox />
-      <Link to="./Recipes">컨텐츠 클릭시</Link>
+      <Link to="./recipe">컨텐츠 클릭시</Link>
     </>
   );
 }
