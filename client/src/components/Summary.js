@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 
-function Summery({isHandleRecipeTitle, isHandleRecipeSubTitle, 
-  isHandleRecipeCategory}) {
+function Summery({handleInputValue}) {
+
   return(
     <>
       <div id="title-container">
         요리명
-        <input placeholder="요리의 이름을 정해주세요." type="text" onChange={(e)=>(isHandleRecipeTitle(e))}/>
+        <input placeholder="요리의 이름을 정해주세요." type="text" onChange={handleInputValue('recipe_title')} />
       </div>
 
       <div id="brief-description-container">
         한줄설명
-        <input placeholder="20글자 이내로 작성해 주세요." type="text" onChange={(e)=>(isHandleRecipeSubTitle(e))}/>
+        <input placeholder="20글자 이내로 작성해 주세요." type="text" onChange={handleInputValue('recipe_subtitle')}/>
       </div>
       
       <div id="select-catgory-container">
