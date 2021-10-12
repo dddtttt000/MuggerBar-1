@@ -28,8 +28,9 @@ module.exports = async(req, res) => {
                     where : { id : userInfo.dataValues.id}
                 } 
             )
-            delete update.dataValues.user_password;
-            res.status(200).json({ data : {userInfo : update.dataValues}, message : "ok"})
+            console.log(userInfo)
+            delete userInfo.dataValues.user_password;
+            res.status(200).json({ data : {userInfo : userInfo.dataValues}, message : "ok"})
         }
     }
 }

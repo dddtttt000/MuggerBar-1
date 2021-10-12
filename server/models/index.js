@@ -9,18 +9,6 @@ const config = require('../config/config.js')[env];
 const db = {};
 
 let sequelize;
-<<<<<<< HEAD
-// config.json 적용
-// if (config.use_env_variable) {
-//   sequelize = new Sequelize(process.env[config.use_env_variable], config);
-// } else {
-//   sequelize = new Sequelize(config.database, config.username, config.password, config);
-// }
-console.log(config.database)
-// config.js 적용
-=======
-
->>>>>>> 32608acc574be5dc504ac079f488ffb7dc23778d
 sequelize = new Sequelize(
   config.database,
   config.username,
