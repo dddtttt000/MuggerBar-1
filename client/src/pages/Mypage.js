@@ -1,42 +1,50 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Switch, Route, useHistory } from "react-router-dom";
 import Mylist from "../components/Mylist";
-import Footer from "../components/Footer";
 import Withdrawal from "../components/Withdrawal";
-import MainNav from "../components/MainNav";
-import dummyRecipes from "../dummy/recipelist";
 import axios from "axios";
 
 axios.defaults.withCredentials = true;
 
-function Mypage({ userInfo }) {
+function Mypage({ userInfo, recipes }) {
   const [isOpen, setIsOpen] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [clickToEdit, setClickToEdit] = useState(true);
   const [userinfo, setuserinfo] = useState({
-    password: "",
-    nickname: "",
+    user_nickname: "",
+    user_password: "",
   });
-  const [recipeList, setRecipeList] = useState(dummyRecipes);
+  const [recipeList, setRecipeList] = useState(recipes);
   const [hasLists, setHasLists] = useState(recipeList.length);
+  const [errMsg, setErrMsg] = useState("");
   const history = useHistory();
 
-  console.log("haslists", hasLists);
-  console.log("dummy", recipeList);
-  console.log("props userinfo", userInfo);
+  //console.log("haslists", hasLists);
+  //console.log("dummy", recipeList);
+  console.log("mypage userinfo", userinfo);
+  console.log("mypage props userInfo", userInfo);
 
   // TODO: recipe list 를 서버에 요청해서 받아온다.
   // req.query.user_id 내가 쓴 게시물 목록 반환
-  const getRecipeLists = () => {
-    // https://muggerbar.ml/recipe
-    // 성공한 경우
-    // setRecipeList(data)
-  };
 
   const handleUpdate = () => {
     // TODO: 유저 정보를 서버에 업데이트 요청하고, 성공한 경우
-    setClickToEdit(true);
-    console.log("userinfo update");
+    if (!userinfo.user_nickname || !userinfo.user_password) {
+      setErrMsg("모든 정보를 입력해 주세요.");
+    } else {
+      axios
+        .patch("https://muggerbar.ml/edit", {
+          user_nickname: userinfo.user_nickname,
+          user_password: userinfo.user_password,
+        })
+        .then((res) => {
+          console.log("userinfo updated", res);
+          setClickToEdit(true);
+        })
+        .catch((err) => {
+          console.log("err ->", err);
+        });
+    }
   };
 
   const handleInputValue = (key) => (e) => {
@@ -54,19 +62,23 @@ function Mypage({ userInfo }) {
   const openHandler = () => {
     setIsOpen(!isOpen);
   };
-  console.log("mypage userInfo", userInfo);
 
   // TODO: 회원탈퇴 모달에서 '네' 클릭 시 서버에 post 요청 후 메인페이지로 리디렉션
   const withdrawHandler = () => {
-    axios.post("/signout", {
-      id: userInfo.id,
-    });
-    history.push("/");
+    axios
+      .delete("https://muggerbar.ml/signout")
+      .then((res) => {
+        //console.log("res data ???", res.data.message);
+        console.log("탈퇴완료");
+        history.push("/");
+      })
+      .catch((err) => {
+        console.log("err message =>", err);
+      });
   };
 
   return (
     <div>
-      <MainNav />
       <center>
         <div className="my-wrap">
           <span className="myinfo-top">
@@ -76,7 +88,9 @@ function Mypage({ userInfo }) {
           <div className="my-inner-wrap">
             <div className="">
               <span className="myinfo">이메일</span>
-              <span className="myinfo-props">{userInfo.user_email}</span>
+              <span className="myinfo-props">
+                {userInfo === null ? "" : userInfo.user_email}
+              </span>
             </div>
             <hr></hr>
             <span className="myinfo">비밀번호</span>
@@ -86,14 +100,16 @@ function Mypage({ userInfo }) {
               <input
                 type="password"
                 className="myinfo-props"
-                placeholder="변경하실 비밀번호를 입력해 주세요."
+                placeholder={userInfo.user_password}
                 onChange={handleInputValue("password")}
               ></input>
             )}
             <hr></hr>
             <span className="myinfo">닉네임</span>
             {clickToEdit ? (
-              <span className="myinfo-props">{userInfo.user_nickname}</span>
+              <span className="myinfo-props">
+                {userInfo === null ? "" : userInfo.user_nickname}
+              </span>
             ) : (
               <input
                 type="text"
@@ -148,6 +164,7 @@ function Mypage({ userInfo }) {
                 </div>
               ) : (
                 <div>
+                  {errMsg}
                   <button
                     type="submit"
                     className="my-btn"
@@ -174,7 +191,6 @@ function Mypage({ userInfo }) {
           withdrawHandler={withdrawHandler}
         />
       ) : null}
-      <Footer />
     </div>
   );
 }

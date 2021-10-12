@@ -8,6 +8,7 @@ import axios from "axios";
 import dummyRecipes from "../dummy/recipelist.js"
 import MainContent from "../components/MainContent.js"
 
+
 function Mainpage() {
   const [receivedRecipe, setReceivedRecipe] = useState(dummyRecipes);
   const [recipes, setRecipe] = useState(dummyRecipes); 
@@ -39,20 +40,24 @@ function Mainpage() {
   //   handleGetRecipe()
   // },[])
   
+
   return (
     <>
-      <MainNav />
       <div className="main-img">
+
         <img src="https://user-images.githubusercontent.com/78816754/136383285-422914ee-9724-4500-aea6-ffff157ba759.png" alt="MuggerBar-Main image" />
+
       </div>
 
       <div className="main-search-bar">
         <MainSearch handleSetRecipe={handleSetRecipe} handleResetRecipe={handleResetRecipe} />
       </div>
 
+
       <MainContentsbox recipes={recipes} />
       {/* <Link to="./Recipes">컨텐츠 클릭시</Link> */}
       <Footer />
+
     </>
   );
 }

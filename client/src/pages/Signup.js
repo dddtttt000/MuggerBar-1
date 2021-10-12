@@ -46,12 +46,12 @@ function Signup() {
     }
 
     // 유효성검사 에러 메세지 표시
-    if (!strongPassword(userinfo.user_password)) {
+    else if (!strongPassword(userinfo.user_password)) {
       setPasswordErrMessage("8자 이상, 영문, 숫자 및 특수문자를 사용하세요");
     }
 
     // 비밀번호 재확인 에러 메세지 표시
-    if (userinfo.user_password !== userinfo.passwordCheck) {
+    else if (userinfo.user_password !== userinfo.passwordCheck) {
       setPasswordCheckErrMessage("비밀번호가 일치하지 않습니다.");
     }
 
@@ -66,7 +66,7 @@ function Signup() {
       setPasswordErrMessage("");
 
       axios
-        .post("https://localhost:80/signup", {
+        .post("https://muggerbar.ml/signup", {
           user_email: user_email,
           user_password: user_password,
           user_nickname: user_nickname,
@@ -75,7 +75,7 @@ function Signup() {
           //console.log("res data ???", res.data.message);
           console.log("가입완료");
           showModalHandler();
-          history.push("/");
+          // history.push("/login");
         })
         .catch((err) => {
           console.log("err message =>", err);
