@@ -14,6 +14,14 @@ function MainContentsbox({ recipes }) {
   //     }
   //   </div>
   // )
+
+  return (
+    <div class="itemList">
+      {recipes.map((recipe, idx) => {
+        return <MainContent key={idx} recipe={recipe} />;
+      })}
+    </div>
+  );
 }
 
 export default MainContentsbox;
