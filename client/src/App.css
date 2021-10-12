@@ -167,7 +167,7 @@ input::placeholder {
 
 .my-wrap {
   margin-top: 30px;
-  border: 1px solid red;
+  /* border: 1px solid red; */
   width: 852px;
 }
 
@@ -202,9 +202,10 @@ input::placeholder {
   display: inline-block;
   /* border: 1px solid red; */
   height: 21px;
-  font-size: 20px;
+  font-size: 18px;
   text-align: left;
   width: 582px;
+  padding: 10px 5px;
 }
 
 .my-btn {
@@ -238,6 +239,9 @@ input::placeholder {
   margin-top: 40px;
 }
 
+.my-inner-wrap-msg {
+  margin-top: 20px;
+}
 .mylist-wrap {
   z-index: 1;
   padding: 10px;
@@ -249,8 +253,8 @@ input::placeholder {
 
 .mylist-wrap > ul > li > a {
   position: relative;
-  right: 230px;
-  text-decoration: none;
+  text-align: left;
+  /* text-decoration: none; */
   color: #000;
 }
 

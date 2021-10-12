@@ -1,23 +1,16 @@
 import React, { useState } from "react";
 
-function Mylist() {
-  const [recipeList, setRecipeList] = useState("");
-  const [hasLists, setHasLists] = useState(false);
+function Mylist({ recipeList }) {
+  const [hasLists, setHasLists] = useState(0);
+  console.log("haslists", hasLists);
 
-  const hasListsHandler = () => {
-    setHasLists(true);
-  };
+  console.log("recipeList", recipeList);
+  console.log("recipeList title", recipeList.recipe_title);
   return (
     <div className="mylist-wrap">
       <ul>
         <li>
-          <a href="#1">- 여기에 글 목록이 나옵니다.</a>
-        </li>
-        <li>
-          <a href="#2">여기에 글 목록이 나옵니다.</a>
-        </li>
-        <li>
-          <a href="#3">여기에 글 목록이 나옵니다.</a>
+          <a href="">{recipeList.recipe_title}</a>
         </li>
       </ul>
     </div>
