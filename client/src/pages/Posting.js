@@ -1,15 +1,14 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import PostingNav from '../components/PostingNav';
-import Summery from '../components/Summary';
-import { CKEditor } from '../inc/index.js';
-import Footer from '../components/Footer';
-import axios from 'axios';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import PostingNav from "../components/PostingNav";
+import Summery from "../components/Summary";
+import { CKEditor } from "../inc/index.js";
+import Footer from "../components/Footer";
+import axios from "axios";
 import { useHistory } from "react-router-dom";
 
 
 function Posting() {
-
   const [post, setPost] = useState({
     recipe_title : "",
     recipe_subtitle : "",
@@ -26,7 +25,7 @@ function Posting() {
 
   const history = useHistory();
 
-  console.log(content)
+  console.log(content);
   const handleInputValue = (key) => (e) => {
     setPost({ ...post, [key]: e.target.value });
   };
@@ -42,9 +41,10 @@ function Posting() {
 //         content : data.getData()
 //     })
 //  }
+
   // function --> 기존 데이터 DB에 얘도 추가시키는 함수...How?
-  
-  const handleposting = () =>{
+
+  const handleposting = () => {
     const { recipe_title, recipe_subtitle, recipe_photo } = post;
     const { recipe_content } = content
 
@@ -105,8 +105,13 @@ function Posting() {
 
 
   return (
-  <>
-    <PostingNav handleposting={handleposting}/>
+    <>
+      <PostingNav handleposting={handleposting} />
+
+      <div class="PostingImgFinder">
+        <input type="file" />
+        <input type="submit" value="첨부하기" />
+      </div>
 
     <div class="PostingImgFinder">
     <input type="file" name="image" id="upload" onChange={uploadFile}/>
@@ -122,16 +127,16 @@ function Posting() {
       //   onCashange( editor.getData() );
       //   // console.log(data);}    
         /> */}
-    <CKEditor config={ { height: 750 },{ width: 700 }, { allowedContent: true } }
-    handlecontent={handlecontent}/> 
+      <CKEditor
+        config={({ height: 750 }, { width: 700 }, { allowedContent: true })}
+        handlecontent={handlecontent}
+      />
 
-    <div className="publishBtn">
-      <button onClick={handleposting}>저장하기</button>
-    </div>
-
-    <Footer />
-  </>
-  )
-};
+      <div className="publishBtn">
+        <button onClick={handleposting}>저장하기</button>
+      </div>
+    </>
+  );
+}
 
 export default Posting;

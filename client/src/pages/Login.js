@@ -19,6 +19,7 @@ function Login({ handleResponseSuccess }) {
   // console.log("loginInfo", loginInfo);
 
   const handleLogin = () => {
+    console.log("login click");
     // 이메일 및 비밀번호를 입력하지 않았을 경우 에러를 표시해야 합니다.
     const { user_email, user_password } = loginInfo;
     if (user_email === "" || user_password === "") {
@@ -37,7 +38,6 @@ function Login({ handleResponseSuccess }) {
           //console.log("err message =>", err);
         });
     }
-    // 서버에 로그인을 요청하고, props로 전달된 callback을 호출합니다.
   };
   return (
     <div>
@@ -83,7 +83,6 @@ function Login({ handleResponseSuccess }) {
           </form>
         </div>
       </center>
-      <Footer />
     </div>
   );
 }

@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 
 function Mylist({ recipeList }) {
-  const [hasLists, setHasLists] = useState(0);
-  console.log("haslists", hasLists);
-
   console.log("recipeList", recipeList);
   console.log("recipeList title", recipeList.recipe_title);
   return (
