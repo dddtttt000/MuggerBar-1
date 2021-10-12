@@ -8,29 +8,25 @@ function MainNav({ handleLogout, isLogin }) {
     <>
       <div className="mainNav">
         <div className="logo-mainNav"></div>
-        <div className="button-mainNav">
-          <div className="mainBtn">
+        <div className="nav-btn-wrap">
+          <div className="">
             <Link to={isLogin ? "./posting" : "./login"}>
-              <button type="submit" className="mainBtn main-btn-posting">
+              <button type="submit" className="mainBtn">
                 레시피 등록
               </button>
             </Link>
           </div>
 
           {isLogin ? (
-            <div className="mainBtn">
-              <button
-                type="submit"
-                className="mainBtn before-signup-btn"
-                onClick={handleLogout}
-              >
+            <div className="">
+              <button type="submit" className="mainBtn" onClick={handleLogout}>
                 로그아웃
               </button>
             </div>
           ) : (
-            <div className="mainBtn">
+            <div className="">
               <Link to="./login">
-                <button type="submit" className="mainBtn before-login-btn">
+                <button type="submit" className="mainBtn">
                   로그인
                 </button>
               </Link>
@@ -38,17 +34,17 @@ function MainNav({ handleLogout, isLogin }) {
           )}
 
           {isLogin ? (
-            <div className="mainBtn">
+            <div className="">
               <Link to="./mypage">
-                <button type="submit" className="mainBtn before-signup-btn">
+                <button type="submit" className="mainBtn">
                   마이페이지
                 </button>
               </Link>
             </div>
           ) : (
-            <div className="mainBtn">
+            <div className="">
               <Link to="./signup">
-                <button type="submit" className="mainBtn before-signup-btn">
+                <button type="submit" className="mainBtn">
                   회원가입
                 </button>
               </Link>
@@ -56,18 +52,6 @@ function MainNav({ handleLogout, isLogin }) {
           )}
         </div>
       </div>
-
-      {/* <div className="after-login"> 나란히 안두려고 임시로 div로 묶어둠 */}
-      {/* <button onClick={ () => {setLogin(!login)} }>로그아웃</button> // ! -->클릭시 로그아웃 되고, 로그인으로 바뀌게 수정하기 */}
-      {/* { */}
-      {/* login === true */}
-      {/* ? "손님으로 이용중" */}
-      {/* : null */}
-      {/* }  */}
-      {/* <Link to="./mypage"> */}
-      {/* <button>마이페이지</button> */}
-      {/* </Link> */}
-      {/* </div> */}
     </>
   );
 }

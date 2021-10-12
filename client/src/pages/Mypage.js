@@ -14,8 +14,8 @@ function Mypage({ userInfo }) {
   const [showModal, setShowModal] = useState(false);
   const [clickToEdit, setClickToEdit] = useState(true);
   const [userinfo, setuserinfo] = useState({
-    password: "",
-    nickname: "",
+    user_nickname: "",
+    user_password: "",
   });
   const [recipeList, setRecipeList] = useState(dummyRecipes);
   const [hasLists, setHasLists] = useState(recipeList.length);
@@ -33,7 +33,9 @@ function Mypage({ userInfo }) {
     // https://muggerbar.ml/recipe
     // 성공한 경우
     // setRecipeList(data)
-    if (userInfo.user_id) {
+    if (!userInfo.user_id) {
+      return;
+    } else {
       axios
         .get(`https://muggerbar.ml/recipe/${userInfo.user_id}`)
         .then((data) => {
@@ -51,13 +53,13 @@ function Mypage({ userInfo }) {
 
   const handleUpdate = () => {
     // TODO: 유저 정보를 서버에 업데이트 요청하고, 성공한 경우
-    if (!userinfo.nickname || !userinfo.password) {
+    if (!userinfo.user_nickname || !userinfo.user_password) {
       setErrMsg("모든 정보를 입력해 주세요.");
     } else {
       axios
         .post("https://muggerbar.ml/edit", {
-          user_nickname: userinfo.nickname,
-          user_password: userinfo.password,
+          user_nickname: userinfo.user_nickname,
+          user_password: userinfo.user_password,
         })
         .then((res) => {
           console.log("userinfo updated", res);
@@ -84,7 +86,6 @@ function Mypage({ userInfo }) {
   const openHandler = () => {
     setIsOpen(!isOpen);
   };
-  console.log("mypage userInfo", userInfo);
 
   // TODO: 회원탈퇴 모달에서 '네' 클릭 시 서버에 post 요청 후 메인페이지로 리디렉션
   const withdrawHandler = () => {
