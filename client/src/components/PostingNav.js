@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import Posting from '../pages/Posting';
 
-function PostingNav() {
+function PostingNav({handleposting}) {
   return (
     <div className="postingNav">
       <div className="logo-postingNav"></div>
@@ -10,7 +10,7 @@ function PostingNav() {
       <div className="button-postingNav">
           <div className="postingBtn">
             <Link to="./contentsDetail"> 
-              <button type="submit" className="postingBtn submit-btn-posting"><i class="fas fa-download"></i> 저장하기</button>
+              <button type="submit" className="postingBtn submit-btn-posting" onClick={handleposting}><i class="fas fa-download"></i> 저장하기</button>
             </Link>
           </div>
           

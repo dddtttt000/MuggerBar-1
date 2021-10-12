@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 
-function Withdrawal({ showModalHandler }) {
-  const [isOpen, setIsOpen] = useState(false);
+function Withdrawal({ showModalHandler, withdrawHandler }) {
+  // const [isOpen, setIsOpen] = useState(false);
 
-  const openHandler = () => {
-    setIsOpen(!isOpen);
-  };
+  // const openHandler = () => {
+  //   setIsOpen(!isOpen);
+  // };
   return (
     <div className="modal-back">
       <div className="modal-wrap">
@@ -14,7 +14,9 @@ function Withdrawal({ showModalHandler }) {
         </div>
         <div className="modal-text">탈퇴하시겠습니까?</div>
         <div className="">
-          <button className="modal-btn-y">네, 탈퇴합니다.</button>
+          <button className="modal-btn-y" onClick={withdrawHandler}>
+            네, 탈퇴합니다.
+          </button>
           <button className="modal-btn-c" onClick={showModalHandler}>
             취소
           </button>

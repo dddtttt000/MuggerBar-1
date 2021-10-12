@@ -1,12 +1,7 @@
-const userInfo = [
-  {
-    user_email: "test@example.com",
-    user_nickname: "test1234",
-  },
-  {
-    user_email: "gogogo@example.com",
-    user_nickname: "gogogo",
-  },
-];
+const dummyUserInfo = {
+  id: 3,
+  user_email: "cookingking@example.com",
+  user_nickname: "cookingking",
+};
 
-export default userInfo;
+export default dummyUserInfo;
