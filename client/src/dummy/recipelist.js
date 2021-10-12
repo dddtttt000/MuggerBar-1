@@ -31,6 +31,7 @@ const dummyRecipes = [
   },
 
   {
+
     id: 3,
     user_id: 2,
     user_nickname: "cookingking22222",
