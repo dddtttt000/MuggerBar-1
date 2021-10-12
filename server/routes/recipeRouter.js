@@ -7,5 +7,6 @@ router.post('/', recipecontroller.post);
 router.get('/', recipecontroller.get);
 router.delete('/:id', recipecontroller.delete);
 router.post('/:id/like', recipecontroller.like);
+router.get('/:id/like', recipecontroller.likeCount);
 
 module.exports = router;

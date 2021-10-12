@@ -20,6 +20,7 @@ module.exports = async(req, res) => {
             res.status(401).json({ data: { userInfo : null }, message : { data: { userInfo : null }, message: "authorization is required" } }) //추가
         }else{
             //유저정보 있으면
+<<<<<<< HEAD
             const update = await user.update({
                 user_nickname : req.body.user_nickname,
                 user_password : req.body.user_password
@@ -31,6 +32,23 @@ module.exports = async(req, res) => {
             console.log(userInfo)
             delete userInfo.dataValues.user_password;
             res.status(200).json({ data : {userInfo : userInfo.dataValues}, message : "ok"})
+=======
+            user.update({
+              user_nickname : req.body.user_nickname,
+              user_password : req.body.user_password
+          },
+              {
+                  where : { id : userInfo.dataValues.id}
+              } 
+          )
+
+          const newUserInfo = await user.findOne({
+            where : { id : verify.id}
+          })
+
+          delete newUserInfo.dataValues.user_password;
+          res.status(200).json({ data : {userInfo : newUserInfo.dataValues}, message : "ok"})
+>>>>>>> 16d5e07bfc64217151df9364d18cc7376c2afcbb
         }
     }
 }

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Mylist from "../components/Mylist";
 import Footer from "../components/Footer";
 import Withdrawal from "../components/Withdrawal";
-import Navbar from "../components/Navbar";
+import MainNav from "../components/MainNav";
 
 function Mypage(props) {
   const [isOpen, setIsOpen] = useState(false);
@@ -37,7 +37,7 @@ function Mypage(props) {
   console.log("mypage props", props);
   return (
     <div>
-      <Navbar />
+      <MainNav />
       <center>
         <div className="my-wrap">
           <span className="myinfo-top">
