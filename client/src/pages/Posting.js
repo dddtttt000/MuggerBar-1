@@ -8,7 +8,6 @@ import axios from 'axios';
 import { useHistory } from "react-router-dom";
 
 
-
 function Posting() {
 
   const [post, setPost] = useState({
@@ -27,6 +26,7 @@ function Posting() {
   const handleInputValue = (key) => (e) => {
     setPost({ ...post, [key]: e.target.value });
   };
+
 
   const handlecontent = (data) =>{
 
