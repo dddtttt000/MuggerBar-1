@@ -174,4 +174,22 @@ module.exports = {
         });
     }
   },
+
+  likeCount : async (req, res) => {
+    // 게시물 좋아요 갯수 전달 => get : https://muggerbar.ml/recipe/{:id}/like/ 
+    
+    // 1. parmas 정보가 안들어온 경우
+    if (!req.params.id) {
+      return res.status(400).json({ data: { recipe: null }, message: "bad request" });
+    }
+
+    // 2. params 정보로 like record 검색
+    const {count, rows} = await like.findAndCountAll({
+      where: {
+        recipe_id: req.params.id,
+      },
+    });
+
+    return res.status(200).json({ data: { like : {likeCount : count} }, message: "ok" });
+  }
 };
