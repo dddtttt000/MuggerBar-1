@@ -19,7 +19,7 @@ function App() {
   const isAuthenticated = () => {
     // TODO: 이제 인증은 성공했습니다. 사용자 정보를 호출하고, 이에 성공하면 로그인 상태를 바꿉시다.
     axios
-      .get("https://localhost:80/userinfo", { withCredentials: true })
+      .get("https://muggerbar.ml/userinfo", { withCredentials: true })
       .then((res) => {
         //console.log(res.data.data.userInfo);
         setUserInfo(res.data.data.userInfo);
@@ -32,7 +32,7 @@ function App() {
     isAuthenticated();
   };
   const handleLogout = () => {
-    axios.post("https://localhost:4000/signout").then((res) => {
+    axios.post("https://muggerbar.ml/logout").then((res) => {
       setUserInfo(null);
       setIsLogin(false);
       history.push("/");
@@ -46,11 +46,11 @@ function App() {
   return (
     <div>
       <Switch>
-        <Route exact path="/" component={Mainpage}></Route>
-        {/* <Route exact path="/" component={Mainpage} userinfo={userinfo} handleLogout={handleLogout}></Route> */}
-        <Route path="/posting" component={Posting}></Route>
+        <Route path="/posting">
+          <Posting />
+        </Route>
         <Route exact path="/">
-          <Mainpage />
+          <Mainpage userInfo={userInfo} handleLogout={handleLogout} />
         </Route>
         <Route path="/login">
           <Login handleResponseSuccess={handleResponseSuccess} />

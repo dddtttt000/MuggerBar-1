@@ -66,7 +66,7 @@ function Signup() {
       setPasswordErrMessage("");
 
       axios
-        .post("https://localhost:80/signup", {
+        .post("https://muggerbar.ml/signup", {
           user_email: user_email,
           user_password: user_password,
           user_nickname: user_nickname,
