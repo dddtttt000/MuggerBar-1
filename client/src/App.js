@@ -11,7 +11,7 @@ import axios from "axios";
 import dummyUserInfo from "./dummy/userInfo";
 
 function App() {
-  const [userInfo, setUserInfo] = useState(dummyUserInfo);
+  const [userInfo, setUserInfo] = useState(null);
   const [isLogin, setIsLogin] = useState(false);
   const history = useHistory();
 
@@ -50,7 +50,11 @@ function App() {
           <Posting />
         </Route>
         <Route exact path="/">
-          <Mainpage userInfo={userInfo} handleLogout={handleLogout} />
+          <Mainpage
+            userInfo={userInfo}
+            handleLogout={handleLogout}
+            isLogin={isLogin}
+          />
         </Route>
         <Route path="/login">
           <Login handleResponseSuccess={handleResponseSuccess} />

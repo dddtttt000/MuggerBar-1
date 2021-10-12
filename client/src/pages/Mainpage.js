@@ -5,15 +5,19 @@ import MainSearch from "../components/MainSearch";
 import MainContentsbox from "../components/MainContentsBox";
 import Footer from "../components/Footer";
 
-function Mainpage() {
+function Mainpage({ handleLogout, isLogin, userInfo }) {
+  console.log("main page isLogin", isLogin);
+  console.log("main page userInfo", userInfo);
+
   return (
     <>
-      <MainNav />
+      <MainNav
+        handleLogout={handleLogout}
+        isLogin={isLogin}
+        userInfo={userInfo}
+      />
       <div className="main-img">
-        <img
-          src="https://user-images.githubusercontent.com/78816754/136383285-422914ee-9724-4500-aea6-ffff157ba759.png"
-          alt="MuggerBar-Main image"
-        />
+        <img src="" alt="MuggerBar-Main image" />
       </div>
 
       <div className="main-search-bar">

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Switch, Route, useHistory } from "react-router-dom";
 import Mylist from "../components/Mylist";
 import Footer from "../components/Footer";
@@ -31,8 +31,19 @@ function Mypage({ userInfo }) {
     // https://muggerbar.ml/recipe
     // 성공한 경우
     // setRecipeList(data)
-    axios.get("https://muggerbar.ml/recipe");
+    axios
+      .get(`https://muggerbar.ml/recipe/${userInfo.user_id}`)
+      .then((data) => {
+        console.log("getRecipeLists data", data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
+
+  useEffect(() => {
+    getRecipeLists();
+  }, []);
 
   const handleUpdate = () => {
     // TODO: 유저 정보를 서버에 업데이트 요청하고, 성공한 경우
@@ -60,9 +71,7 @@ function Mypage({ userInfo }) {
   // TODO: 회원탈퇴 모달에서 '네' 클릭 시 서버에 post 요청 후 메인페이지로 리디렉션
   const withdrawHandler = () => {
     axios
-      .post("/signout", {
-        id: userInfo.id,
-      })
+      .delete("https://muggerbar.ml/signout")
       .then((res) => {
         //console.log("res data ???", res.data.message);
         console.log("탈퇴완료");
