@@ -1,7 +1,7 @@
 #!/bin/bash
 cd /home/ubuntu/MuggerBar/server
 npm install
-npm install pm2@latest
+npm install pm2@latest -g
 sudo apt-get update
 sudo apt-get install authbind
 sudo touch /etc/authbind/byport/80
