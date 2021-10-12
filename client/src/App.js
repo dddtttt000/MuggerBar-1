@@ -8,9 +8,10 @@ import Signup from "./pages/Signup";
 import Mypage from "./pages/Mypage";
 import Recipes from "./pages/Recipes";
 import axios from "axios";
+import dummyUserInfo from "./dummy/userInfo";
 
 function App() {
-  const [userInfo, setUserInfo] = useState(null);
+  const [userInfo, setUserInfo] = useState(dummyUserInfo);
   const [isLogin, setIsLogin] = useState(false);
   const history = useHistory();
 

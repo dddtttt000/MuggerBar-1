@@ -3,6 +3,7 @@ import MainNav from "../components/MainNav";
 import Footer from "../components/Footer";
 import Comment from "../components/Comment";
 import dummyComments from "../dummy/comments";
+import DeleteModal from "../components/DeleteModal";
 
 function Recipes({ userInfo }) {
   const [comments, setComments] = useState(dummyComments);
@@ -10,9 +11,11 @@ function Recipes({ userInfo }) {
   const [like, setLike] = useState(0);
   const [isClick, setIsClick] = useState(false);
   const [isMyContent, setIsMyContent] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   // TODO: props 로 받아온 userInfo 의 email 과 게시물을 작성한 유저의 email 이 같으면,
   // 삭제하기 버튼을 보여주고, 아니면 안보여준다. -> isMyContent
 
+  // 댓글 등록
   const handleButtonClick = () => {
     const comment = {
       id: comments.length + 1,
@@ -41,7 +44,11 @@ function Recipes({ userInfo }) {
     // TODO: 삭제하기 버튼을 누르면 해당 게시물이 삭제되어야함
     // 서버에 post 요청을 보낸다.
     // 메인페이지로 리디렉션한다.
+    // 모달창을 띄우고 확인버튼을 클릭 시 삭제 요청
     console.log("delete");
+  };
+  const showModalHandler = () => {
+    setShowModal(!showModal);
   };
 
   return (
@@ -62,7 +69,7 @@ function Recipes({ userInfo }) {
               <span className="rp-category-value">선택한것</span>
             </div>
             <span className="rp-delete">
-              <button className="btn-delete" onClick={handleDelete}>
+              <button className="btn-delete" onClick={showModalHandler}>
                 삭제하기
               </button>
             </span>
@@ -97,6 +104,12 @@ function Recipes({ userInfo }) {
           </form>
         </div>
       </center>
+      {showModal ? (
+        <DeleteModal
+          showModalHandler={showModalHandler}
+          handleDelete={handleDelete}
+        />
+      ) : null}
       <Footer />
     </div>
   );
