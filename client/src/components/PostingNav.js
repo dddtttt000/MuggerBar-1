@@ -10,7 +10,7 @@ function PostingNav({handleposting}) {
       <div className="button-postingNav">
           <div className="postingBtn">
             <Link to="./contentsDetail"> 
-              <button type="submit" className="postingBtn submit-btn-posting" onClick={handleposting}><i class="fas fa-download"></i> 저장하기</button>
+              <button type="submit" className="postingBtn submit-btn-posting" onClick={()=>handleposting()}><i class="fas fa-download"></i> 저장하기</button>
             </Link>
           </div>
           
