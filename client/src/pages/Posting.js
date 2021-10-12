@@ -13,12 +13,16 @@ function Posting() {
   const [post, setPost] = useState({
     recipe_title : "",
     recipe_subtitle : "",
-    recipe_photo: "양념사진",
   });
   // console.log(post)
   const [content, setContent] = useState({
     recipe_content: ""
   })
+  
+  const [photo, setPhoto] = useState({
+    recipe_photo : ""
+  })
+  
 
   const history = useHistory();
 
@@ -43,6 +47,7 @@ function Posting() {
   const handleposting = () =>{
     const { recipe_title, recipe_subtitle, recipe_photo } = post;
     const { recipe_content } = content
+
     axios.
     post("https://muggerbar.ml/recipe",
     {
@@ -63,13 +68,48 @@ function Posting() {
       //console.log("err message =>", err);
     });
   }
+
+  const uploadFile= () => {
+    const fileInput = document.getElementById("upload");
+    const upload = (file) => {
+        if (file && file.size < 5000000) {
+            const formData = new FormData();
+
+            formData.append("image", file);
+            fetch("https://api.imgur.com/3/image", {
+                method: "POST",
+                headers: {
+                    Authorization: "Client-ID <클라이언트 ID>",
+                    Accept: "application/json",
+                },
+                body: formData,
+            })
+                .then((response) => response.json())
+                .then((response) => {
+                    console.log(response);
+                    // do Something
+                });
+        } else {
+            console.error("파일 용량 초과");
+        }
+    };
+
+    fileInput &&
+        fileInput.addEventListener("change", () => {
+            upload(fileInput.files[0]);
+        });
+}
+
+
+
+
+
   return (
   <>
     <PostingNav handleposting={handleposting}/>
 
     <div class="PostingImgFinder">
-      <input type="file" />
-      <input type="submit" value="첨부하기" />
+    <input type="file" name="image" id="upload" onChange={uploadFile}/>
     </div>
     
     <Summery handleInputValue={handleInputValue}/>
