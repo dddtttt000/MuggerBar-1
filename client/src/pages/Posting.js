@@ -25,10 +25,10 @@ function Posting() {
     setPost({ ...post, [key]: e.target.value });
   };
 
-  const handlecontent = (data) =>{
-    let content =data.replace(/(<([^>]+)>)/ig,"")
-    setContent({recipe_content:content})
-  }
+  const handlecontent = (data) => {
+    let content = data.replace(/(<([^>]+)>)/gi, "");
+    setContent({ recipe_content: content });
+  };
 
   // function --> 기존 데이터 DB에 얘도 추가시키는 함수...How?
   const [recipe_photo, setRecipe_photo] = useState("이미지경로");

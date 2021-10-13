@@ -17,26 +17,26 @@ function Recipes({ totalRecipes, clickNumRecipe }) {
   const [isClick, setIsClick] = useState(false);
   const [isMyContent, setIsMyContent] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const [recipeUserInfo, setRecipeUserInfo] = useState('')
+  const [recipeUserInfo, setRecipeUserInfo] = useState("");
 
   const history = useHistory();
 
-  const [renderRecipe, setRenderRecipe] = useState({})
- 
+  const [renderRecipe, setRenderRecipe] = useState({});
+
   const handleRenderingRecipe = (num) => {
-    const result = totalRecipes.filter((recipe)=>(recipe.id === num ))
-    setRenderRecipe(...result)
-  }
+    const result = totalRecipes.filter((recipe) => recipe.id === num);
+    setRenderRecipe(...result);
+  };
 
   const takeRecipeUserNickName = (id) => {
     axios
-      .get(`https://muggerbar.ml/recipeUserinfo?id=${id}`,
-        { withCredentials: true })
-      .then((res)=>{
-        setRecipeUserInfo(res.data.data.userInfo.user_nickname)
+      .get(`https://muggerbar.ml/recipeUserinfo?id=${id}`, {
+        withCredentials: true,
       })
-  }
-
+      .then((res) => {
+        setRecipeUserInfo(res.data.data.userInfo.user_nickname);
+      });
+  };
 
   // TODO: props 로 받아온 userInfo 의 email 과 게시물을 작성한 유저의 email 이 같으면,
   // 삭제하기 버튼을 보여주고, 아니면 안보여준다. -> isMyContent
@@ -84,6 +84,7 @@ function Recipes({ totalRecipes, clickNumRecipe }) {
 
   const handleLikeClick = () => {
     axios
+
       .post(`https://muggerbar.ml/recipe/${renderRecipe.id}/like`)
       .then((res)=>{
         // console.log(res)
@@ -105,13 +106,14 @@ function Recipes({ totalRecipes, clickNumRecipe }) {
     // 서버에 post 요청을 보낸다.
     // 메인페이지로 리디렉션한다.
     // 모달창을 띄우고 확인버튼을 클릭 시 삭제 요청
-    axios.delete(`https://muggerbar.ml/recipe/${renderRecipe.id}`,{
-      withCredentials : true
-    })
-    .then((res)=>{
-      console.log(res)
-      history.push("/")
-    })
+    axios
+      .delete(`https://muggerbar.ml/recipe/${renderRecipe.id}`, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        console.log(res);
+        history.push("/");
+      });
     console.log("delete");
   };
 
@@ -119,14 +121,16 @@ function Recipes({ totalRecipes, clickNumRecipe }) {
     setShowModal(!showModal);
   };
 
-  useEffect(()=>{
-    handleRenderingRecipe(clickNumRecipe)
-  },[])
+  useEffect(() => {
+    handleRenderingRecipe(clickNumRecipe);
+  }, []);
+
 
   useEffect(()=>{
     takeRecipeUserNickName(renderRecipe.user_id)
     handleLikeCount()
   },)
+
 
   return (
     <div className="rp">
@@ -139,6 +143,7 @@ function Recipes({ totalRecipes, clickNumRecipe }) {
               <span className="rp-info">{recipeUserInfo} : </span>
               <span className="rp-data">{renderRecipe.createdAt}</span>
             </div>
+
             <span className="rp-delete">
               <button
                 className="btn-delete"
@@ -152,15 +157,20 @@ function Recipes({ totalRecipes, clickNumRecipe }) {
           </div>
         </div>
         <div className="rp-wrap pic">
-          <img src={`https://muggerbar.ml/${renderRecipe.recipe_photo}`} alt={renderRecipe.idx} />
+          <img
+            src={`https://muggerbar.ml/${renderRecipe.recipe_photo}`}
+            alt={renderRecipe.idx}
+          />
         </div>
         <div className="rp-wrap">
           <div className="rp-desc">{renderRecipe.recipe_content}</div>
           <div className="r-likes">
+
             <div
               className="r-img"
               onClick={handleLikeClick,handleLikeCount}
             ></div>
+
             <div className="r-c">{like}</div>
           </div>
         </div>
