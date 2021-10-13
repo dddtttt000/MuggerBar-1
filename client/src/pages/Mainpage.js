@@ -21,18 +21,15 @@ function Mainpage() {
   const handleSetRecipe = (searchText) => {
     const searchedRecipe = isSearchingRecipe(recipes, searchText);
     setRecipe(searchedRecipe);
-
   }
   
   const handleResetRecipe = ()=>{
     setRecipe(receivedRecipe)
   }
 
-
   // 레시피 게시물 전부 불러오는 함수
   const handleGetRecipe = () => {
-
-    axios.get("https://muggerbar.ml/recipe",
+    axios.get("http://localhost:4000/recipe",
     null,
     { headers: { "Content-Type": "application/json" }})
     .then((res)=>{
