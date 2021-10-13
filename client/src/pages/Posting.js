@@ -27,7 +27,8 @@ function Posting() {
   };
 
   const handlecontent = (data) =>{
-    setContent({recipe_content:data})
+    let content =data.replace(/(<([^>]+)>)/ig,"")
+    setContent({recipe_content:content})
   }
 
 //   onCashange  = data => { 

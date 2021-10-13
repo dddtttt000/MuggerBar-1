@@ -15,14 +15,14 @@ import dummyUserInfo from "./dummy/userInfo";
 function App() {
   const [userInfo, setUserInfo] = useState(null);
   const [isLogin, setIsLogin] = useState(false);
-  const [recipes, setRecipes] = useState(null); // 내가 쓴 레시피 모음
+  const [recipes, setRecipes] = useState([]); // 내가 쓴 레시피 모음
 
   const [receivedRecipe, setReceivedRecipe] = useState([]);
   const [totalRecipes, setTotalRecipe] = useState([]);
   const [clickNumRecipe,setClickNumRecipe] = useState(0)
 
   const handleClickNumRecipe = (recipe) => {
-    // console.log(recipe)
+    // console.log(clickNumRecipe)
     setClickNumRecipe(recipe)
   }
 
@@ -55,7 +55,7 @@ function App() {
   
   useEffect(()=>{
     handleGetRecipe()
-  },[])
+  },)
 
   const history = useHistory();
 
@@ -106,7 +106,7 @@ function App() {
   useEffect(() => {
     getRecipeLists();
     isAuthenticated();
-  }, []);
+  },[]);
 
   return (
     <div>
@@ -131,7 +131,7 @@ function App() {
         </Route>
         <Route path="/mypage">
           <MainNav isLogin={isLogin} handleLogout={handleLogout} />
-          <Mypage userInfo={userInfo} recipes={recipes} />
+          <Mypage userInfo={userInfo} totalRecipes={totalRecipes} />
           <Footer />
         </Route>
         <Route path="/posting">
@@ -140,7 +140,7 @@ function App() {
         </Route>
         <Route path="/recipe">
           <MainNav isLogin={isLogin} handleLogout={handleLogout} />
-            <Recipes recipe={receivedRecipe[clickNumRecipe-1]}/>;
+            <Recipes totalRecipes={totalRecipes} clickNumRecipe={clickNumRecipe} />;
           <Footer />
         </Route>
       </Switch>
