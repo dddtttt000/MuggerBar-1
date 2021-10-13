@@ -22,7 +22,7 @@ function App() {
   const [clickNumRecipe, setClickNumRecipe] = useState(0);
 
   const handleClickNumRecipe = (recipe) => {
-    // console.log(recipe)
+    console.log(recipe);
     setClickNumRecipe(recipe);
   };
 
@@ -45,7 +45,7 @@ function App() {
   const handleGetRecipe = () => {
     axios.get("https://muggerbar.ml/recipe",
     null,
-    { headers: { "Content-Type": "application/json" }})
+    { headers: { "Accept": "application/json" }})
     .then((res)=>{
       setReceivedRecipe(res.data.data.recipe);
       setTotalRecipe(res.data.data.recipe);
@@ -55,7 +55,7 @@ function App() {
   
   useEffect(()=>{
     handleGetRecipe()
-  },)
+  },[])
 
   const history = useHistory();
 
@@ -133,7 +133,11 @@ function App() {
         </Route>
         <Route path="/mypage">
           <MainNav isLogin={isLogin} handleLogout={handleLogout} />
-          <Mypage userInfo={userInfo} totalRecipes={totalRecipes} />
+          <Mypage 
+            userInfo={userInfo} 
+            totalRecipes={totalRecipes} 
+            handleClickNumRecipe={handleClickNumRecipe}
+            />
           <Footer />
         </Route>
         <Route path="/posting">

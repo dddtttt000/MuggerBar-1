@@ -5,9 +5,9 @@ import dummyComments from "../dummy/comments";
 import DeleteModal from "../components/DeleteModal";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 
 axios.defaults.withCredentials = true;
-
 
 function Recipes({ totalRecipes, clickNumRecipe }) {
   const [comments, setComments] = useState(dummyComments);
@@ -128,25 +128,16 @@ function Recipes({ totalRecipes, clickNumRecipe }) {
               <span className="rp-info">{recipeUserInfo}</span>
               <span className="rp-data">{renderRecipe.createdAt}</span>
             </div>
-
-//          feat/recipePage
-//             <span className="rp-delete">
-//               <button className="btn-delete" 
-//                 onClick={()=>{
-//                   showModalHandler();
-//                 }}>
-//                 삭제하기
-//               </button>
-//             </span>
-
-            {isMyContent ? (
-              <span className="rp-delete">
-                <button className="btn-delete" onClick={showModalHandler}>
-                  삭제하기
-                </button>
-              </span>
-            ) : null}
-
+            <span className="rp-delete">
+              <button
+                className="btn-delete"
+                onClick={() => {
+                  showModalHandler();
+                }}
+              >
+                삭제하기
+              </button>
+            </span>
           </div>
         </div>
         <div className="rp-wrap pic">
@@ -155,10 +146,7 @@ function Recipes({ totalRecipes, clickNumRecipe }) {
         <div className="rp-wrap">
           <div className="rp-desc">{renderRecipe.recipe_content}</div>
           <div className="r-likes">
-            <div
-              className="r-img"
-              onClick={handleLikeClick}
-            ></div>
+            <div className="r-img" onClick={handleLikeClick}></div>
             <div className="r-c">{like}</div>
           </div>
         </div>
@@ -169,23 +157,13 @@ function Recipes({ totalRecipes, clickNumRecipe }) {
           })}
           <form onSubmit={(e) => e.preventDefault()}>
             <div className="rp-reply">
-              <textarea
-                id=""
-                value={msg}
-                placeholder="레시피가 마음에 드셨나요? 댓글을 남겨주세요."
-                onChange={handleChangeMsg}
-              ></textarea>
+              <textarea id="" value={msg} placeholder="레시피가 마음에 드셨나요? 댓글을 남겨주세요." onChange={handleChangeMsg}></textarea>
               <button onClick={handleButtonClick}>등록</button>
             </div>
           </form>
         </div>
       </center>
-      {showModal ? (
-        <DeleteModal
-          showModalHandler={showModalHandler}
-          handleDelete={handleDelete}
-        />
-      ) : null}
+      {showModal ? <DeleteModal showModalHandler={showModalHandler} handleDelete={handleDelete} /> : null}
       <Footer />
     </div>
   );
