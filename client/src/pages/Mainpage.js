@@ -8,15 +8,13 @@ import axios from "axios";
 import dummyRecipes from "../dummy/recipelist.js";
 import MainContent from "../components/MainContent.js";
 
-function Mainpage({ handleLogout, isLogin, userInfo }) {
-  console.log("main page isLogin", isLogin);
-  console.log("main page userInfo", userInfo);
 
 
 function Mainpage() {
   const [receivedRecipe, setReceivedRecipe] = useState([]);
   const [recipes, setRecipe] = useState([]); 
   
+
 
   const isSearchingRecipe = (arr, text) => {
     return arr.filter((ele) => {
