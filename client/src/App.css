@@ -570,7 +570,7 @@ footer {
 }
 
 .itemList {
-  /* border: 1px solid red; */
+  margin-top: 10px;
   display: flex;
   flex-direction: row;
   padding: 10px;
@@ -579,7 +579,6 @@ footer {
 }
 
 .itemCard {
-  /* flex: 0; */
   border: 1px solid rgb(105, 105, 105);
   width: 330px;
   height: 300px;
