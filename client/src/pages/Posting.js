@@ -34,6 +34,7 @@ function Posting() {
   //         content : data.getData()
   //     })
   //  }
+
   // function --> 기존 데이터 DB에 얘도 추가시키는 함수...How?
 
   const handleposting = () => {
