@@ -18,7 +18,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       recipe_photo: {
-        type: Sequelize.BLOB
+        type: Sequelize.STRING
       },
       recipe_content: {
         type: Sequelize.STRING

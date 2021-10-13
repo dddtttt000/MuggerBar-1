@@ -7,34 +7,36 @@ import Footer from "../components/Footer";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 
-
 function Posting() {
   const [post, setPost] = useState({
     recipe_title : "",
     recipe_subtitle : "",
   });
   // console.log(post)
+  
   const [content, setContent] = useState({
     recipe_content: ""
   })
   
+<<<<<<< HEAD
   const [photo, setPhoto] = useState({
     recipe_photo : ""
   })
   
 
+=======
+>>>>>>> afe822956c75f3488785d63be350f18f9a16b89f
   const history = useHistory();
 
-  console.log(content);
+  // console.log(content);
   const handleInputValue = (key) => (e) => {
     setPost({ ...post, [key]: e.target.value });
   };
 
-
   const handlecontent = (data) =>{
-
     setContent({recipe_content:data})
   }
+
 //   onCashange  = data => { 
 //     console.log( "Called" );
 //     this.setState({
@@ -43,7 +45,9 @@ function Posting() {
 //  }
 
   // function --> 기존 데이터 DB에 얘도 추가시키는 함수...How?
+  const [recipe_photo, setRecipe_photo] = useState('이미지경로')
 
+<<<<<<< HEAD
   const handleposting = () => {
     const { recipe_title, recipe_subtitle, recipe_photo } = post;
     const { recipe_content } = content
@@ -54,6 +58,17 @@ function Posting() {
       recipe_title:recipe_title,
       recipe_subtitle:recipe_subtitle,
       recipe_photo:recipe_title,
+=======
+  const handleposting = () =>{
+    const { recipe_title, recipe_subtitle } = post;
+    const { recipe_content } = content
+    axios
+    .post("https://muggerbar.ml/recipe",
+    {
+      recipe_title:recipe_title,
+      recipe_subtitle:recipe_subtitle,
+      recipe_photo:recipe_photo,
+>>>>>>> afe822956c75f3488785d63be350f18f9a16b89f
       recipe_content:recipe_content
     },
     {
@@ -68,6 +83,7 @@ function Posting() {
       //console.log("err message =>", err);
     });
   }
+<<<<<<< HEAD
 
   const uploadFile= () => {
     const fileInput = document.getElementById("upload");
@@ -103,16 +119,31 @@ function Posting() {
 
 
 
+=======
+  
+  const handleFileOnChange = (event) =>{
+    const formData = new FormData();
+    formData.append('profile_img', event.target.files[0]);
+    axios.post("https://muggerbar.ml/api/users/upload", formData, {
+      header: { 'content-type': 'multipart/form-data' },
+    })
+    .then((response) => {
+      console.log(response.data.fileName);
+      setRecipe_photo(response.data.fileName);
+    });
+  };
+  
+>>>>>>> afe822956c75f3488785d63be350f18f9a16b89f
 
   return (
     <>
       <PostingNav handleposting={handleposting} />
 
-      <div class="PostingImgFinder">
-        <input type="file" />
-        <input type="submit" value="첨부하기" />
+      {/* <div class="PostingImgFinder">
+        <input type="file" enctype="multipart/form-data" action="../files/upload"/>
       </div>
 
+<<<<<<< HEAD
     <div class="PostingImgFinder">
     <input type="file" name="image" id="upload" onChange={uploadFile}/>
     </div>
@@ -131,6 +162,30 @@ function Posting() {
         config={({ height: 750 }, { width: 700 }, { allowedContent: true })}
         handlecontent={handlecontent}
       />
+=======
+      <div class="PostingImgFinder">
+        <input type="file" name="image" id="upload" />
+        <button onClick={()=>(uploadFile())}> 사진 선택 완료 </button>
+      </div> */}
+
+      <form enctype="multipart/form-data">
+        <input
+          type="file"
+          accept="image/jpg,impge/png,image/jpeg,image/gif"
+          name="profile_img"  
+          placeholder="업로드"
+          onChange={(e)=>(handleFileOnChange(e))}
+        ></input>
+      </form>
+      
+    <Summery handleInputValue={handleInputValue}/>
+    
+    
+    <CKEditor
+      config={({ height: 750 }, { width: 700 }, { allowedContent: true })}
+      handlecontent={handlecontent}
+    />
+>>>>>>> afe822956c75f3488785d63be350f18f9a16b89f
 
       <div className="publishBtn">
         <button onClick={handleposting}>저장하기</button>
