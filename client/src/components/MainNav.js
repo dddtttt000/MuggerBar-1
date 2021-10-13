@@ -7,12 +7,16 @@ function MainNav({ handleLogout, isLogin }) {
   return (
     <>
       <div className="mainNav">
-        <div className="logo-mainNav"></div>
+        <a className="logo-mainNav" href="/">
+          <div className="logo-mainNav "></div>
+        </a>
+
         <div className="nav-btn-wrap">
           <div className="">
-            {/* <Link to={isLogin ? "./posting" : "./login"}> */}
-            <Link to="./posting">
-              <button type="submit" className="mainBtn">
+            <Link to={isLogin ? "./posting" : "./login"}>
+              {/* <Link to="./posting"> */}
+              <button type="submit" className="mainBtn m-post">
+                <div className="m-btn-img" />
                 레시피 등록
               </button>
             </Link>
@@ -20,14 +24,18 @@ function MainNav({ handleLogout, isLogin }) {
 
           {isLogin ? (
             <div className="">
-              <button type="submit" className="mainBtn" onClick={handleLogout}>
+              <button
+                type="submit"
+                className="mainBtn m-sign"
+                onClick={handleLogout}
+              >
                 로그아웃
               </button>
             </div>
           ) : (
             <div className="">
               <Link to="./login">
-                <button type="submit" className="mainBtn">
+                <button type="submit" className="mainBtn m-sign">
                   로그인
                 </button>
               </Link>
@@ -37,7 +45,7 @@ function MainNav({ handleLogout, isLogin }) {
           {isLogin ? (
             <div className="">
               <Link to="./mypage">
-                <button type="submit" className="mainBtn">
+                <button type="submit" className="mainBtn m-my">
                   마이페이지
                 </button>
               </Link>
@@ -45,7 +53,7 @@ function MainNav({ handleLogout, isLogin }) {
           ) : (
             <div className="">
               <Link to="./signup">
-                <button type="submit" className="mainBtn">
+                <button type="submit" className="mainBtn m-my">
                   회원가입
                 </button>
               </Link>

@@ -388,7 +388,6 @@ input::placeholder {
 .rp-wrap {
   background-color: #fff;
   width: 768px;
-  border: 1px solid red;
   margin-bottom: 8px;
   padding: 20px;
   text-align: left;
@@ -488,6 +487,8 @@ footer {
   height: 68px;
   background: url("./img/MuggerBar-Logo-White.png");
   float: left;
+  background-position: center;
+  background-size: contain;
 }
 
 .ft-text {
@@ -520,7 +521,6 @@ footer {
   height: 350px;
 }
 .main-content-wrap {
-  border: 1px solid blue;
   margin-bottom: 90px;
 }
 
@@ -540,7 +540,7 @@ footer {
 }
 
 .itemList {
-  border: 1px solid red;
+  /* border: 1px solid red; */
   display: flex;
   flex-direction: row;
   padding: 10px;
@@ -549,7 +549,7 @@ footer {
 
 .itemCard {
   flex: 0;
-  border: 1px solid red;
+  border: 1px solid rgb(105, 105, 105);
   width: 330px;
   height: 300px;
   border-radius: 15px;
@@ -561,6 +561,7 @@ footer {
   height: 214px;
   border-top-right-radius: 15px;
   border-top-left-radius: 15px;
+  /* border: 1px solid rgb(105, 105, 105); */
 }
 
 .card-text {
@@ -606,6 +607,10 @@ footer {
   color: rgb(105, 105, 105);
   border: 1px solid rgb(105, 105, 105);
   border-radius: 3px;
+  cursor: pointer;
+}
+.s-btn-wrap > input:hover {
+  color: black;
 }
 
 .mainNav {
@@ -631,20 +636,46 @@ footer {
   width: 90%;
   margin: 20px auto;
 }
+
 .mainBtn {
   position: relative;
   border: 0;
   font-size: 18px;
   font-weight: bold;
   cursor: pointer;
-  border-radius: 6px;
+  border-radius: 20px;
   padding: 10px 10px;
-  width: 140px;
+  width: 130px;
   float: right;
   margin: 5px;
   /* left: 30%; */
 }
 
+.m-my {
+  float: right;
+  right: -280px;
+}
+
+.m-post {
+  float: right;
+  right: 320px;
+  width: 160px;
+}
+
+.m-sign {
+  float: right;
+  right: 5px;
+}
+
+.m-btn-img {
+  background: url("./img/pencil-icon.png");
+  width: 18px;
+  height: 18px;
+  float: left;
+  background-position: center;
+  background-size: contain;
+  margin-left: 5px;
+}
 .ps-save {
   outline: 0;
   border: 0;
@@ -656,7 +687,7 @@ footer {
 
 .ps-save-wrap {
   position: fixed;
-  width: 200px;
+  width: 150px;
   margin-top: 20px;
 }
 
