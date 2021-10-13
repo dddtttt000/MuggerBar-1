@@ -579,32 +579,24 @@ footer {
 }
 
 .itemCard {
-  flex: 0;
+  /* flex: 0; */
   border: 1px solid rgb(105, 105, 105);
   width: 330px;
   height: 300px;
   border-radius: 15px;
   margin: 5px;
   text-decoration: none;
-}
-
-.itemCard img {
-  width: 328px;
-  height: 214px;
-  object-fit: contain;
-  border-top-right-radius: 15px;
-  border-top-left-radius: 15px;
-  text-decoration: none;
+  overflow: hidden;
+  align-items: center;
 }
 
 .card-img {
   width: 328px;
   height: 214px;
-  border-top-right-radius: 15px;
-  border-top-left-radius: 15px;
+  border-top-right-radius: 14px;
+  border-top-left-radius: 14px;
   text-decoration: none;
-  overflow: hidden;
-  /* border: 1px solid rgb(105, 105, 105); */
+  border: 1px solid rgb(105, 105, 105);
 }
 
 .card-img-thumb {

@@ -16,12 +16,9 @@ function App() {
   const [userInfo, setUserInfo] = useState(null);
   const [isLogin, setIsLogin] = useState(false);
   const [recipes, setRecipes] = useState([]); // 내가 쓴 레시피 모음
-
   const [receivedRecipe, setReceivedRecipe] = useState([]);
   const [totalRecipes, setTotalRecipe] = useState([]);
   const [clickNumRecipe, setClickNumRecipe] = useState(0);
-
-  console.log("App.js userInfo", userInfo);
 
   const handleClickNumRecipe = (recipe) => {
     // console.log(recipe)

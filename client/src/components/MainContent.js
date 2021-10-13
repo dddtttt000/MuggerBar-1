@@ -6,14 +6,13 @@ function MainContent({ recipe, handleClickNumRecipe }) {
   return (
     <Link to="./recipes">
       <div className="itemCard">
-        <div className="card-img" onClick={() => handleClickNumRecipe(num)}>
+        <div className="" onClick={() => handleClickNumRecipe(num)}>
           <img
             className="card-img"
             src={`https://muggerbar.ml/${recipe.recipe_photo}`}
             alt={recipe.idx}
           />
         </div>
-        <hr className="card-hr"></hr>
         <div className="card-text">
           <div className="card-title">{recipe.recipe_title}</div>
           <div className="card-sub">{recipe.recipe_subtitle}</div>
