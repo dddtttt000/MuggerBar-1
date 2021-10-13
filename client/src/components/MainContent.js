@@ -12,15 +12,12 @@ function MainContent({ recipe }) {
     // </div>
 
     <div className="itemCard">
-      <div>
-        <img src={recipe.recipe_photo} alt={recipe.idx} />
+      <div className="card-img">
+        <img className="card-img" src={recipe.recipe_photo} alt={recipe.idx} />
       </div>
-      <div>
-        <h3 className="itemCardTitle">{recipe.recipe_title}</h3>
-        <div>{recipe.recipe_subtitle}</div>
-      </div>
-      <div>
-        <div>-----------------</div>
+      <div className="card-text">
+        <div className="card-title">{recipe.recipe_title}</div>
+        <div className="card-sub">{recipe.recipe_subtitle}</div>
       </div>
     </div>
   );
