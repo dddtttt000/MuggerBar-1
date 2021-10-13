@@ -14,23 +14,25 @@ function MainSearch({ handleSetRecipe, handleResetRecipe }) {
         <div className="search-wrap">
           <i class="fas fa-search"></i>
           <input
-            className="search-bar"
+            className="login-text search-bar"
             placeholder="레시피를 검색해 보세요."
             value={searchText}
             type="text"
             onChange={(e) => handleChange(e)}
           />
+          <div className="s-btn-wrap">
+            <input
+              type="submit"
+              value="검색"
+              onClick={() => handleSetRecipe(searchText)}
+            />
+            <input
+              type="submit"
+              value="초기화"
+              onClick={() => handleResetRecipe()}
+            />
+          </div>
         </div>
-        <input
-          type="submit"
-          value="검색"
-          onClick={() => handleSetRecipe(searchText)}
-        />
-        <input
-          type="submit"
-          value="초기화"
-          onClick={() => handleResetRecipe()}
-        />
       </div>
     </>
   );

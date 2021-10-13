@@ -19,12 +19,12 @@ function App() {
 
   const [receivedRecipe, setReceivedRecipe] = useState([]);
   const [totalRecipes, setTotalRecipe] = useState([]);
-  const [clickNumRecipe,setClickNumRecipe] = useState(0)
+  const [clickNumRecipe, setClickNumRecipe] = useState(0);
 
   const handleClickNumRecipe = (recipe) => {
-    // console.log(clickNumRecipe)
-    setClickNumRecipe(recipe)
-  }
+    // console.log(recipe)
+    setClickNumRecipe(recipe);
+  };
 
   const isSearchingRecipe = (arr, text) => {
     return arr.filter((ele) => {
@@ -35,12 +35,12 @@ function App() {
   const handleSetRecipe = (searchText) => {
     const searchedRecipe = isSearchingRecipe(totalRecipes, searchText);
     setTotalRecipe(searchedRecipe);
-  }
-  
-  const handleResetRecipe = ()=>{
-    setTotalRecipe(receivedRecipe)
-  }
-  
+  };
+
+  const handleResetRecipe = () => {
+    setTotalRecipe(receivedRecipe);
+  };
+
   // 레시피 게시물 전부 불러오는 함수
   const handleGetRecipe = () => {
     axios.get("https://muggerbar.ml/recipe",
@@ -113,11 +113,13 @@ function App() {
       <Switch>
         <Route exact path="/">
           <MainNav isLogin={isLogin} handleLogout={handleLogout} />
-          <Mainpage 
-          userInfo={userInfo} isLogin={isLogin} 
-          handleSetRecipe={handleSetRecipe} handleResetRecipe={handleResetRecipe} 
-          totalRecipes={totalRecipes} 
-          handleClickNumRecipe={(e)=>(handleClickNumRecipe(e))}
+          <Mainpage
+            userInfo={userInfo}
+            isLogin={isLogin}
+            handleSetRecipe={handleSetRecipe}
+            handleResetRecipe={handleResetRecipe}
+            totalRecipes={totalRecipes}
+            handleClickNumRecipe={(e) => handleClickNumRecipe(e)}
           />
           <Footer />
         </Route>
@@ -138,7 +140,7 @@ function App() {
           <Posting />
           <Footer />
         </Route>
-        <Route path="/recipe">
+        <Route path="/recipes">
           <MainNav isLogin={isLogin} handleLogout={handleLogout} />
             <Recipes totalRecipes={totalRecipes} clickNumRecipe={clickNumRecipe} />;
           <Footer />
