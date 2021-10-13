@@ -520,7 +520,7 @@ footer {
   height: 350px;
 }
 .main-content-wrap {
-  border: 1px solid red;
+  border: 1px solid blue;
   margin-bottom: 90px;
 }
 
@@ -539,6 +539,57 @@ footer {
   font-size: 18px;
 }
 
+.itemList {
+  border: 1px solid red;
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+  justify-content: center;
+}
+
+.itemCard {
+  flex: 0;
+  border: 1px solid red;
+  width: 330px;
+  height: 300px;
+  border-radius: 15px;
+  margin: 5px;
+}
+
+.card-img {
+  width: 328px;
+  height: 214px;
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
+}
+
+.card-text {
+  height: 87px;
+  padding: 10px;
+}
+
+.card-title {
+  font-weight: bold;
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.card-sub {
+  font-size: 14px;
+}
+
+.search-wrap {
+  border: 1px solid red;
+  background-color: #fff;
+}
+.search-bar {
+  width: 600px;
+  height: 40px;
+  font-size: 18px;
+  padding: 5px;
+  outline-style: none;
+}
+
 /* * 현진 작성 👇🏻 */
 
 .mainNav {
@@ -549,7 +600,7 @@ footer {
 }
 
 .logo-mainNav {
-  position: relative;
+  flex: none;
   width: 260px;
   text-align: center;
   background-color: #8f8f8f;
@@ -560,6 +611,7 @@ footer {
 }
 
 .nav-btn-wrap {
+  margin-left: auto;
   width: 90%;
   margin: 20px auto;
 }

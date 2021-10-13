@@ -12,6 +12,7 @@ function Mainpage() {
   const [receivedRecipe, setReceivedRecipe] = useState([]);
   const [recipes, setRecipe] = useState([]); 
 
+
   const isSearchingRecipe = (arr, text) => {
     return arr.filter((ele) => {
       return ele.recipe_title.includes(text);
