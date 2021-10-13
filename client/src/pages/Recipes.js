@@ -71,7 +71,7 @@ function Recipes({ totalRecipes, clickNumRecipe, userInfo }) {
   const handleButtonClick = () => {
     const comment = {
       id: comments.length + 1,
-      user_nickname: "userInfo.user_nickname",
+      user_nickname: userInfo.user_nickname,
       comment_content: msg,
     };
     const newComments = [comment, ...comments];
@@ -107,7 +107,7 @@ function Recipes({ totalRecipes, clickNumRecipe, userInfo }) {
     // 모달창을 띄우고 확인버튼을 클릭 시 삭제 요청
     axios
       .delete(`https://muggerbar.ml/recipe/${renderRecipe.id}`, {
-        withCredentials: true,
+        accept : 'application/json', withCredentials: true, 
       })
       .then((res) => {
         console.log(res);
