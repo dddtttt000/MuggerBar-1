@@ -105,7 +105,7 @@ function Recipes({ totalRecipes, clickNumRecipe, userInfo }) {
     // 모달창을 띄우고 확인버튼을 클릭 시 삭제 요청
     axios
       .delete(`https://muggerbar.ml/recipe/${renderRecipe.id}`, {
-        headers: { accept: "application/json", withCredentials : true},
+        accept : 'application/json', withCredentials: true, 
       })
       .then((res) => {
         console.log(res);
