@@ -125,11 +125,12 @@ function Recipes({ totalRecipes, clickNumRecipe, userInfo }) {
         <div className="rp-container">
           <div className="rp-wrap title">
             <div className="rp-title">
-              <div>{renderRecipe.recipe_title}</div>
+              <div id="tt">{renderRecipe.recipe_title}</div>
+              <div id="ss">{renderRecipe.recipe_subtitle}</div>
               <hr></hr>
               <div>
-                <span className="rp-info">{recipeUserInfo}</span>
-                <span className="rp-data">{renderRecipe.createdAt}</span>
+                <div className="rp-info">닉네임 : {recipeUserInfo}</div>
+                <div className="rp-data">작성일 : {renderRecipe.createdAt}</div>
               </div>
 
               {userInfo.user_nickname === recipeUserInfo ? (

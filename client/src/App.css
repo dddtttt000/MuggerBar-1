@@ -384,15 +384,30 @@ input::placeholder {
   display: grid;
   margin-top: 90px;
 }
-.rp-container {
-  border: 1px solid red;
-  width: 780px;
-  height: auto;
-  display: table-cell;
-  flex-direction: column;
-  vertical-align: middle;
+
+#tt {
+  margin-top: 20px;
+  font-size: 24px;
+  font-weight: bold;
 }
 
+#ss {
+  font-size: 16px;
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+
+.rp-info {
+  margin-left: 10px;
+  margin-top: 15px;
+  font-size: 15px;
+}
+
+.rp-data {
+  margin-left: 10px;
+  margin-top: 5px;
+  font-size: 15px;
+}
 .rp-wrap {
   background-color: #fff;
   width: 768px;
