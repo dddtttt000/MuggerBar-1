@@ -84,12 +84,22 @@ function Recipes({ totalRecipes, clickNumRecipe }) {
 
   const handleLikeClick = () => {
     axios
-      .post(`https:muggerbar.ml/recipe/${renderRecipe.id}/like`)
+      .post(`https://muggerbar.ml/recipe/${renderRecipe.id}/like`)
       .then((res)=>{
-        console.log(res)
+        // console.log(res)
+        // setLike(res.data.data.like.likeCount)
       })
   };
   
+  const handleLikeCount = () =>{
+    axios
+    .get(`https://muggerbar.ml/recipe/${renderRecipe.id}/like`)
+    .then((res)=>{
+      // console.log(res)
+      setLike(res.data.data.like.likeCount)
+    })
+  }
+
   const handleDelete = () => {
     // TODO: 삭제하기 버튼을 누르면 해당 게시물이 삭제되어야함
     // 서버에 post 요청을 보낸다.
@@ -115,6 +125,7 @@ function Recipes({ totalRecipes, clickNumRecipe }) {
 
   useEffect(()=>{
     takeRecipeUserNickName(renderRecipe.user_id)
+    handleLikeCount()
   },)
 
   return (
@@ -125,7 +136,7 @@ function Recipes({ totalRecipes, clickNumRecipe }) {
             <div>{renderRecipe.recipe_title}</div>
             <hr></hr>
             <div>
-              <span className="rp-info">{recipeUserInfo}</span>
+              <span className="rp-info">{recipeUserInfo} : </span>
               <span className="rp-data">{renderRecipe.createdAt}</span>
             </div>
             <span className="rp-delete">
@@ -146,7 +157,10 @@ function Recipes({ totalRecipes, clickNumRecipe }) {
         <div className="rp-wrap">
           <div className="rp-desc">{renderRecipe.recipe_content}</div>
           <div className="r-likes">
-            <div className="r-img" onClick={handleLikeClick}></div>
+            <div
+              className="r-img"
+              onClick={handleLikeClick,handleLikeCount}
+            ></div>
             <div className="r-c">{like}</div>
           </div>
         </div>
