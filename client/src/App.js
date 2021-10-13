@@ -45,7 +45,7 @@ function App() {
   const handleGetRecipe = () => {
     axios.get("https://muggerbar.ml/recipe",
     null,
-    { headers: { "Content-Type": "application/json" }})
+    { headers: { "accept": "application/json" }})
     .then((res)=>{
       setReceivedRecipe(res.data.data.recipe);
       setTotalRecipe(res.data.data.recipe);
@@ -55,7 +55,7 @@ function App() {
   
   useEffect(()=>{
     handleGetRecipe()
-  },)
+  },[])
 
   const history = useHistory();
 
