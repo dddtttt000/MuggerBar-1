@@ -382,12 +382,14 @@ input::placeholder {
   bottom: 0;
   right: 0;
   display: grid;
+  margin-top: 100px;
 }
 
 .rp-wrap {
   background-color: #fff;
   width: 768px;
   border: 1px solid red;
+  margin-top: 10px;
   margin-bottom: 8px;
   padding: 20px;
   text-align: left;

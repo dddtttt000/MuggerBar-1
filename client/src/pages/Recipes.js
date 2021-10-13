@@ -4,6 +4,7 @@ import Comment from "../components/Comment";
 import dummyComments from "../dummy/comments";
 import DeleteModal from "../components/DeleteModal";
 import axios from "axios";
+axios.defaults.withCredentials = true;
 
 function Recipes({ userInfo }) {
   const [comments, setComments] = useState(dummyComments);
@@ -11,10 +12,17 @@ function Recipes({ userInfo }) {
   const [msg, setMsg] = useState("");
   const [like, setLike] = useState(0);
   const [isClick, setIsClick] = useState(false);
-  //const [isMyContent, setIsMyContent] = useState(false);
+  const [isMyContent, setIsMyContent] = useState(false);
   const [showModal, setShowModal] = useState(false);
+
+  console.log("recipe props userInfo", userInfo);
   // TODO: props 로 받아온 userInfo 의 email 과 게시물을 작성한 유저의 email 이 같으면,
   // 삭제하기 버튼을 보여주고, 아니면 안보여준다. -> isMyContent
+  const showDeleteButton = () => {
+    // if (userInfo.user_id === recipe_id) {
+    // }
+    setIsMyContent(true);
+  };
 
   // TODO: 서버에서 댓글 불러오기
   const getComments = () => {
@@ -89,11 +97,14 @@ function Recipes({ userInfo }) {
               <span className="rp-category">카테고리</span>
               <span className="rp-category-value">선택한것</span>
             </div>
-            <span className="rp-delete">
-              <button className="btn-delete" onClick={showModalHandler}>
-                삭제하기
-              </button>
-            </span>
+
+            {isMyContent ? (
+              <span className="rp-delete">
+                <button className="btn-delete" onClick={showModalHandler}>
+                  삭제하기
+                </button>
+              </span>
+            ) : null}
           </div>
         </div>
         <div className="rp-wrap pic">이미지 불러와서 띄우기</div>

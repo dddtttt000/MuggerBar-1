@@ -93,7 +93,7 @@ function App() {
           <Posting />
           <Footer />
         </Route>
-        <Route path="/recipe">
+        <Route path="/recipes">
           <MainNav isLogin={isLogin} handleLogout={handleLogout} />
           <Recipes userInfo={userInfo} />
           <Footer />

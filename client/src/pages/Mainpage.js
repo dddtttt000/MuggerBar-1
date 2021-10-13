@@ -10,7 +10,7 @@ import MainContent from "../components/MainContent.js";
 
 function Mainpage() {
   const [receivedRecipe, setReceivedRecipe] = useState(dummyRecipes);
-  const [recipes, setRecipe] = useState(receivedRecipe);
+  const [recipes, setRecipe] = useState(dummyRecipes);
 
   const isSearchingRecipe = (arr, text) => {
     return arr.filter((ele) => {
@@ -19,12 +19,12 @@ function Mainpage() {
   };
 
   const handleSetRecipe = (searchText) => {
-    const searchedRecipe = isSearchingRecipe(dummyRecipes, searchText);
+    const searchedRecipe = isSearchingRecipe(recipes, searchText);
     setRecipe(searchedRecipe);
   };
 
   const handleResetRecipe = () => {
-    setRecipe(dummyRecipes);
+    setRecipe(receivedRecipe);
   };
 
   const handleGetRecipe = () => {
@@ -38,9 +38,9 @@ function Mainpage() {
       .catch((err) => console.log(err));
   };
 
-  // useEffect(()=>{
-  //   handleGetRecipe()
-  // },[])
+  useEffect(() => {
+    handleGetRecipe();
+  }, []);
 
   return (
     <>
@@ -61,7 +61,6 @@ function Mainpage() {
       </div>
       <div className="main-content-wrap">
         <MainContentsbox recipes={recipes} />
-        {/* <Link to="./Recipes">컨텐츠 클릭시</Link> */}
       </div>
     </>
   );
