@@ -1,5 +1,4 @@
 import React, { Component, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import MainNav from "../components/MainNav";
 import MainSearch from "../components/MainSearch";
 import MainContentsbox from "../components/MainContentsBox";
@@ -7,44 +6,9 @@ import Footer from "../components/Footer";
 import axios from "axios";
 import dummyRecipes from "../dummy/recipelist.js";
 import MainContent from "../components/MainContent.js";
+import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 
-function Mainpage() {
-  const [receivedRecipe, setReceivedRecipe] = useState([]);
-  const [recipes, setRecipe] = useState([]); 
-
-
-  const isSearchingRecipe = (arr, text) => {
-    return arr.filter((ele) => {
-      return ele.recipe_title.includes(text);
-    });
-  };
-
-  const handleSetRecipe = (searchText) => {
-    const searchedRecipe = isSearchingRecipe(recipes, searchText);
-    setRecipe(searchedRecipe);
-  }
-  
-  const handleResetRecipe = ()=>{
-    setRecipe(receivedRecipe)
-  }
-
-  // 레시피 게시물 전부 불러오는 함수
-  const handleGetRecipe = () => {
-    axios.get("http://localhost:4000/recipe",
-    null,
-    { headers: { "Content-Type": "application/json" }})
-    .then((res)=>{
-      setReceivedRecipe(res.data.data.recipe);
-      setRecipe(res.data.data.recipe);
-    })
-    .catch((err) => console.log(err));
-  }
-  
-  useEffect(()=>{
-    handleGetRecipe()
-  },[])
-  
-
+function Mainpage({handleSetRecipe, handleResetRecipe, totalRecipes, handleClickNumRecipe}) {
   return (
     <>
       <center>
@@ -62,18 +26,14 @@ function Mainpage() {
           handleResetRecipe={handleResetRecipe}
         />
       </div>
-      <div className="main-content-wrap">
-        <MainContentsbox recipes={recipes} />
-        {/* <Link to="./Recipes">컨텐츠 클릭시</Link> */}
-      </div>
 
     <div className="main-contents-wrap">
-      {recipes.length === 0
+      {totalRecipes.length === 0
         ? <div className="empty-result">
             <div><img src = "https://i.pinimg.com/originals/43/ff/b8/43ffb8fd6684db95623105b9f588d931.gif"/></div>
             <div>검색 결과가 없습니다.</div>
           </div>
-        : <MainContentsbox recipes={recipes} />
+        : <MainContentsbox totalRecipes={totalRecipes} handleClickNumRecipe={(e)=>(handleClickNumRecipe(e))}/>
         }
       {/* <Link to="./Recipes">컨텐츠 클릭시</Link> */}
     </div>
