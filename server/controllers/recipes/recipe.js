@@ -130,7 +130,7 @@ module.exports = {
 
   // ---------------------------------------------------------------------------------------------------
   like: async (req, res) => {
-    // 게시물 좋아요 클릭 => https://muggerbar.ml/recipe/{:id}/like
+    // 게시물 좋아요 클릭 => post : https://muggerbar.ml/recipe/{:id}/like
     const token = req.cookies.jwt;
     const accessTokenData = jwt.verify(token, process.env.ACCESS_SECRET);
 
@@ -149,22 +149,21 @@ module.exports = {
       return res.status(400).json({ data: { recipe: null }, message: "bad request" });
     }
 
-    const searchRecipe = await recipe.findOne({
-      where: {
-        id: req.params.id,
-      },
-    });
+    // 전달받은 레시피 번호와 토큰을 분해하여 얻은 id로 like table을 검색한다.
+    const { id } = accessTokenData;
 
-    // 4. 전달받은 id의 레피시가 없다면
-    if (!searchRecipe) {
-      return res.status(404).json({ data: { like: null }, message: "recipe is not found" });
-    } else {
-      // 5. 정상이라면
-      const { id } = accessTokenData;
+    const result = await like.findOne({
+      where : {
+        user_id : id,
+        recipe_id : req.params.id
+      }
+    })
+    // 존재 하지 않으면 추가하고
+    if(!result){
       like
         .create({
           user_id: id,
-          recipe_id: searchRecipe.id,
+          recipe_id: req.params.id
         })
         .then((data) => {
           return res.status(200).json({ data: { like: data.dataValues }, message: "ok" });
@@ -172,7 +171,34 @@ module.exports = {
         .catch((err) => {
           console.log(err);
         });
+    }else {
+      return res.status(200).json({ data: { like: null }, message: "alreay like this recipe" });
     }
+
+    // const searchRecipe = await recipe.findOne({
+    //   where: {
+    //     id: req.params.id, //recipe_id
+    //   },
+    // });
+
+    // // 4. 전달받은 id의 레피시가 없다면
+    // if (!searchRecipe) {
+    //   return res.status(404).json({ data: { like: null }, message: "recipe is not found" });
+    // } else {
+    //   // 5. 정상이라면
+    //   const { id } = accessTokenData;
+    //   like
+    //     .create({
+    //       user_id: id,
+    //       recipe_id: searchRecipe.id,
+    //     })
+    //     .then((data) => {
+    //       return res.status(200).json({ data: { like: data.dataValues }, message: "ok" });
+    //     })
+    //     .catch((err) => {
+    //       console.log(err);
+    //     });
+    // }
   },
 
   likeCount : async (req, res) => {

@@ -8,9 +8,13 @@ import axios from "axios";
 import dummyRecipes from "../dummy/recipelist.js";
 import MainContent from "../components/MainContent.js";
 
+
+
 function Mainpage() {
-  const [receivedRecipe, setReceivedRecipe] = useState(dummyRecipes);
-  const [recipes, setRecipe] = useState(receivedRecipe);
+  const [receivedRecipe, setReceivedRecipe] = useState([]);
+  const [recipes, setRecipe] = useState([]); 
+  
+
 
   const isSearchingRecipe = (arr, text) => {
     return arr.filter((ele) => {
@@ -19,28 +23,33 @@ function Mainpage() {
   };
 
   const handleSetRecipe = (searchText) => {
-    const searchedRecipe = isSearchingRecipe(dummyRecipes, searchText);
+    const searchedRecipe = isSearchingRecipe(recipes, searchText);
     setRecipe(searchedRecipe);
-  };
 
-  const handleResetRecipe = () => {
-    setRecipe(dummyRecipes);
-  };
+  }
+  
+  const handleResetRecipe = ()=>{
+    setRecipe(receivedRecipe)
+  }
 
+
+  // 레시피 게시물 전부 불러오는 함수
   const handleGetRecipe = () => {
-    axios
-      .get("https://muggerbar.ml/recipe", null, null)
-      .then((res) => {
-        console.log(res);
-        setReceivedRecipe(res.data.recipe);
-        setRecipe(res.data.recipe);
-      })
-      .catch((err) => console.log(err));
-  };
 
-  // useEffect(()=>{
-  //   handleGetRecipe()
-  // },[])
+    axios.get("https://muggerbar.ml/recipe",
+    null,
+    { headers: { "Content-Type": "application/json" }})
+    .then((res)=>{
+      setReceivedRecipe(res.data.data.recipe);
+      setRecipe(res.data.data.recipe);
+    })
+    .catch((err) => console.log(err));
+  }
+  
+  useEffect(()=>{
+    handleGetRecipe()
+  },[])
+  
 
   return (
     <>

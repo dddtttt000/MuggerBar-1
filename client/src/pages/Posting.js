@@ -7,6 +7,7 @@ import Footer from "../components/Footer";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 
+
 function Posting() {
   const [post, setPost] = useState({
     recipe_title: "",
@@ -25,15 +26,18 @@ function Posting() {
     setPost({ ...post, [key]: e.target.value });
   };
 
-  const handlecontent = (data) => {
-    setContent({ recipe_content: data });
-  };
-  //   onCashange  = data => {
-  //     console.log( "Called" );
-  //     this.setState({
-  //         content : data.getData()
-  //     })
-  //  }
+
+  const handlecontent = (data) =>{
+
+    setContent({recipe_content:data})
+  }
+//   onCashange  = data => { 
+//     console.log( "Called" );
+//     this.setState({
+//         content : data.getData()
+//     })
+//  }
+
   // function --> 기존 데이터 DB에 얘도 추가시키는 함수...How?
 
   const handleposting = () => {
