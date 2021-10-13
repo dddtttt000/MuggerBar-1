@@ -8,7 +8,7 @@ import { useHistory } from "react-router-dom";
 
 axios.defaults.withCredentials = true;
 
-function Recipes({ totalRecipes, clickNumRecipe }) {
+function Recipes({ totalRecipes, clickNumRecipe, userInfo }) {
   const [comments, setComments] = useState(dummyComments);
   const [commentContent, setCommentContent] = useState("");
   const [msg, setMsg] = useState("");
@@ -116,60 +116,66 @@ function Recipes({ totalRecipes, clickNumRecipe }) {
   useEffect(() => {
     takeRecipeUserNickName(renderRecipe.user_id);
   });
+  // console.log("recipe 페이지 작성자", recipeUserInfo);
+  // console.log("recipe page userInfo.user_nickname->", userInfo.user_nickname);
 
   return (
     <div className="rp">
       <center>
-        <div className="rp-wrap title">
-          <div className="rp-title">
-            <div>{renderRecipe.recipe_title}</div>
-            <hr></hr>
-            <div>
-              <span className="rp-info">{recipeUserInfo}</span>
-              <span className="rp-data">{renderRecipe.createdAt}</span>
-            </div>
+        <div className="rp-container">
+          <div className="rp-wrap title">
+            <div className="rp-title">
+              <div>{renderRecipe.recipe_title}</div>
+              <hr></hr>
+              <div>
+                <span className="rp-info">{recipeUserInfo}</span>
+                <span className="rp-data">{renderRecipe.createdAt}</span>
+              </div>
 
-            <span className="rp-delete">
-              <button
-                className="btn-delete"
-                onClick={() => {
-                  showModalHandler();
-                }}
-              >
-                삭제하기
-              </button>
-            </span>
-          </div>
-        </div>
-        <div className="rp-wrap pic">
-          <img
-            src={`https://muggerbar.ml/${renderRecipe.recipe_photo}`}
-            alt={renderRecipe.idx}
-          />
-        </div>
-        <div className="rp-wrap">
-          <div className="rp-desc">{renderRecipe.recipe_content}</div>
-          <div className="r-likes">
-            <div className="r-img" onClick={handleLikeClick}></div>
-            <div className="r-c">{like}</div>
-          </div>
-        </div>
-        <div className="rp-wrap ">
-          <div className="r-title">댓글</div> <hr></hr>
-          {comments.map((el) => {
-            return <Comment key={el.id} comment={el} />;
-          })}
-          <form onSubmit={(e) => e.preventDefault()}>
-            <div className="rp-reply">
-              <textarea
-                id=""
-                value={msg}
-                placeholder="레시피가 마음에 드셨나요? 댓글을 남겨주세요."
-                onChange={handleChangeMsg}
-              ></textarea>
-              <button onClick={handleButtonClick}>등록</button>
+              {userInfo.user_nickname === recipeUserInfo ? (
+                <span className="rp-delete">
+                  <button
+                    className="btn-delete"
+                    onClick={() => {
+                      showModalHandler();
+                    }}
+                  >
+                    삭제하기
+                  </button>
+                </span>
+              ) : null}
             </div>
-          </form>
+          </div>
+          <div className="rp-wrap pic">
+            <img
+              src={`https://muggerbar.ml/${renderRecipe.recipe_photo}`}
+              alt={renderRecipe.idx}
+            />
+          </div>
+          <div className="rp-wrap">
+            <div className="rp-desc">{renderRecipe.recipe_content}</div>
+            <div className="r-likes">
+              <div className="r-img" onClick={handleLikeClick}></div>
+              <div className="r-c">{like}</div>
+            </div>
+          </div>
+          <div className="rp-wrap ">
+            <div className="r-title">댓글</div> <hr></hr>
+            {comments.map((el) => {
+              return <Comment key={el.id} comment={el} />;
+            })}
+            <form onSubmit={(e) => e.preventDefault()}>
+              <div className="rp-reply">
+                <textarea
+                  id=""
+                  value={msg}
+                  placeholder="레시피가 마음에 드셨나요? 댓글을 남겨주세요."
+                  onChange={handleChangeMsg}
+                ></textarea>
+                <button onClick={handleButtonClick}>등록</button>
+              </div>
+            </form>
+          </div>
         </div>
       </center>
       {showModal ? (

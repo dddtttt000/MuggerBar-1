@@ -384,6 +384,14 @@ input::placeholder {
   display: grid;
   margin-top: 90px;
 }
+.rp-container {
+  border: 1px solid red;
+  width: 780px;
+  height: auto;
+  display: table-cell;
+  flex-direction: column;
+  vertical-align: middle;
+}
 
 .rp-wrap {
   background-color: #fff;
@@ -392,6 +400,7 @@ input::placeholder {
   padding: 20px;
   text-align: left;
   object-fit: contain;
+  position: relative;
 }
 
 .rp-wrap > img {
