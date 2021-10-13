@@ -383,8 +383,33 @@ input::placeholder {
   right: 0;
   display: grid;
   margin-top: 90px;
+  margin-bottom: 90px;
+  overflow: auto;
 }
 
+#tt {
+  margin-top: 20px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+#ss {
+  font-size: 16px;
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+
+.rp-info {
+  margin-left: 10px;
+  margin-top: 15px;
+  font-size: 15px;
+}
+
+.rp-data {
+  margin-left: 10px;
+  margin-top: 5px;
+  font-size: 15px;
+}
 .rp-wrap {
   background-color: #fff;
   width: 768px;
@@ -392,6 +417,7 @@ input::placeholder {
   padding: 20px;
   text-align: left;
   object-fit: contain;
+  position: relative;
 }
 
 .rp-wrap > img {
@@ -546,7 +572,7 @@ footer {
 }
 
 .itemList {
-  /* border: 1px solid red; */
+  margin-top: 10px;
   display: flex;
   flex-direction: row;
   padding: 10px;
@@ -555,32 +581,23 @@ footer {
 }
 
 .itemCard {
-  flex: 0;
   border: 1px solid rgb(105, 105, 105);
   width: 330px;
   height: 300px;
   border-radius: 15px;
   margin: 5px;
   text-decoration: none;
-}
-
-.itemCard img {
-  width: 328px;
-  height: 214px;
-  object-fit: contain;
-  border-top-right-radius: 15px;
-  border-top-left-radius: 15px;
-  text-decoration: none;
+  overflow: hidden;
+  align-items: center;
 }
 
 .card-img {
   width: 328px;
   height: 214px;
-  border-top-right-radius: 15px;
-  border-top-left-radius: 15px;
+  border-top-right-radius: 14px;
+  border-top-left-radius: 14px;
   text-decoration: none;
-  overflow: hidden;
-  /* border: 1px solid rgb(105, 105, 105); */
+  border: 1px solid rgb(105, 105, 105);
 }
 
 .card-img-thumb {

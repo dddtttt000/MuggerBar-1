@@ -5,7 +5,10 @@ import Posting from "../pages/Posting";
 function PostingNav({ handleposting }) {
   return (
     <div className="mainNav">
-      <div className="logo-mainNav"></div>
+      {/* <div className="logo-mainNav"></div> */}
+      <a className="logo-mainNav" href="/">
+        <div className="logo-mainNav "></div>
+      </a>
 
       <div className="nav-btn-wrap">
         <div className="">
