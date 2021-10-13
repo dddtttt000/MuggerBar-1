@@ -4,6 +4,7 @@ module.exports = {
    signup : require("./controller/signup"),
    signout : require("./controller/signout"),
    userinfo : require("./controller/userinfo"),
+   recipeUserinfo : require("./controller/recipeUserinfo"),
    edit : require("./controller/edit"),
 
 };

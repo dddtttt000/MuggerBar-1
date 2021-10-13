@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import MainContent from "./MainContent";
 
-function MainContentsbox({ recipes }) {
+function MainContentsbox({ totalRecipes, handleClickNumRecipe }) {
   const [itemList, setItemList] = useState(false);
 
   // return (
@@ -17,8 +17,8 @@ function MainContentsbox({ recipes }) {
 
   return (
     <div class="itemList">
-      {recipes.map((recipe, idx) => {
-        return <MainContent key={idx} recipe={recipe} />;
+      {totalRecipes.map((recipe, idx) => {
+        return <MainContent key={idx} recipe={recipe} handleClickNumRecipe={handleClickNumRecipe}/>;
       })}
     </div>
   );
