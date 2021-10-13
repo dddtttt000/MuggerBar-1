@@ -33,7 +33,7 @@ app.use(express.static('uploads'))
 
 // api수정 확인
 
-const HTTPS_PORT = process.env.HTTPS_PORT || 4000;
+const HTTPS_PORT = process.env.HTTPS_PORT || 80;
 
 let server;
 if (fs.existsSync("./key.pem") && fs.existsSync("./cert.pem")) {

@@ -43,20 +43,19 @@ function App() {
 
   // 레시피 게시물 전부 불러오는 함수
   const handleGetRecipe = () => {
-    axios
-      .get("https://muggerbar.ml/recipe", null, {
-        headers: { "Content-Type": "application/json" },
-      })
-      .then((res) => {
-        setReceivedRecipe(res.data.data.recipe);
-        setTotalRecipe(res.data.data.recipe);
-      })
-      .catch((err) => console.log(err));
-  };
-
-  useEffect(() => {
-    handleGetRecipe();
-  }, []);
+    axios.get("https://muggerbar.ml/recipe",
+    null,
+    { headers: { "Content-Type": "application/json" }})
+    .then((res)=>{
+      setReceivedRecipe(res.data.data.recipe);
+      setTotalRecipe(res.data.data.recipe);
+    })
+    .catch((err) => console.log(err));
+  }
+  
+  useEffect(()=>{
+    handleGetRecipe()
+  },)
 
   const history = useHistory();
 
@@ -107,7 +106,7 @@ function App() {
   useEffect(() => {
     getRecipeLists();
     isAuthenticated();
-  }, []);
+  },[]);
 
   return (
     <div>
@@ -134,7 +133,7 @@ function App() {
         </Route>
         <Route path="/mypage">
           <MainNav isLogin={isLogin} handleLogout={handleLogout} />
-          <Mypage userInfo={userInfo} recipes={recipes} />
+          <Mypage userInfo={userInfo} totalRecipes={totalRecipes} />
           <Footer />
         </Route>
         <Route path="/posting">
@@ -143,7 +142,7 @@ function App() {
         </Route>
         <Route path="/recipes">
           <MainNav isLogin={isLogin} handleLogout={handleLogout} />
-          <Recipes recipe={receivedRecipe[clickNumRecipe - 1]} />;
+            <Recipes totalRecipes={totalRecipes} clickNumRecipe={clickNumRecipe} />;
           <Footer />
         </Route>
       </Switch>

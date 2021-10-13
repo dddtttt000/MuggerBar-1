@@ -6,7 +6,7 @@ import axios from "axios";
 
 axios.defaults.withCredentials = true;
 
-function Mypage({ userInfo, recipes }) {
+function Mypage({ userInfo, totalRecipes }) {
   const [isOpen, setIsOpen] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [clickToEdit, setClickToEdit] = useState(true);
@@ -14,28 +14,28 @@ function Mypage({ userInfo, recipes }) {
     user_nickname: "",
     user_password: "",
   });
-  const [recipeList, setRecipeList] = useState(recipes);
+  const [recipeList, setRecipeList] = useState(totalRecipes);
   const [hasLists, setHasLists] = useState(recipeList.length);
   const [errMsg, setErrMsg] = useState("");
   const history = useHistory();
 
   //console.log("haslists", hasLists);
   //console.log("dummy", recipeList);
-  console.log("mypage userinfo", userinfo);
-  console.log("mypage props userInfo", userInfo);
+  // console.log("mypage userinfo", userinfo);
+  // console.log("mypage props userInfo", userInfo);
 
   // TODO: recipe list 를 서버에 요청해서 받아온다.
   // req.query.user_id 내가 쓴 게시물 목록 반환
 
   const handleUpdate = () => {
     // TODO: 유저 정보를 서버에 업데이트 요청하고, 성공한 경우
-    if (!userinfo.user_nickname || !userinfo.user_password) {
+    if (!userinfo.nickname || !userinfo.password) {
       setErrMsg("모든 정보를 입력해 주세요.");
     } else {
       axios
         .patch("https://muggerbar.ml/edit", {
-          user_nickname: userinfo.user_nickname,
-          user_password: userinfo.user_password,
+          user_nickname: userinfo.nickname,
+          user_password: userinfo.password,
         })
         .then((res) => {
           console.log("userinfo updated", res);
@@ -101,7 +101,7 @@ function Mypage({ userInfo, recipes }) {
                 type="password"
                 className="myinfo-props"
                 placeholder={userInfo.user_password}
-                onChange={handleInputValue("password")}
+                onChange={handleInputValue("user_password")}
               ></input>
             )}
             <hr></hr>
@@ -115,7 +115,7 @@ function Mypage({ userInfo, recipes }) {
                 type="text"
                 className="myinfo-props"
                 placeholder={userInfo.user_nickname}
-                onChange={handleInputValue("nickname")}
+                onChange={handleInputValue("user_nickname")}
               ></input>
             )}
             <hr></hr>
@@ -169,6 +169,7 @@ function Mypage({ userInfo, recipes }) {
                     type="submit"
                     className="my-btn"
                     onClick={handleUpdate}
+                    
                   >
                     <p>수정 완료</p>
                   </button>

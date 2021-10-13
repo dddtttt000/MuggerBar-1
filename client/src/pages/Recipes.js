@@ -1,12 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { Component, useEffect, useState } from "react";
 import Footer from "../components/Footer";
 import Comment from "../components/Comment";
 import dummyComments from "../dummy/comments";
 import DeleteModal from "../components/DeleteModal";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
+
 axios.defaults.withCredentials = true;
 
-function Recipes({ recipe }) {
+
+function Recipes({ totalRecipes, clickNumRecipe }) {
   const [comments, setComments] = useState(dummyComments);
   const [commentContent, setCommentContent] = useState("");
   const [msg, setMsg] = useState("");
@@ -14,18 +17,23 @@ function Recipes({ recipe }) {
   const [isClick, setIsClick] = useState(false);
   const [isMyContent, setIsMyContent] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [recipeUserInfo, setRecipeUserInfo] = useState('')
 
+  const history = useHistory();
 
-  const [recipeUserInfo, setRecipeUserInfo] = useState({
-    user_nickname : "작성자 닉네임"
-  })
+  const [renderRecipe, setRenderRecipe] = useState({})
+ 
+  const handleRenderingRecipe = (num) => {
+    const result = totalRecipes.filter((recipe)=>(recipe.id === num ))
+    setRenderRecipe(...result)
+  }
 
   const takeRecipeUserNickName = (id) => {
     axios
       .get(`https://muggerbar.ml/recipeUserinfo?id=${id}`,
         { withCredentials: true })
       .then((res)=>{
-        setRecipeUserInfo(res.data.userInfo.user_nickname)
+        setRecipeUserInfo(res.data.data.userInfo.user_nickname)
       })
   }
 
@@ -75,41 +83,61 @@ function Recipes({ recipe }) {
   };
 
   const handleLikeClick = () => {
-    setLike(like + 1);
-    setIsClick(true);
+    axios
+      .post(`https:muggerbar.ml/recipe/${renderRecipe.id}/like`)
+      .then((res)=>{
+        console.log(res)
+      })
   };
-
-  const handleUnlikeClick = () => {
-    setLike(like - 1);
-    setIsClick(false);
-  };
-
+  
   const handleDelete = () => {
     // TODO: 삭제하기 버튼을 누르면 해당 게시물이 삭제되어야함
     // 서버에 post 요청을 보낸다.
     // 메인페이지로 리디렉션한다.
     // 모달창을 띄우고 확인버튼을 클릭 시 삭제 요청
+    axios.delete(`https://muggerbar.ml/recipe/${renderRecipe.id}`,{
+      withCredentials : true
+    })
+    .then((res)=>{
+      console.log(res)
+      history.push("/")
+    })
     console.log("delete");
   };
+
   const showModalHandler = () => {
     setShowModal(!showModal);
   };
 
   useEffect(()=>{
-    takeRecipeUserNickName()
-  }, [])
+    handleRenderingRecipe(clickNumRecipe)
+  },[])
+
+  useEffect(()=>{
+    takeRecipeUserNickName(renderRecipe.user_id)
+  },)
 
   return (
     <div className="rp">
       <center>
         <div className="rp-wrap title">
           <div className="rp-title">
-            <div>{recipe.recipe_title}</div>
+            <div>{renderRecipe.recipe_title}</div>
             <hr></hr>
             <div>
-              <span className="rp-info">{recipeUserInfo.user_nickname}</span>
-              <span className="rp-data">{recipe.createdAt}</span>
+              <span className="rp-info">{recipeUserInfo}</span>
+              <span className="rp-data">{renderRecipe.createdAt}</span>
             </div>
+
+//          feat/recipePage
+//             <span className="rp-delete">
+//               <button className="btn-delete" 
+//                 onClick={()=>{
+//                   showModalHandler();
+//                 }}>
+//                 삭제하기
+//               </button>
+//             </span>
 
             {isMyContent ? (
               <span className="rp-delete">
@@ -118,17 +146,18 @@ function Recipes({ recipe }) {
                 </button>
               </span>
             ) : null}
+
           </div>
         </div>
         <div className="rp-wrap pic">
-          <img src={`https://muggerbar.ml/${recipe.recipe_photo}`} alt={recipe.idx} />
+          <img src={`https://muggerbar.ml/${renderRecipe.recipe_photo}`} alt={renderRecipe.idx} />
         </div>
         <div className="rp-wrap">
-          <div className="rp-desc">{recipe.recipe_content}</div>
+          <div className="rp-desc">{renderRecipe.recipe_content}</div>
           <div className="r-likes">
             <div
               className="r-img"
-              onClick={isClick === false ? handleLikeClick : handleUnlikeClick}
+              onClick={handleLikeClick}
             ></div>
             <div className="r-c">{like}</div>
           </div>
