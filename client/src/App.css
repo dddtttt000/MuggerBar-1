@@ -464,7 +464,7 @@ input::placeholder {
 }
 
 footer {
-  /* position: fixed; */
+  position: fixed;
   left: 0;
   bottom: 0;
   width: 100%;
@@ -486,8 +486,6 @@ footer {
   width: 233px;
   height: 68px;
   background: url("./img/MuggerBar-Logo-White.png");
-  background-position: center;
-  background-size: contain;
   float: left;
 }
 
@@ -517,75 +515,117 @@ footer {
   margin-top: 22px;
 }
 
+.main-top {
+  border: 1px solid red;
+  height: 350px;
+}
+.main-content-wrap {
+  border: 1px solid blue;
+  margin-bottom: 90px;
+}
+
+.main-img {
+  margin-top: 10px;
+  width: 500px;
+  height: 280px;
+  background: url("./img/MuggerBar-logo\ 1.png");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.main-text {
+  color: #939597;
+  font-size: 18px;
+}
+
+.itemList {
+  border: 1px solid red;
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+  justify-content: center;
+}
+
+.itemCard {
+  flex: 0;
+  border: 1px solid red;
+  width: 330px;
+  height: 300px;
+  border-radius: 15px;
+  margin: 5px;
+}
+
+.card-img {
+  width: 328px;
+  height: 214px;
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
+}
+
+.card-text {
+  height: 87px;
+  padding: 10px;
+}
+
+.card-title {
+  font-weight: bold;
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.card-sub {
+  font-size: 14px;
+}
+
+.search-wrap {
+  border: 1px solid red;
+  background-color: #fff;
+}
+.search-bar {
+  width: 600px;
+  height: 40px;
+  font-size: 18px;
+  padding: 5px;
+  outline-style: none;
+}
+
 /* * 현진 작성 👇🏻 */
 
 .mainNav {
   background-color: #8f8f8f;
   display: flex;
-  height: 127px;
-}
-
-.button-mainNav {
-  display: flex;
-  margin: 80px 0 0 50px;
+  height: 100px;
+  position: relative;
 }
 
 .logo-mainNav {
-  position: relative;
+  flex: none;
   width: 260px;
-  margin: 0 550px 0 50px;
   text-align: center;
-  padding-top: 150px;
-  padding-bottom: 30px;
   background-color: #8f8f8f;
-  background: url(../src/img/MuggerBar-Logo-White.png);
+  background: url("./img/MuggerBar-Logo-White.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
 }
 
+.nav-btn-wrap {
+  margin-left: auto;
+  width: 90%;
+  margin: 20px auto;
+}
 .mainBtn {
-  padding: 1px;
-}
-
-.main-btn-posting {
   position: relative;
-  width: 149px;
-  background: url(../src/img/pencil-icon.png);
-  background-repeat: no-repeat;
-  background-position: 10% 50%;
-  border: 1px solid #e7d65c;
-  background-color: #f1e067;
+  border: 1px solid red;
+  font-size: 20px;
+  cursor: pointer;
   border-radius: 6px;
   padding: 10px 10px;
-  cursor: pointer;
-  font-size: 12px;
-}
-
-.before-login-btn {
-  position: relative;
   width: 149px;
-  background-repeat: no-repeat;
-  background-position: 10% 50%;
-  background-color: silver;
-  border: 1px solid gray;
-  border-radius: 6px;
-  padding: 10px 10px;
-  cursor: pointer;
-  font-size: 12px;
-}
-
-.before-signup-btn {
-  position: relative;
-  width: 149px;
-  background-repeat: no-repeat;
-  background-position: 10% 50%;
-  background-color: silver;
-  border: 1px solid gray;
-  border-radius: 6px;
-  padding: 10px 10px;
-  cursor: pointer;
-  font-size: 12px;
+  float: left;
+  margin: 5px;
+  /* left: 30%; */
 }
 
 .postingNav {
@@ -659,10 +699,6 @@ footer {
   padding: 30px;
   /* width: 1200px;
   height: 130px; */
-}
-
-.main-img {
-  margin-top: 50px;
 }
 
 html,

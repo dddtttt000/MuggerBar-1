@@ -1,23 +1,39 @@
-import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 
-function MainSearch({handleSetRecipe, handleResetRecipe}) {
-  const [searchText, setSearchText] = useState('')
+function MainSearch({ handleSetRecipe, handleResetRecipe }) {
+  const [searchText, setSearchText] = useState("");
 
   const handleChange = (e) => {
-    setSearchText(e.target.value)
-  }
+    setSearchText(e.target.value);
+  };
 
   return (
     <>
       <div className="main-searchbar">
-        <i class="fas fa-search"></i>
-        <input placeholder="검색어를 입력하세요." value={searchText} type="text" onChange={(e) => handleChange(e)} />
-        <input type="submit" value="검색" onClick={() => handleSetRecipe(searchText)} />
-        <input type="submit" value="초기화" onClick={() => handleResetRecipe()} />
+        <div className="search-wrap">
+          <i class="fas fa-search"></i>
+          <input
+            className="search-bar"
+            placeholder="레시피를 검색해 보세요."
+            value={searchText}
+            type="text"
+            onChange={(e) => handleChange(e)}
+          />
+        </div>
+        <input
+          type="submit"
+          value="검색"
+          onClick={() => handleSetRecipe(searchText)}
+        />
+        <input
+          type="submit"
+          value="초기화"
+          onClick={() => handleResetRecipe()}
+        />
       </div>
     </>
   );
-};
+}
 
 export default MainSearch;

@@ -1,21 +1,43 @@
 import React, { useState } from "react";
-import MainNav from "../components/MainNav";
 import Footer from "../components/Footer";
 import Comment from "../components/Comment";
 import dummyComments from "../dummy/comments";
 import DeleteModal from "../components/DeleteModal";
+import axios from "axios";
 
 function Recipes({ userInfo }) {
   const [comments, setComments] = useState(dummyComments);
+  const [commentContent, setCommentContent] = useState("");
   const [msg, setMsg] = useState("");
   const [like, setLike] = useState(0);
   const [isClick, setIsClick] = useState(false);
-  const [isMyContent, setIsMyContent] = useState(false);
+  //const [isMyContent, setIsMyContent] = useState(false);
   const [showModal, setShowModal] = useState(false);
   // TODO: props 로 받아온 userInfo 의 email 과 게시물을 작성한 유저의 email 이 같으면,
   // 삭제하기 버튼을 보여주고, 아니면 안보여준다. -> isMyContent
 
-  // 댓글 등록
+  // TODO: 서버에서 댓글 불러오기
+  const getComments = () => {
+    axios
+      .get("https://muggerbar.ml/comment", { withCredentials: true })
+      .then((res) => {
+        console.log("get success", res);
+        setComments(res);
+      });
+  };
+
+  // TODO: 서버에 댓글 등록 post 요청 후 성공 시 댓글 목록에 포함
+  const postComment = () => {
+    axios
+      .post("https://muggerbar.ml/comment", {
+        recipe_id: "recipe_id",
+        comment_content: commentContent,
+      })
+      .then((res) => {
+        console.log("post success", res);
+      });
+  };
+
   const handleButtonClick = () => {
     const comment = {
       id: comments.length + 1,
@@ -54,7 +76,6 @@ function Recipes({ userInfo }) {
   return (
     <div className="rp">
       <center>
-        <MainNav />
         <div className="rp-wrap title">
           <div className="rp-title">
             <div>제목</div>
