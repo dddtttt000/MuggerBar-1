@@ -9,7 +9,7 @@ import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 
 axios.defaults.withCredentials = true;
 
-function Recipes({ totalRecipes, clickNumRecipe }) {
+function Recipes({ totalRecipes, clickNumRecipe, userInfo }) {
   const [comments, setComments] = useState(dummyComments);
   const [commentContent, setCommentContent] = useState("");
   const [msg, setMsg] = useState("");
@@ -84,7 +84,6 @@ function Recipes({ totalRecipes, clickNumRecipe }) {
 
   const handleLikeClick = () => {
     axios
-
       .post(`https://muggerbar.ml/recipe/${renderRecipe.id}/like`)
       .then((res)=>{
         // console.log(res)
@@ -135,43 +134,42 @@ function Recipes({ totalRecipes, clickNumRecipe }) {
   return (
     <div className="rp">
       <center>
-        <div className="rp-wrap title">
-          <div className="rp-title">
-            <div>{renderRecipe.recipe_title}</div>
-            <hr></hr>
-            <div>
-              <span className="rp-info">{recipeUserInfo} : </span>
-              <span className="rp-data">{renderRecipe.createdAt}</span>
+        <div className="rp-container">
+          <div className="rp-wrap title">
+            <div className="rp-title">
+              <div id="tt">{renderRecipe.recipe_title}</div>
+              <div id="ss">{renderRecipe.recipe_subtitle}</div>
+              <hr></hr>
+              <div>
+                <div className="rp-info">닉네임 : {recipeUserInfo}</div>
+                <div className="rp-data">작성일 : {renderRecipe.createdAt}</div>
+              </div>
+
+              {userInfo.user_nickname === recipeUserInfo ? (
+                <span className="rp-delete">
+                  <button
+                    className="btn-delete"
+                    onClick={() => {
+                      showModalHandler();
+                    }}
+                  >
+                    삭제하기
+                  </button>
+                </span>
+              ) : null}
             </div>
-
-            <span className="rp-delete">
-              <button
-                className="btn-delete"
-                onClick={() => {
-                  showModalHandler();
-                }}
-              >
-                삭제하기
-              </button>
-            </span>
           </div>
-        </div>
-        <div className="rp-wrap pic">
-          <img
-            src={`https://muggerbar.ml/${renderRecipe.recipe_photo}`}
-            alt={renderRecipe.idx}
-          />
-        </div>
-        <div className="rp-wrap">
-          <div className="rp-desc">{renderRecipe.recipe_content}</div>
-          <div className="r-likes">
-
-            <div
-              className="r-img"
-              onClick={handleLikeClick,handleLikeCount}
-            ></div>
-
-            <div className="r-c">{like}</div>
+          <div className="rp-wrap pic">
+            <img
+              src={`https://muggerbar.ml/${renderRecipe.recipe_photo}`}
+              alt={renderRecipe.idx}
+            />
+          </div>
+          <div className="rp-wrap">
+            <div className="rp-desc">{renderRecipe.recipe_content}</div>
+            <div className="r-likes">
+              <div className="r-img" onClick={handleLikeClick, handleLikeCount}></div>
+              <div className="r-c">{like}</div>
           </div>
         </div>
         <div className="rp-wrap ">
@@ -183,8 +181,11 @@ function Recipes({ totalRecipes, clickNumRecipe }) {
             <div className="rp-reply">
               <textarea id="" value={msg} placeholder="레시피가 마음에 드셨나요? 댓글을 남겨주세요." onChange={handleChangeMsg}></textarea>
               <button onClick={handleButtonClick}>등록</button>
-            </div>
-          </form>
+
+      
+              </div>
+            </form>
+          </div>
         </div>
       </center>
       {showModal ? <DeleteModal showModalHandler={showModalHandler} handleDelete={handleDelete} /> : null}

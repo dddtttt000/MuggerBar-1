@@ -16,7 +16,6 @@ function App() {
   const [userInfo, setUserInfo] = useState(null);
   const [isLogin, setIsLogin] = useState(false);
   const [recipes, setRecipes] = useState([]); // 내가 쓴 레시피 모음
-
   const [receivedRecipe, setReceivedRecipe] = useState([]);
   const [totalRecipes, setTotalRecipe] = useState([]);
   const [clickNumRecipe, setClickNumRecipe] = useState(0);
@@ -44,19 +43,20 @@ function App() {
   // 레시피 게시물 전부 불러오는 함수
   const handleGetRecipe = () => {
 
-    axios.get("https://muggerbar.ml/recipe",
-    null,
-    { headers: { "Accept": "application/json" }})
-    .then((res)=>{
-      setReceivedRecipe(res.data.data.recipe);
-      setTotalRecipe(res.data.data.recipe);
-    })
-    .catch((err) => console.log(err));
-  }
-  
-  useEffect(()=>{
-    handleGetRecipe()
-  },[])
+    axios
+      .get("https://muggerbar.ml/recipe", null, {
+        headers: { accept: "application/json" },
+      })
+      .then((res) => {
+        setReceivedRecipe(res.data.data.recipe);
+        setTotalRecipe(res.data.data.recipe);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  useEffect(() => {
+    handleGetRecipe();
+  }, []);
 
 
   const history = useHistory();
@@ -149,6 +149,7 @@ function App() {
         <Route path="/recipes">
           <MainNav isLogin={isLogin} handleLogout={handleLogout} />
           <Recipes
+            userInfo={userInfo}
             totalRecipes={totalRecipes}
             clickNumRecipe={clickNumRecipe}
           />

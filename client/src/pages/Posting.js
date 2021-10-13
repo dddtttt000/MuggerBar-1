@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import PostingNav from "../components/PostingNav";
 import Summery from "../components/Summary";
 import { CKEditor } from "../inc/index.js";
-import Footer from "../components/Footer";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 
