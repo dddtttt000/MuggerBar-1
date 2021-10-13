@@ -128,17 +128,6 @@ function Recipes({ totalRecipes, clickNumRecipe }) {
               <span className="rp-info">{recipeUserInfo}</span>
               <span className="rp-data">{renderRecipe.createdAt}</span>
             </div>
-
-//          feat/recipePage
-//             <span className="rp-delete">
-//               <button className="btn-delete" 
-//                 onClick={()=>{
-//                   showModalHandler();
-//                 }}>
-//                 삭제하기
-//               </button>
-//             </span>
-
             {isMyContent ? (
               <span className="rp-delete">
                 <button className="btn-delete" onClick={showModalHandler}>
@@ -146,7 +135,6 @@ function Recipes({ totalRecipes, clickNumRecipe }) {
                 </button>
               </span>
             ) : null}
-
           </div>
         </div>
         <div className="rp-wrap pic">
