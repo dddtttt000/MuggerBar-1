@@ -26,10 +26,10 @@ function Posting() {
     setPost({ ...post, [key]: e.target.value });
   };
 
-  const handlecontent = (data) =>{
-    let content =data.replace(/(<([^>]+)>)/ig,"")
-    setContent({recipe_content:content})
-  }
+  const handlecontent = (data) => {
+    let content = data.replace(/(<([^>]+)>)/gi, "");
+    setContent({ recipe_content: content });
+  };
 
   // function --> 기존 데이터 DB에 얘도 추가시키는 함수...How?
   const [recipe_photo, setRecipe_photo] = useState("이미지경로");
@@ -82,7 +82,7 @@ function Posting() {
         <form enctype="multipart/form-data">
           <input
             type="file"
-            accept="image/jpg,impge/png,image/jpeg,image/gif"
+            accept="image/jpg,image/png,image/jpeg,image/gif"
             name="profile_img"
             placeholder="업로드"
             onChange={(e) => handleFileOnChange(e)}
