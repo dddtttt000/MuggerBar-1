@@ -8,6 +8,7 @@ const app = express();
 const userRouter = require("./routes/userRouter");
 const recipeRouter = require("./routes/recipeRouter");
 const commentRouter = require("./routes/commentRouter");
+const userUploadImage = require("./routes/imgUpload")
 
 app.use(express.json());
 app.use(
@@ -24,13 +25,15 @@ app.get("/", (req, res) => {
 
 app.use(cookieParser());
 
-app.use("/", userRouter);
-app.use("/recipe", recipeRouter);
-app.use("/comment", commentRouter);
+app.use('/', userRouter)
+app.use('/recipe', recipeRouter)
+app.use('/comment', commentRouter)
+app.use('/api/users/upload', userUploadImage)
+app.use(express.static('uploads'))
 
 // api수정 확인
 
-const HTTPS_PORT = process.env.HTTPS_PORT || 80;
+const HTTPS_PORT = process.env.HTTPS_PORT || 4000;
 
 let server;
 if (fs.existsSync("./key.pem") && fs.existsSync("./cert.pem")) {
