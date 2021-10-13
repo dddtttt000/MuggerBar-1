@@ -15,16 +15,16 @@ import dummyUserInfo from "./dummy/userInfo";
 function App() {
   const [userInfo, setUserInfo] = useState(null);
   const [isLogin, setIsLogin] = useState(false);
-  const [recipes, setRecipes] = useState(null); // 내가 쓴 레시피 모음
+  const [recipes, setRecipes] = useState([]); // 내가 쓴 레시피 모음
 
   const [receivedRecipe, setReceivedRecipe] = useState([]);
   const [totalRecipes, setTotalRecipe] = useState([]);
-  const [clickNumRecipe,setClickNumRecipe] = useState(0)
+  const [clickNumRecipe, setClickNumRecipe] = useState(0);
 
   const handleClickNumRecipe = (recipe) => {
     // console.log(recipe)
-    setClickNumRecipe(recipe)
-  }
+    setClickNumRecipe(recipe);
+  };
 
   const isSearchingRecipe = (arr, text) => {
     return arr.filter((ele) => {
@@ -35,12 +35,12 @@ function App() {
   const handleSetRecipe = (searchText) => {
     const searchedRecipe = isSearchingRecipe(totalRecipes, searchText);
     setTotalRecipe(searchedRecipe);
-  }
-  
-  const handleResetRecipe = ()=>{
-    setTotalRecipe(receivedRecipe)
-  }
-  
+  };
+
+  const handleResetRecipe = () => {
+    setTotalRecipe(receivedRecipe);
+  };
+
   // 레시피 게시물 전부 불러오는 함수
   const handleGetRecipe = () => {
     axios.get("https://muggerbar.ml/recipe",
@@ -55,7 +55,7 @@ function App() {
   
   useEffect(()=>{
     handleGetRecipe()
-  },[])
+  },)
 
   const history = useHistory();
 
@@ -106,18 +106,20 @@ function App() {
   useEffect(() => {
     getRecipeLists();
     isAuthenticated();
-  }, []);
+  },[]);
 
   return (
     <div>
       <Switch>
         <Route exact path="/">
           <MainNav isLogin={isLogin} handleLogout={handleLogout} />
-          <Mainpage 
-          userInfo={userInfo} isLogin={isLogin} 
-          handleSetRecipe={handleSetRecipe} handleResetRecipe={handleResetRecipe} 
-          totalRecipes={totalRecipes} 
-          handleClickNumRecipe={(e)=>(handleClickNumRecipe(e))}
+          <Mainpage
+            userInfo={userInfo}
+            isLogin={isLogin}
+            handleSetRecipe={handleSetRecipe}
+            handleResetRecipe={handleResetRecipe}
+            totalRecipes={totalRecipes}
+            handleClickNumRecipe={(e) => handleClickNumRecipe(e)}
           />
           <Footer />
         </Route>
@@ -131,16 +133,16 @@ function App() {
         </Route>
         <Route path="/mypage">
           <MainNav isLogin={isLogin} handleLogout={handleLogout} />
-          <Mypage userInfo={userInfo} recipes={recipes} />
+          <Mypage userInfo={userInfo} totalRecipes={totalRecipes} />
           <Footer />
         </Route>
         <Route path="/posting">
           <Posting />
           <Footer />
         </Route>
-        <Route path="/recipe">
+        <Route path="/recipes">
           <MainNav isLogin={isLogin} handleLogout={handleLogout} />
-            <Recipes recipe={receivedRecipe[clickNumRecipe-1]}/>;
+            <Recipes totalRecipes={totalRecipes} clickNumRecipe={clickNumRecipe} />;
           <Footer />
         </Route>
       </Switch>
