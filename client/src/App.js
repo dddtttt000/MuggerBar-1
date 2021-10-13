@@ -138,7 +138,7 @@ function App() {
           <Posting />
           <Footer />
         </Route>
-        <Route path="/recipe">
+        <Route path="/recipes">
           <MainNav isLogin={isLogin} handleLogout={handleLogout} />
             <Recipes recipe={receivedRecipe[clickNumRecipe-1]}/>;
           <Footer />

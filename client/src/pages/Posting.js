@@ -26,6 +26,7 @@ function Posting() {
     setPost({ ...post, [key]: e.target.value });
   };
 
+
   const handlecontent = (data) =>{
     setContent({recipe_content:data})
   }
@@ -36,6 +37,7 @@ function Posting() {
 //         content : data.getData()
 //     })
 //  }
+
 
   // function --> 기존 데이터 DB에 얘도 추가시키는 함수...How?
   const [recipe_photo, setRecipe_photo] = useState('이미지경로')
@@ -57,7 +59,7 @@ function Posting() {
     .then((res) => {
       //console.log("res ???", res.status, "로그인성공");
       console.log(res.data.data)
-      history.push("/recipes")
+      history.push("/")
     })
     .catch((err) => {
       //console.log("err message =>", err);
@@ -80,15 +82,14 @@ function Posting() {
   return (
     <>
       <PostingNav handleposting={handleposting} />
+      <div className="posting-wrap">
+        <div className="ps-img-search">
+          <input type="file" />
+          <input className="ud-img" type="submit" value="첨부하기" />
 
-      {/* <div class="PostingImgFinder">
-        <input type="file" enctype="multipart/form-data" action="../files/upload"/>
-      </div>
 
-      <div class="PostingImgFinder">
-        <input type="file" name="image" id="upload" />
-        <button onClick={()=>(uploadFile())}> 사진 선택 완료 </button>
-      </div> */}
+  <hr className="ps-hr"></hr>
+        </div>
 
       <form enctype="multipart/form-data">
         <input
@@ -108,8 +109,15 @@ function Posting() {
       handlecontent={handlecontent}
     />
 
-      <div className="publishBtn">
-        <button onClick={handleposting}>저장하기</button>
+
+        <div className="">
+          <button
+            className="mainBtn ps-save ps-save-wrap"
+            onClick={handleposting}
+          >
+            <i class="fas fa-download"></i> 저장하기
+          </button>
+        </div>
       </div>
     </>
   );

@@ -4,28 +4,33 @@ import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 function Summery({handleInputValue, isHandleRecipeCategory}) {
 
   return (
-    <>
-      <div id="title-container">
-        요리명
+    <div className="summ-wrap">
+      <div className="summ-title">
+        제목
         <input
+          id="title"
+          className=""
           placeholder="요리의 이름을 정해주세요."
           type="text"
           onChange={handleInputValue("recipe_title")}
         />
       </div>
-
-      <div id="brief-description-container">
+      <div className="summ-title">
         한줄설명
         <input
-          placeholder="20글자 이내로 작성해 주세요."
+          className=""
+          placeholder="40자 이내로 작성해 주세요."
           type="text"
           onChange={handleInputValue("recipe_subtitle")}
         />
       </div>
-
-      <div id="select-catgory-container">
+      {/* <div className="summ-title">
         카테고리 선택
-        <select name="category" onChange={(e) => isHandleRecipeCategory(e)}>
+        <select
+          className=""
+          name="category"
+          onChange={(e) => isHandleRecipeCategory(e)}
+        >
           <option value="">----select category----</option>
           <option value="면">면</option>
           <option value="밥">밥</option>
@@ -34,8 +39,8 @@ function Summery({handleInputValue, isHandleRecipeCategory}) {
           <option value="디저트">디저트</option>
           <option value="">카테고리를 정할 수 없다! 신박템👽</option>
         </select>
-      </div>
-    </>
+      </div> */}
+    </div>
   );
 }
 

@@ -8,7 +8,9 @@ import dummyRecipes from "../dummy/recipelist.js";
 import MainContent from "../components/MainContent.js";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 
+
 function Mainpage({handleSetRecipe, handleResetRecipe, totalRecipes, handleClickNumRecipe}) {
+
   return (
     <>
       <center>
@@ -27,6 +29,7 @@ function Mainpage({handleSetRecipe, handleResetRecipe, totalRecipes, handleClick
         />
       </div>
 
+
     <div className="main-contents-wrap">
       {totalRecipes.length === 0
         ? <div className="empty-result">
@@ -39,6 +42,7 @@ function Mainpage({handleSetRecipe, handleResetRecipe, totalRecipes, handleClick
     </div>
     
       <Footer />
+
     </>
   );
 }

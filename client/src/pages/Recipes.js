@@ -4,6 +4,7 @@ import Comment from "../components/Comment";
 import dummyComments from "../dummy/comments";
 import DeleteModal from "../components/DeleteModal";
 import axios from "axios";
+axios.defaults.withCredentials = true;
 
 function Recipes({ recipe }) {
   const [comments, setComments] = useState(dummyComments);
@@ -11,8 +12,9 @@ function Recipes({ recipe }) {
   const [msg, setMsg] = useState("");
   const [like, setLike] = useState(0);
   const [isClick, setIsClick] = useState(false);
-  //const [isMyContent, setIsMyContent] = useState(false);
+  const [isMyContent, setIsMyContent] = useState(false);
   const [showModal, setShowModal] = useState(false);
+
 
   const [recipeUserInfo, setRecipeUserInfo] = useState({
     user_nickname : "작성자 닉네임"
@@ -27,13 +29,19 @@ function Recipes({ recipe }) {
       })
   }
 
+
   // TODO: props 로 받아온 userInfo 의 email 과 게시물을 작성한 유저의 email 이 같으면,
   // 삭제하기 버튼을 보여주고, 아니면 안보여준다. -> isMyContent
+  const showDeleteButton = () => {
+    // if (userInfo.user_id === recipe_id) {
+    // }
+    setIsMyContent(true);
+  };
 
   // TODO: 서버에서 댓글 불러오기
   const getComments = () => {
     axios
-      .get("https://muggerbar.ml/comment", { withCredentials: true })
+      .get(`https://muggerbar.ml/comment/`, { withCredentials: true })
       .then((res) => {
         console.log("get success", res);
         setComments(res);
@@ -102,11 +110,14 @@ function Recipes({ recipe }) {
               <span className="rp-info">{recipeUserInfo.user_nickname}</span>
               <span className="rp-data">{recipe.createdAt}</span>
             </div>
-            <span className="rp-delete">
-              <button className="btn-delete" onClick={showModalHandler}>
-                삭제하기
-              </button>
-            </span>
+
+            {isMyContent ? (
+              <span className="rp-delete">
+                <button className="btn-delete" onClick={showModalHandler}>
+                  삭제하기
+                </button>
+              </span>
+            ) : null}
           </div>
         </div>
         <div className="rp-wrap pic">
