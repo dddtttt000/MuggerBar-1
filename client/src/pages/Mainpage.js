@@ -26,10 +26,19 @@ function Mainpage({handleSetRecipe, handleResetRecipe, totalRecipes, handleClick
           handleResetRecipe={handleResetRecipe}
         />
       </div>
-      <div className="main-content-wrap">
-        <MainContentsbox totalRecipes={totalRecipes} handleClickNumRecipe={(e)=>(handleClickNumRecipe(e))}/>
-        {/* <Link to="./Recipes">컨텐츠 클릭시</Link> */}
-      </div>
+
+    <div className="main-contents-wrap">
+      {totalRecipes.length === 0
+        ? <div className="empty-result">
+            <div><img src = "https://i.pinimg.com/originals/43/ff/b8/43ffb8fd6684db95623105b9f588d931.gif"/></div>
+            <div>검색 결과가 없습니다.</div>
+          </div>
+        : <MainContentsbox totalRecipes={totalRecipes} handleClickNumRecipe={(e)=>(handleClickNumRecipe(e))}/>
+        }
+      {/* <Link to="./Recipes">컨텐츠 클릭시</Link> */}
+    </div>
+    
+      <Footer />
     </>
   );
 }
