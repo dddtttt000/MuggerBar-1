@@ -5,6 +5,7 @@ import dummyComments from "../dummy/comments";
 import DeleteModal from "../components/DeleteModal";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 
 axios.defaults.withCredentials = true;
 
@@ -83,11 +84,21 @@ function Recipes({ totalRecipes, clickNumRecipe, userInfo }) {
 
   const handleLikeClick = () => {
     axios
-      .post(`https:muggerbar.ml/recipe/${renderRecipe.id}/like`)
-      .then((res) => {
-        console.log(res);
-      });
+      .post(`https://muggerbar.ml/recipe/${renderRecipe.id}/like`)
+      .then((res)=>{
+        // console.log(res)
+        // setLike(res.data.data.like.likeCount)
+      })
   };
+  
+  const handleLikeCount = () =>{
+    axios
+    .get(`https://muggerbar.ml/recipe/${renderRecipe.id}/like`)
+    .then((res)=>{
+      // console.log(res)
+      setLike(res.data.data.like.likeCount)
+    })
+  }
 
   const handleDelete = () => {
     // TODO: 삭제하기 버튼을 누르면 해당 게시물이 삭제되어야함
@@ -113,11 +124,12 @@ function Recipes({ totalRecipes, clickNumRecipe, userInfo }) {
     handleRenderingRecipe(clickNumRecipe);
   }, []);
 
-  useEffect(() => {
-    takeRecipeUserNickName(renderRecipe.user_id);
-  });
-  // console.log("recipe 페이지 작성자", recipeUserInfo);
-  // console.log("recipe page userInfo.user_nickname->", userInfo.user_nickname);
+
+  useEffect(()=>{
+    takeRecipeUserNickName(renderRecipe.user_id)
+    handleLikeCount()
+  },)
+
 
   return (
     <div className="rp">
@@ -156,35 +168,27 @@ function Recipes({ totalRecipes, clickNumRecipe, userInfo }) {
           <div className="rp-wrap">
             <div className="rp-desc">{renderRecipe.recipe_content}</div>
             <div className="r-likes">
-              <div className="r-img" onClick={handleLikeClick}></div>
+              <div className="r-img" onClick={handleLikeClick, handleLikeCount}></div>
               <div className="r-c">{like}</div>
-            </div>
           </div>
-          <div className="rp-wrap ">
-            <div className="r-title">댓글</div> <hr></hr>
-            {comments.map((el) => {
-              return <Comment key={el.id} comment={el} />;
-            })}
-            <form onSubmit={(e) => e.preventDefault()}>
-              <div className="rp-reply">
-                <textarea
-                  id=""
-                  value={msg}
-                  placeholder="레시피가 마음에 드셨나요? 댓글을 남겨주세요."
-                  onChange={handleChangeMsg}
-                ></textarea>
-                <button onClick={handleButtonClick}>등록</button>
+        </div>
+        <div className="rp-wrap ">
+          <div className="r-title">댓글</div> <hr></hr>
+          {comments.map((el) => {
+            return <Comment key={el.id} comment={el} />;
+          })}
+          <form onSubmit={(e) => e.preventDefault()}>
+            <div className="rp-reply">
+              <textarea id="" value={msg} placeholder="레시피가 마음에 드셨나요? 댓글을 남겨주세요." onChange={handleChangeMsg}></textarea>
+              <button onClick={handleButtonClick}>등록</button>
+
+      
               </div>
             </form>
           </div>
         </div>
       </center>
-      {showModal ? (
-        <DeleteModal
-          showModalHandler={showModalHandler}
-          handleDelete={handleDelete}
-        />
-      ) : null}
+      {showModal ? <DeleteModal showModalHandler={showModalHandler} handleDelete={handleDelete} /> : null}
       <Footer />
     </div>
   );

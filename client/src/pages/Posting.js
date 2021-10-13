@@ -8,9 +8,8 @@ import { useHistory } from "react-router-dom";
 
 function Posting() {
   const [post, setPost] = useState({
-    recipe_title: "",
-    recipe_subtitle: "",
-    recipe_photo: "양념사진",
+    recipe_title : "",
+    recipe_subtitle : "",
   });
   // console.log(post)
 

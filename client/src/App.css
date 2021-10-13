@@ -383,6 +383,8 @@ input::placeholder {
   right: 0;
   display: grid;
   margin-top: 90px;
+  margin-bottom: 90px;
+  overflow: auto;
 }
 
 #tt {

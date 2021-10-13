@@ -4,7 +4,8 @@ import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 function MainContent({ recipe, handleClickNumRecipe }) {
   const num = recipe.id;
   return (
-    <Link to="./recipes">
+
+    <Link to="/recipes">
       <div className="itemCard">
         <div className="" onClick={() => handleClickNumRecipe(num)}>
           <img
