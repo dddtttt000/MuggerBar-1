@@ -82,7 +82,7 @@ function Posting() {
         <form enctype="multipart/form-data">
           <input
             type="file"
-            accept="image/jpg,impge/png,image/jpeg,image/gif"
+            accept="image/jpg,image/png,image/jpeg,image/gif"
             name="profile_img"
             placeholder="업로드"
             onChange={(e) => handleFileOnChange(e)}

@@ -5,9 +5,9 @@ import dummyComments from "../dummy/comments";
 import DeleteModal from "../components/DeleteModal";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 
 axios.defaults.withCredentials = true;
-
 
 function Recipes({ totalRecipes, clickNumRecipe }) {
   const [comments, setComments] = useState(dummyComments);
