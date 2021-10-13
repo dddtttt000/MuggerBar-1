@@ -13,6 +13,7 @@ function MainContent({ recipe, handleClickNumRecipe }) {
             alt={recipe.idx}
           />
         </div>
+        <hr className="card-hr"></hr>
         <div className="card-text">
           <div className="card-title">{recipe.recipe_title}</div>
           <div className="card-sub">{recipe.recipe_subtitle}</div>

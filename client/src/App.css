@@ -561,14 +561,16 @@ footer {
   height: 300px;
   border-radius: 15px;
   margin: 5px;
+  text-decoration: none;
 }
 
 .itemCard img {
-  width: 200px;
-  height: 200px;
+  width: 328px;
+  height: 214px;
   object-fit: contain;
   border-top-right-radius: 15px;
   border-top-left-radius: 15px;
+  text-decoration: none;
 }
 
 .card-img {
@@ -576,22 +578,37 @@ footer {
   height: 214px;
   border-top-right-radius: 15px;
   border-top-left-radius: 15px;
+  text-decoration: none;
+  overflow: hidden;
   /* border: 1px solid rgb(105, 105, 105); */
 }
 
+.card-img-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .card-text {
+  color: #000;
+  text-decoration: none;
   height: 87px;
   padding: 10px;
 }
 
 .card-title {
+  text-decoration: none;
   font-weight: bold;
-  font-size: 16px;
+  font-size: 18px;
   margin-bottom: 5px;
 }
 
 .card-sub {
+  text-decoration: none;
   font-size: 14px;
+}
+.card-hr {
+  border: 0.5px solid rgb(141, 141, 141);
 }
 
 .search-wrap {
@@ -722,25 +739,21 @@ footer {
   display: table;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 20px;
 }
 .ps-img-search {
   padding: 10px;
   margin-top: 20px;
 }
 
-.ud-img {
-  background-color: black;
-  color: #fff;
-  width: 100px;
-  height: 30px;
-  outline-style: none;
-  border-radius: 23px;
-  float: right;
+.up-img {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .ps-hr {
   border: 1px solid black;
-  width: 640px;
+  width: 768px;
   float: left;
   margin-bottom: 10px;
 }
@@ -752,6 +765,7 @@ footer {
 }
 
 .summ-title {
+  font-weight: bold;
   width: 100%;
   float: left;
   left: 100px;
@@ -831,6 +845,25 @@ footer {
   padding: 30px;
   /* width: 1200px;
   height: 130px; */
+}
+.empty-result {
+  padding: 10px;
+  border: 1px solid gray;
+  height: 310px;
+  margin-bottom: 90px;
+}
+.empty-img {
+  background: url("./img/sorry.png");
+  width: 140px;
+  height: 140px;
+  background-position: center;
+  background-size: contain;
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+
+.empty-text {
+  margin-top: 10px;
 }
 
 html,
