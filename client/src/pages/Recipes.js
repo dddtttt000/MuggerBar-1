@@ -72,28 +72,31 @@ function Recipes({ totalRecipes, clickNumRecipe, userInfo }) {
   // console.log("댓글 post가 완료된 commentContent => ", commentContent);
   console.log("get 요청으로 불러온 댓글들 =>", comments);
 
+
   // 댓글 내용을 msg 에 넣어주는 함수
   const handleChangeMsg = (e) => {
     setMsg(e.target.value);
   };
 
+  // console.log("renderRecipe========",renderRecipe)
   const handleLikeClick = () => {
     axios
       .post(`https://muggerbar.ml/recipe/${renderRecipe.id}/like`)
-      .then((res) => {
-        // console.log(res)
+      .then((res)=>{
+        handleLikeCount()
+        console.log("post=========",res)
         // setLike(res.data.data.like.likeCount)
       });
   };
 
-  const handleLikeCount = () => {
+  const handleLikeCount = () =>{
     axios
-      .get(`https://muggerbar.ml/recipe/${renderRecipe.id}/like`)
-      .then((res) => {
-        // console.log(res)
-        setLike(res.data.data.like.likeCount);
-      });
-  };
+        .get(`https://muggerbar.ml/recipe/${renderRecipe.id}/like`)
+        .then((res)=>{
+        console.log("get=========",res)
+        setLike(res.data.data.like.likeCount)
+    })
+  }
 
   const handleDelete = () => {
     // TODO: 삭제하기 버튼을 누르면 해당 게시물이 삭제되어야함
@@ -101,13 +104,9 @@ function Recipes({ totalRecipes, clickNumRecipe, userInfo }) {
     // 메인페이지로 리디렉션한다.
     // 모달창을 띄우고 확인버튼을 클릭 시 삭제 요청
     axios
-      .delete(
-        `https://muggerbar.ml/recipe/${renderRecipe.id}`,
-        {
-          withCredentials: true,
-        },
-        { accept: "application/json" }
-      )
+      .delete(`https://muggerbar.ml/recipe/${renderRecipe.id}`, {
+        accept : 'application/json', withCredentials: true, 
+      })
       .then((res) => {
         console.log(res);
         history.push("/");
@@ -130,11 +129,20 @@ function Recipes({ totalRecipes, clickNumRecipe, userInfo }) {
     getComments();
   }, [commentContent]);
 
-  useEffect(() => {
-    handleRenderingRecipe(clickNumRecipe);
-    takeRecipeUserNickName(renderRecipe.user_id);
-    handleLikeCount();
-  });
+// <<<<<<< feat/allnew
+//   useEffect(() => {
+//     handleRenderingRecipe(clickNumRecipe);
+//     takeRecipeUserNickName(renderRecipe.user_id);
+//     handleLikeCount();
+//   });
+// =======
+  useEffect(()=>{
+    takeRecipeUserNickName(renderRecipe.user_id)
+  },)
+
+  useEffect(()=>{
+    handleLikeCount()
+  },)
 
   return (
     <div className="rp">
@@ -149,7 +157,6 @@ function Recipes({ totalRecipes, clickNumRecipe, userInfo }) {
                 <div className="rp-info">닉네임 : {recipeUserInfo}</div>
                 <div className="rp-data">작성일 : {renderRecipe.createdAt}</div>
               </div>
-
               {userInfo.user_nickname === recipeUserInfo ? (
                 <span className="rp-delete">
                   <button
@@ -173,10 +180,7 @@ function Recipes({ totalRecipes, clickNumRecipe, userInfo }) {
           <div className="rp-wrap">
             <div className="rp-desc">{renderRecipe.recipe_content}</div>
             <div className="r-likes">
-              <div
-                className="r-img"
-                onClick={(handleLikeClick, handleLikeCount)}
-              ></div>
+              <div className="r-img" onClick={()=>handleLikeClick()}></div>
               <div className="r-c">{like}</div>
             </div>
           </div>

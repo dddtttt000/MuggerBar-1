@@ -107,11 +107,11 @@ module.exports = {
     }
 
     // 3. 게시물의 user_id 와 토큰이 아이디가 다르다면 게시물을 삭제할수 없다.
-    const { id } = accessTokenData; // 로그인한 사용자의 아이디
-    const payload1 = await recipe.findOne({ where: { id: req.params.id } }).user_id; // 레피시의 user_id
-    if (id !== payload1.dataValues.user_id) {
-      return res.status(403).json({ data: { recipe: null }, message: "authentication is required" });
-    }
+    // const { id } = accessTokenData; // 로그인한 사용자의 아이디
+    // const payload1 = await recipe.findOne({ where: { id: req.params.id } }).user_id; // 레피시의 user_id
+    // if (id !== payload1.dataValues.user_id) {
+    //   return res.status(403).json({ data: { recipe: null }, message: "authentication is required" });
+    // }
 
     // 4. 정상 작업
     recipe
