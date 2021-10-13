@@ -8,6 +8,7 @@ router.post('/logout', usercontroller.logout);
 router.post('/signup', usercontroller.signup);
 router.delete('/signout', usercontroller.signout);
 router.get('/userinfo', usercontroller.userinfo);
+router.get('/recipeUserinfo', usercontroller.recipeUserinfo);
 router.patch('/edit', usercontroller.edit);
 
 module.exports = router;
