@@ -27,7 +27,7 @@ function Recipes({ userInfo }) {
   // TODO: 서버에서 댓글 불러오기
   const getComments = () => {
     axios
-      .get("https://muggerbar.ml/comment", { withCredentials: true })
+      .get(`https://muggerbar.ml/comment/`, { withCredentials: true })
       .then((res) => {
         console.log("get success", res);
         setComments(res);

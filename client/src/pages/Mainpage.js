@@ -9,7 +9,7 @@ import dummyRecipes from "../dummy/recipelist.js";
 import MainContent from "../components/MainContent.js";
 
 function Mainpage() {
-  const [receivedRecipe, setReceivedRecipe] = useState([]);
+  const [receivedRecipe, setReceivedRecipe] = useState(dummyRecipes);
   const [recipes, setRecipe] = useState([]);
 
   const isSearchingRecipe = (arr, text) => {
@@ -29,9 +29,9 @@ function Mainpage() {
 
   // 레시피 게시물 전부 불러오는 함수
   const handleGetRecipe = () => {
-    useEffect(() => {
-      handleGetRecipe();
-    }, []);
+    // useEffect(() => {
+    //   handleGetRecipe();
+    // }, []);
     axios
       .get("https://muggerbar.ml/recipe", null, {
         headers: { "Content-Type": "application/json" },
