@@ -5,6 +5,7 @@ import dummyComments from "../dummy/comments";
 import DeleteModal from "../components/DeleteModal";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 
 axios.defaults.withCredentials = true;
 
@@ -83,11 +84,22 @@ function Recipes({ totalRecipes, clickNumRecipe }) {
 
   const handleLikeClick = () => {
     axios
-      .post(`https:muggerbar.ml/recipe/${renderRecipe.id}/like`)
-      .then((res) => {
-        console.log(res);
-      });
+
+      .post(`https://muggerbar.ml/recipe/${renderRecipe.id}/like`)
+      .then((res)=>{
+        // console.log(res)
+        // setLike(res.data.data.like.likeCount)
+      })
   };
+  
+  const handleLikeCount = () =>{
+    axios
+    .get(`https://muggerbar.ml/recipe/${renderRecipe.id}/like`)
+    .then((res)=>{
+      // console.log(res)
+      setLike(res.data.data.like.likeCount)
+    })
+  }
 
   const handleDelete = () => {
     // TODO: 삭제하기 버튼을 누르면 해당 게시물이 삭제되어야함
@@ -113,9 +125,12 @@ function Recipes({ totalRecipes, clickNumRecipe }) {
     handleRenderingRecipe(clickNumRecipe);
   }, []);
 
-  useEffect(() => {
-    takeRecipeUserNickName(renderRecipe.user_id);
-  });
+
+  useEffect(()=>{
+    takeRecipeUserNickName(renderRecipe.user_id)
+    handleLikeCount()
+  },)
+
 
   return (
     <div className="rp">
@@ -125,7 +140,7 @@ function Recipes({ totalRecipes, clickNumRecipe }) {
             <div>{renderRecipe.recipe_title}</div>
             <hr></hr>
             <div>
-              <span className="rp-info">{recipeUserInfo}</span>
+              <span className="rp-info">{recipeUserInfo} : </span>
               <span className="rp-data">{renderRecipe.createdAt}</span>
             </div>
 
@@ -150,7 +165,12 @@ function Recipes({ totalRecipes, clickNumRecipe }) {
         <div className="rp-wrap">
           <div className="rp-desc">{renderRecipe.recipe_content}</div>
           <div className="r-likes">
-            <div className="r-img" onClick={handleLikeClick}></div>
+
+            <div
+              className="r-img"
+              onClick={handleLikeClick,handleLikeCount}
+            ></div>
+
             <div className="r-c">{like}</div>
           </div>
         </div>
@@ -161,23 +181,13 @@ function Recipes({ totalRecipes, clickNumRecipe }) {
           })}
           <form onSubmit={(e) => e.preventDefault()}>
             <div className="rp-reply">
-              <textarea
-                id=""
-                value={msg}
-                placeholder="레시피가 마음에 드셨나요? 댓글을 남겨주세요."
-                onChange={handleChangeMsg}
-              ></textarea>
+              <textarea id="" value={msg} placeholder="레시피가 마음에 드셨나요? 댓글을 남겨주세요." onChange={handleChangeMsg}></textarea>
               <button onClick={handleButtonClick}>등록</button>
             </div>
           </form>
         </div>
       </center>
-      {showModal ? (
-        <DeleteModal
-          showModalHandler={showModalHandler}
-          handleDelete={handleDelete}
-        />
-      ) : null}
+      {showModal ? <DeleteModal showModalHandler={showModalHandler} handleDelete={handleDelete} /> : null}
       <Footer />
     </div>
   );

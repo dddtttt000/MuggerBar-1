@@ -6,7 +6,7 @@ import axios from "axios";
 
 axios.defaults.withCredentials = true;
 
-function Mypage({ userInfo, totalRecipes }) {
+function Mypage({ userInfo, totalRecipes, handleClickNumRecipe }) {
   const [isOpen, setIsOpen] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [clickToEdit, setClickToEdit] = useState(true);
@@ -18,14 +18,17 @@ function Mypage({ userInfo, totalRecipes }) {
   const [hasLists, setHasLists] = useState(recipeList.length);
   const [errMsg, setErrMsg] = useState("");
   const history = useHistory();
+  
+  // TODO: props로 전달 받은 전체 레시피 리스트 를 내 유저 아이디로 필터한다.
+  const filterRecipe = ( ) => {
+    const result = recipeList.filter((recipe)=>(recipe.user_id === userInfo.id))
+    setRecipeList(result)
+  }
 
-  //console.log("haslists", hasLists);
-  //console.log("dummy", recipeList);
-  // console.log("mypage userinfo", userinfo);
-  // console.log("mypage props userInfo", userInfo);
+  useEffect(()=>{
+    filterRecipe()
+  },[])
 
-  // TODO: recipe list 를 서버에 요청해서 받아온다.
-  // req.query.user_id 내가 쓴 게시물 목록 반환
 
   const handleUpdate = () => {
     // TODO: 유저 정보를 서버에 업데이트 요청하고, 성공한 경우
@@ -88,52 +91,28 @@ function Mypage({ userInfo, totalRecipes }) {
           <div className="my-inner-wrap">
             <div className="">
               <span className="myinfo">이메일</span>
-              <span className="myinfo-props">
-                {userInfo === null ? "" : userInfo.user_email}
-              </span>
+              <span className="myinfo-props">{userInfo === null ? "" : userInfo.user_email}</span>
             </div>
             <hr></hr>
             <span className="myinfo">비밀번호</span>
             {clickToEdit ? (
               <span className="myinfo-props">*****</span>
             ) : (
-              <input
-                type="password"
-                className="myinfo-props"
-                placeholder={userInfo.user_password}
-                onChange={handleInputValue("user_password")}
-              ></input>
+              <input type="password" className="myinfo-props" placeholder={userInfo.user_password} onChange={handleInputValue("user_password")}></input>
             )}
             <hr></hr>
             <span className="myinfo">닉네임</span>
             {clickToEdit ? (
-              <span className="myinfo-props">
-                {userInfo === null ? "" : userInfo.user_nickname}
-              </span>
+              <span className="myinfo-props">{userInfo === null ? "" : userInfo.user_nickname}</span>
             ) : (
-              <input
-                type="text"
-                className="myinfo-props"
-                placeholder={userInfo.user_nickname}
-                onChange={handleInputValue("user_nickname")}
-              ></input>
+              <input type="text" className="myinfo-props" placeholder={userInfo.user_nickname} onChange={handleInputValue("user_nickname")}></input>
             )}
             <hr></hr>
             <div className="btn-wrap">
               <div>
-                <button
-                  type="button"
-                  className={clickToEdit ? "my-btn" : "list"}
-                  onClick={openHandler}
-                >
+                <button type="button" className={clickToEdit ? "my-btn" : "list"} onClick={openHandler}>
                   내가 쓴 글 목록
-                  <span id="plus">
-                    {isOpen ? (
-                      <i class="fas fa-minus"></i>
-                    ) : (
-                      <i class="fas fa-plus"></i>
-                    )}
-                  </span>
+                  <span id="plus">{isOpen ? <i class="fas fa-minus"></i> : <i class="fas fa-plus"></i>}</span>
                 </button>
               </div>
             </div>
@@ -142,35 +121,24 @@ function Mypage({ userInfo, totalRecipes }) {
                 {/* <Mylist recipeList={recipeList} /> */}
                 {hasLists !== 0 ? (
                   recipeList.map((el) => {
-                    return <Mylist recipeList={el} key={el.id} />;
+                    return <Mylist key={el.id} recipeList={el} handleClickNumRecipe={handleClickNumRecipe}/>;
                   })
                 ) : (
-                  <div className="my-inner-wrap-msg">
-                    레시피를 등록해 주세요.
-                  </div>
+                  <div className="my-inner-wrap-msg">레시피를 등록해 주세요.</div>
                 )}
               </div>
             ) : null}
             <div className="btn-wrap">
               {clickToEdit ? (
                 <div>
-                  <button
-                    type="button"
-                    className="my-btn"
-                    onClick={clickToEditHandler}
-                  >
+                  <button type="button" className="my-btn" onClick={clickToEditHandler}>
                     <p>개인정보 수정</p>
                   </button>
                 </div>
               ) : (
                 <div>
                   {errMsg}
-                  <button
-                    type="submit"
-                    className="my-btn"
-                    onClick={handleUpdate}
-                    
-                  >
+                  <button type="submit" className="my-btn" onClick={handleUpdate}>
                     <p>수정 완료</p>
                   </button>
                 </div>
@@ -186,12 +154,7 @@ function Mypage({ userInfo, totalRecipes }) {
           </div>
         </div>
       </center>
-      {showModal ? (
-        <Withdrawal
-          showModalHandler={showModalHandler}
-          withdrawHandler={withdrawHandler}
-        />
-      ) : null}
+      {showModal ? <Withdrawal showModalHandler={showModalHandler} withdrawHandler={withdrawHandler} /> : null}
     </div>
   );
 }
