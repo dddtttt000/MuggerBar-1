@@ -3,11 +3,10 @@ import { BrowserRouter as Router, useHistory } from "react-router-dom";
 import MainContent from "./MainContent";
 import axios from "axios";
 
-
 function MainContentsbox({ totalRecipes, handleClickNumRecipe }) {
   const [itemList, setItemList] = useState(false);
 
-const history = useHistory();
+  const history = useHistory();
   // 클릭 하면 recipe/id 페이지로 이동하는 함수를 만든다.
   // axios.get
   // const goToRecipesPage = () => {
@@ -19,10 +18,14 @@ const history = useHistory();
 
   return (
     <div class="itemList">
-
       {totalRecipes.map((recipe, idx) => {
-        return <MainContent key={idx} recipe={recipe} handleClickNumRecipe={handleClickNumRecipe}/>;
-
+        return (
+          <MainContent
+            key={idx}
+            recipe={recipe}
+            handleClickNumRecipe={handleClickNumRecipe}
+          />
+        );
       })}
     </div>
   );
