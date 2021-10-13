@@ -81,15 +81,6 @@ function Posting() {
     <>
       <PostingNav handleposting={handleposting} />
 
-      {/* <div class="PostingImgFinder">
-        <input type="file" enctype="multipart/form-data" action="../files/upload"/>
-      </div>
-
-      <div class="PostingImgFinder">
-        <input type="file" name="image" id="upload" />
-        <button onClick={()=>(uploadFile())}> 사진 선택 완료 </button>
-      </div> */}
-
       <form enctype="multipart/form-data">
         <input
           type="file"
