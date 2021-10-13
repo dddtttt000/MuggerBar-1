@@ -9,24 +9,27 @@ import dummyRecipes from "../dummy/recipelist.js"
 import MainContent from "../components/MainContent.js"
 
 function Mainpage() {
-  const [receivedRecipe, setReceivedRecipe] = useState(dummyRecipes);
+  const [receivedRecipe, setReceivedRecipe] = useState(dummyRecipes); // 초기화 위한 애 - 누르면 서버에서 받아온 리스트 뜨는 게 아니라, 아무 것도 안뜨게 하려면?
   const [recipes, setRecipe] = useState(dummyRecipes); 
   
   const isSearchingRecipe = (arr, text) => {
-    return arr.filter((ele)=>{return ele.recipe_title.includes(text)})
-  }
+    return arr.filter((ele)=>{
+      return ele.recipe_title.includes(text)
+    });
+  };
+  // 배열, 텍스트(검색어) 입력받아 => 검색어를 포함한(includes메소드 사용) element만 남김
 
   const handleSetRecipe = (searchText) => {
-    const searchedRecipe = isSearchingRecipe(dummyRecipes, searchText);
+    const searchedRecipe = isSearchingRecipe(recipes, searchText);
     setRecipe(searchedRecipe);
   }
   
   const handleResetRecipe = ()=>{
-    setRecipe(dummyRecipes)
+    setRecipe(receivedRecipe)
   }
 
   const handleGetRecipe = () => {
-    axios.get("https://muggerbar.ml/recipe",null,null)
+    axios.get("https://localhost:4000/recipe",null,null)
     .then((res)=>{
       console.log(res);
       setReceivedRecipe(res.data.recipe);
@@ -35,9 +38,9 @@ function Mainpage() {
     .catch((err) => console.log(err));
   }
   
-  // useEffect(()=>{
-  //   handleGetRecipe()
-  // },[])
+  useEffect(()=>{
+    handleGetRecipe()
+  },[])
   
   return (
     <>
@@ -50,8 +53,17 @@ function Mainpage() {
         <MainSearch handleSetRecipe={handleSetRecipe} handleResetRecipe={handleResetRecipe} />
       </div>
 
-      <MainContentsbox recipes={recipes} />
+    <div className="main-contents-wrap">
+      {recipes.length === 0
+        ? <div className="empty-result">
+            <div><img src = "https://i.pinimg.com/originals/43/ff/b8/43ffb8fd6684db95623105b9f588d931.gif"/></div>
+            <div>검색 결과가 없습니다.</div>
+          </div>
+        : <MainContentsbox recipes={recipes} />
+        }
       {/* <Link to="./Recipes">컨텐츠 클릭시</Link> */}
+    </div>
+    
       <Footer />
     </>
   );
