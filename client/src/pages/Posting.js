@@ -14,54 +14,71 @@ function Posting() {
     recipe_photo: "양념사진",
   });
   // console.log(post)
+  
   const [content, setContent] = useState({
-    recipe_content: "",
-  });
-
+    recipe_content: ""
+  })
+  
   const history = useHistory();
 
-  console.log(content);
+  // console.log(content);
   const handleInputValue = (key) => (e) => {
     setPost({ ...post, [key]: e.target.value });
   };
 
-  const handlecontent = (data) => {
-    setContent({ recipe_content: data });
-  };
-  //   onCashange  = data => {
-  //     console.log( "Called" );
-  //     this.setState({
-  //         content : data.getData()
-  //     })
-  //  }
+
+  const handlecontent = (data) =>{
+    setContent({recipe_content:data})
+  }
+
+//   onCashange  = data => { 
+//     console.log( "Called" );
+//     this.setState({
+//         content : data.getData()
+//     })
+//  }
+
 
   // function --> 기존 데이터 DB에 얘도 추가시키는 함수...How?
+  const [recipe_photo, setRecipe_photo] = useState('이미지경로')
 
-  const handleposting = () => {
-    const { recipe_title, recipe_subtitle, recipe_photo } = post;
-    const { recipe_content } = content;
+  const handleposting = () =>{
+    const { recipe_title, recipe_subtitle } = post;
+    const { recipe_content } = content
     axios
-      .post(
-        "https://muggerbar.ml/recipe",
-        {
-          recipe_title: recipe_title,
-          recipe_subtitle: recipe_subtitle,
-          recipe_photo: recipe_title,
-          recipe_content: recipe_content,
-        },
-        {
-          withCredentials: true,
-        }
-      )
-      .then((res) => {
-        //console.log("res ???", res.status, "로그인성공");
-        console.log(res.data.data);
-        history.push("/recipes");
-      })
-      .catch((err) => {
-        //console.log("err message =>", err);
-      });
+    .post("https://muggerbar.ml/recipe",
+    {
+      recipe_title:recipe_title,
+      recipe_subtitle:recipe_subtitle,
+      recipe_photo:recipe_photo,
+      recipe_content:recipe_content
+    },
+    {
+      withCredentials: true
+    })
+    .then((res) => {
+      //console.log("res ???", res.status, "로그인성공");
+      console.log(res.data.data)
+      history.push("/")
+    })
+    .catch((err) => {
+      //console.log("err message =>", err);
+    });
+  }
+  
+  const handleFileOnChange = (event) =>{
+    const formData = new FormData();
+    formData.append('profile_img', event.target.files[0]);
+    axios.post("https://muggerbar.ml/api/users/upload", formData, {
+      header: { 'content-type': 'multipart/form-data' },
+    })
+    .then((response) => {
+      console.log(response.data.fileName);
+      setRecipe_photo(response.data.fileName);
+    });
   };
+  
+
   return (
     <>
       <PostingNav handleposting={handleposting} />
@@ -70,23 +87,28 @@ function Posting() {
           <input type="file" />
           <input className="ud-img" type="submit" value="첨부하기" />
 
-          <hr className="ps-hr"></hr>
+
+  <hr className="ps-hr"></hr>
         </div>
 
-        <Summery handleInputValue={handleInputValue} />
+      <form enctype="multipart/form-data">
+        <input
+          type="file"
+          accept="image/jpg,impge/png,image/jpeg,image/gif"
+          name="profile_img"  
+          placeholder="업로드"
+          onChange={(e)=>(handleFileOnChange(e))}
+        ></input>
+      </form>
+      
+    <Summery handleInputValue={handleInputValue}/>
+    
+    
+    <CKEditor
+      config={({ height: 750 }, { width: 700 }, { allowedContent: true })}
+      handlecontent={handlecontent}
+    />
 
-        {/* <CKEditor 
-      data="This is an example CKEditor 4 WYSIWYG editor instance."
-      type="classic"
-      config={ { height: 750 },{ width: 700 }, { allowedContent: true } }
-      // onChange = { ( event, editor ) => { 
-      //   onCashange( editor.getData() );
-      //   // console.log(data);}    
-        /> */}
-        <CKEditor
-          config={({ height: 750 }, { width: 768 }, { allowedContent: true })}
-          handlecontent={handlecontent}
-        />
 
         <div className="">
           <button

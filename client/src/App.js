@@ -15,7 +15,47 @@ import dummyUserInfo from "./dummy/userInfo";
 function App() {
   const [userInfo, setUserInfo] = useState(null);
   const [isLogin, setIsLogin] = useState(false);
-  const [recipes, setRecipes] = useState(null);
+  const [recipes, setRecipes] = useState(null); // 내가 쓴 레시피 모음
+
+  const [receivedRecipe, setReceivedRecipe] = useState([]);
+  const [totalRecipes, setTotalRecipe] = useState([]);
+  const [clickNumRecipe,setClickNumRecipe] = useState(0)
+
+  const handleClickNumRecipe = (recipe) => {
+    // console.log(recipe)
+    setClickNumRecipe(recipe)
+  }
+
+  const isSearchingRecipe = (arr, text) => {
+    return arr.filter((ele) => {
+      return ele.recipe_title.includes(text);
+    });
+  };
+
+  const handleSetRecipe = (searchText) => {
+    const searchedRecipe = isSearchingRecipe(totalRecipes, searchText);
+    setTotalRecipe(searchedRecipe);
+  }
+  
+  const handleResetRecipe = ()=>{
+    setTotalRecipe(receivedRecipe)
+  }
+  
+  // 레시피 게시물 전부 불러오는 함수
+  const handleGetRecipe = () => {
+    axios.get("https://muggerbar.ml/recipe",
+    null,
+    { headers: { "Content-Type": "application/json" }})
+    .then((res)=>{
+      setReceivedRecipe(res.data.data.recipe);
+      setTotalRecipe(res.data.data.recipe);
+    })
+    .catch((err) => console.log(err));
+  }
+  
+  useEffect(()=>{
+    handleGetRecipe()
+  },[])
 
   const history = useHistory();
 
@@ -73,7 +113,12 @@ function App() {
       <Switch>
         <Route exact path="/">
           <MainNav isLogin={isLogin} handleLogout={handleLogout} />
-          <Mainpage userInfo={userInfo} isLogin={isLogin} />
+          <Mainpage 
+          userInfo={userInfo} isLogin={isLogin} 
+          handleSetRecipe={handleSetRecipe} handleResetRecipe={handleResetRecipe} 
+          totalRecipes={totalRecipes} 
+          handleClickNumRecipe={(e)=>(handleClickNumRecipe(e))}
+          />
           <Footer />
         </Route>
         <Route path="/login">
@@ -95,7 +140,7 @@ function App() {
         </Route>
         <Route path="/recipes">
           <MainNav isLogin={isLogin} handleLogout={handleLogout} />
-          <Recipes userInfo={userInfo} />
+            <Recipes recipe={receivedRecipe[clickNumRecipe-1]}/>;
           <Footer />
         </Route>
       </Switch>

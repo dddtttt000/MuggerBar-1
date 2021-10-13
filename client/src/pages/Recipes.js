@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Footer from "../components/Footer";
 import Comment from "../components/Comment";
 import dummyComments from "../dummy/comments";
@@ -6,7 +6,7 @@ import DeleteModal from "../components/DeleteModal";
 import axios from "axios";
 axios.defaults.withCredentials = true;
 
-function Recipes({ userInfo }) {
+function Recipes({ recipe }) {
   const [comments, setComments] = useState(dummyComments);
   const [commentContent, setCommentContent] = useState("");
   const [msg, setMsg] = useState("");
@@ -15,7 +15,21 @@ function Recipes({ userInfo }) {
   const [isMyContent, setIsMyContent] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
-  console.log("recipe props userInfo", userInfo);
+
+  const [recipeUserInfo, setRecipeUserInfo] = useState({
+    user_nickname : "작성자 닉네임"
+  })
+
+  const takeRecipeUserNickName = (id) => {
+    axios
+      .get(`https://muggerbar.ml/recipeUserinfo?id=${id}`,
+        { withCredentials: true })
+      .then((res)=>{
+        setRecipeUserInfo(res.data.userInfo.user_nickname)
+      })
+  }
+
+
   // TODO: props 로 받아온 userInfo 의 email 과 게시물을 작성한 유저의 email 이 같으면,
   // 삭제하기 버튼을 보여주고, 아니면 안보여준다. -> isMyContent
   const showDeleteButton = () => {
@@ -81,21 +95,20 @@ function Recipes({ userInfo }) {
     setShowModal(!showModal);
   };
 
+  useEffect(()=>{
+    takeRecipeUserNickName()
+  }, [])
+
   return (
     <div className="rp">
       <center>
         <div className="rp-wrap title">
           <div className="rp-title">
-            <div>제목</div>
-            <div>한줄설명</div>
+            <div>{recipe.recipe_title}</div>
             <hr></hr>
             <div>
-              <span className="rp-info">작성한 사람 닉네임</span>
-              <span className="rp-data">작성 날짜 및 시간</span>
-            </div>
-            <div>
-              <span className="rp-category">카테고리</span>
-              <span className="rp-category-value">선택한것</span>
+              <span className="rp-info">{recipeUserInfo.user_nickname}</span>
+              <span className="rp-data">{recipe.createdAt}</span>
             </div>
 
             {isMyContent ? (
@@ -107,9 +120,11 @@ function Recipes({ userInfo }) {
             ) : null}
           </div>
         </div>
-        <div className="rp-wrap pic">이미지 불러와서 띄우기</div>
+        <div className="rp-wrap pic">
+          <img src={`https://muggerbar.ml/${recipe.recipe_photo}`} alt={recipe.idx} />
+        </div>
         <div className="rp-wrap">
-          <div className="rp-desc">본문 텍스트 불러오기</div>
+          <div className="rp-desc">{recipe.recipe_content}</div>
           <div className="r-likes">
             <div
               className="r-img"

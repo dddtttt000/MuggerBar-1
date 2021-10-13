@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 
-function Summery({ handleInputValue }) {
-  const isHandleRecipeCategory = () => {};
+function Summery({handleInputValue, isHandleRecipeCategory}) {
 
   return (
     <div className="summ-wrap">
