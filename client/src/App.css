@@ -517,7 +517,6 @@ footer {
 }
 
 .main-top {
-  border: 1px solid red;
   height: 350px;
 }
 .main-content-wrap {
@@ -580,18 +579,34 @@ footer {
 }
 
 .search-wrap {
-  border: 1px solid red;
+  border: 1px solid rgb(141, 141, 141);
   background-color: #fff;
+  border-radius: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 5px 20px;
+  color: rgb(141, 141, 141);
 }
 .search-bar {
-  width: 600px;
+  width: 300px;
   height: 40px;
-  font-size: 18px;
+  font-size: 20px;
   padding: 5px;
   outline-style: none;
 }
-
-/* * 현진 작성 👇🏻 */
+.s-btn-wrap {
+  position: relative;
+  float: right;
+  left: 140px;
+  top: 7px;
+}
+.s-btn-wrap > input {
+  margin-left: 6px;
+  font-size: 18px;
+  color: rgb(105, 105, 105);
+  border: 1px solid rgb(105, 105, 105);
+  border-radius: 3px;
+}
 
 .mainNav {
   background-color: #8f8f8f;
@@ -639,6 +654,12 @@ footer {
   right: 300px;
 }
 
+.ps-save-wrap {
+  position: fixed;
+  width: 200px;
+  margin-top: 20px;
+}
+
 .ps-my {
   background-color: #8f8f8f;
   float: right;
@@ -648,6 +669,73 @@ footer {
   background-color: #8f8f8f;
   float: right;
   right: -300px;
+}
+
+.posting-wrap {
+  width: 768px;
+  display: table;
+  margin-left: auto;
+  margin-right: auto;
+}
+.ps-img-search {
+  padding: 10px;
+  margin-top: 20px;
+}
+
+.ud-img {
+  background-color: black;
+  color: #fff;
+  width: 100px;
+  height: 30px;
+  outline-style: none;
+  border-radius: 23px;
+  float: right;
+}
+
+.ps-hr {
+  border: 1px solid black;
+  width: 640px;
+  float: left;
+  margin-bottom: 10px;
+}
+
+.summ-wrap {
+  padding: 10px;
+  height: 110px;
+  margin-bottom: 30px;
+}
+
+.summ-title {
+  width: 100%;
+  float: left;
+  left: 100px;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  margin-left: 10px;
+}
+#title {
+  margin-left: 37px;
+}
+
+.summ-title > input {
+  width: 600px;
+  margin-left: 10px;
+  height: 34px;
+  border-radius: 5px;
+  outline-style: none;
+  border: 1px solid #848484;
+  padding: 5px;
+}
+
+.summ-title > select {
+  width: 570px;
+  margin-left: 10px;
+  height: 34px;
+  border-radius: 5px;
+  outline-style: none;
+  border: 1px solid #848484;
+  padding: 5px;
+  margin-left: 10px;
 }
 
 .submit-btn-posting {

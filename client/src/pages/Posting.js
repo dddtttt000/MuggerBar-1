@@ -65,15 +65,17 @@ function Posting() {
   return (
     <>
       <PostingNav handleposting={handleposting} />
+      <div className="posting-wrap">
+        <div className="ps-img-search">
+          <input type="file" />
+          <input className="ud-img" type="submit" value="첨부하기" />
 
-      <div class="PostingImgFinder">
-        <input type="file" />
-        <input type="submit" value="첨부하기" />
-      </div>
+          <hr className="ps-hr"></hr>
+        </div>
 
-      <Summery handleInputValue={handleInputValue} />
+        <Summery handleInputValue={handleInputValue} />
 
-      {/* <CKEditor 
+        {/* <CKEditor 
       data="This is an example CKEditor 4 WYSIWYG editor instance."
       type="classic"
       config={ { height: 750 },{ width: 700 }, { allowedContent: true } }
@@ -81,13 +83,19 @@ function Posting() {
       //   onCashange( editor.getData() );
       //   // console.log(data);}    
         /> */}
-      <CKEditor
-        config={({ height: 750 }, { width: 700 }, { allowedContent: true })}
-        handlecontent={handlecontent}
-      />
+        <CKEditor
+          config={({ height: 750 }, { width: 768 }, { allowedContent: true })}
+          handlecontent={handlecontent}
+        />
 
-      <div className="publishBtn">
-        <button onClick={handleposting}>저장하기</button>
+        <div className="">
+          <button
+            className="mainBtn ps-save ps-save-wrap"
+            onClick={handleposting}
+          >
+            <i class="fas fa-download"></i> 저장하기
+          </button>
+        </div>
       </div>
     </>
   );
