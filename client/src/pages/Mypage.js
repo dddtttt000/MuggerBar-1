@@ -32,13 +32,14 @@ function Mypage({ userInfo, totalRecipes, handleClickNumRecipe }) {
 
   const handleUpdate = () => {
     // TODO: 유저 정보를 서버에 업데이트 요청하고, 성공한 경우
-    if (!userinfo.nickname || !userinfo.password) {
+    console.log(userinfo);
+    if (!userinfo.user_nickname || !userinfo.user_password) {
       setErrMsg("모든 정보를 입력해 주세요.");
     } else {
       axios
         .patch("https://muggerbar.ml/edit", {
-          user_nickname: userinfo.nickname,
-          user_password: userinfo.password,
+          user_nickname: userinfo.user_nickname,
+          user_password: userinfo.user_password,
         })
         .then((res) => {
           console.log("userinfo updated", res);
