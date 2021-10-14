@@ -13,7 +13,7 @@ const userUploadImage = require("./routes/imgUpload")
 app.use(express.json());
 app.use(
   cors({
-    origin: ["https://muggerbar.ml", "http://localhost:3000"],
+    origin: ["https://www.muggerba.ml", "http://localhost:3000"],
     credentials: true,
     methods: ["GET", "POST", "PATCH", "DELETE", "OPTIONS"],
   })

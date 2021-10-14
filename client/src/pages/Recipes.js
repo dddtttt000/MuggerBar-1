@@ -178,18 +178,6 @@ function Recipes({ totalRecipes, clickNumRecipe, userInfo }) {
               <div className="r-c">{like}</div>
             </div>
           </div>
-<<<<<<< HEAD
-        </div>
-        <div className="rp-wrap ">
-          <div className="r-title">댓글</div> <hr></hr>
-          {comments.map((el) => {
-            return <Comment key={el.id} comment={el} />;
-          })}
-          <form onSubmit={(e) => e.preventDefault()}>
-            <div className="rp-reply">
-              <textarea id="" value={msg} placeholder="레시피가 마음에 드셨나요? 댓글을 남겨주세요." onChange={handleChangeMsg}></textarea>
-              <button onClick={handleButtonClick}>등록</button>
-=======
           <div className="rp-wrap ">
             <div className="r-title">댓글</div> <hr></hr>
             {comments.map((el) => {
@@ -204,7 +192,6 @@ function Recipes({ totalRecipes, clickNumRecipe, userInfo }) {
                   onChange={handleChangeMsg}
                 ></textarea>
                 <button onClick={postComment}>등록</button>
->>>>>>> 0be888620574a134eb6d316feca204a08a92cd05
               </div>
             </form>
           </div>
