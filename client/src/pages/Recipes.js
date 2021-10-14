@@ -36,16 +36,17 @@ function Recipes({ totalRecipes, clickNumRecipe, userInfo }) {
 
   // TODO: 서버에서 댓글 불러오기
   const getComments = () => {
+    console.log("renderRecipe.id = ", clickNumRecipe)
     axios
       .get(
-        `https://muggerbar.ml/comment?recipe_id=${renderRecipe.id}`,
+        `https://muggerbar.ml/comment?recipe_id=${clickNumRecipe}`,
         {
           withCredentials: true,
         },
         { accept: "application/json" }
       )
       .then((res) => {
-        console.log("get success", res);
+        // console.log("get success", res);
         setComments(res.data.data.comment);
       });
   };
@@ -66,11 +67,11 @@ function Recipes({ totalRecipes, clickNumRecipe, userInfo }) {
         setCommentContent(res.data.data.comment);
         setMsg("");
         history.push("/recipes");
-        getComments();
+        // getComments();
       });
   };
   // console.log("댓글 post가 완료된 commentContent => ", commentContent);
-  console.log("get 요청으로 불러온 댓글들 =>", comments);
+  // console.log("get 요청으로 불러온 댓글들 =>", comments);
 
 
   // 댓글 내용을 msg 에 넣어주는 함수
@@ -122,27 +123,20 @@ function Recipes({ totalRecipes, clickNumRecipe, userInfo }) {
   };
 
   useEffect(() => {
+    console.log("첫번쨰 useEffect")
     getComments();
   }, []);
 
   useEffect(() => {
+    console.log("두번쨰 useEffect")
     getComments();
   }, [commentContent]);
 
-// <<<<<<< feat/allnew
-//   useEffect(() => {
-//     handleRenderingRecipe(clickNumRecipe);
-//     takeRecipeUserNickName(renderRecipe.user_id);
-//     handleLikeCount();
-//   });
-// =======
-  useEffect(()=>{
-    takeRecipeUserNickName(renderRecipe.user_id)
-  },)
-
-  useEffect(()=>{
-    handleLikeCount()
-  },)
+  useEffect(() => {
+    handleRenderingRecipe(clickNumRecipe);
+    takeRecipeUserNickName(renderRecipe.user_id);
+    handleLikeCount();
+  });
 
   return (
     <div className="rp">
