@@ -72,7 +72,6 @@ function Recipes({ totalRecipes, clickNumRecipe, userInfo }) {
   // console.log("댓글 post가 완료된 commentContent => ", commentContent);
   console.log("get 요청으로 불러온 댓글들 =>", comments);
 
-
   // 댓글 내용을 msg 에 넣어주는 함수
   const handleChangeMsg = (e) => {
     setMsg(e.target.value);
@@ -82,21 +81,21 @@ function Recipes({ totalRecipes, clickNumRecipe, userInfo }) {
   const handleLikeClick = () => {
     axios
       .post(`https://muggerbar.ml/recipe/${renderRecipe.id}/like`)
-      .then((res)=>{
-        handleLikeCount()
-        console.log("post=========",res)
+      .then((res) => {
+        handleLikeCount();
+        console.log("post=========", res);
         // setLike(res.data.data.like.likeCount)
       });
   };
 
-  const handleLikeCount = () =>{
+  const handleLikeCount = () => {
     axios
-        .get(`https://muggerbar.ml/recipe/${renderRecipe.id}/like`)
-        .then((res)=>{
-        console.log("get=========",res)
-        setLike(res.data.data.like.likeCount)
-    })
-  }
+      .get(`https://muggerbar.ml/recipe/${renderRecipe.id}/like`)
+      .then((res) => {
+        console.log("get=========", res);
+        setLike(res.data.data.like.likeCount);
+      });
+  };
 
   const handleDelete = () => {
     // TODO: 삭제하기 버튼을 누르면 해당 게시물이 삭제되어야함
@@ -105,7 +104,8 @@ function Recipes({ totalRecipes, clickNumRecipe, userInfo }) {
     // 모달창을 띄우고 확인버튼을 클릭 시 삭제 요청
     axios
       .delete(`https://muggerbar.ml/recipe/${renderRecipe.id}`, {
-        accept : 'application/json', withCredentials: true, 
+        accept: "application/json",
+        withCredentials: true,
       })
       .then((res) => {
         console.log(res);
@@ -129,20 +129,11 @@ function Recipes({ totalRecipes, clickNumRecipe, userInfo }) {
     getComments();
   }, [commentContent]);
 
-// <<<<<<< feat/allnew
-//   useEffect(() => {
-//     handleRenderingRecipe(clickNumRecipe);
-//     takeRecipeUserNickName(renderRecipe.user_id);
-//     handleLikeCount();
-//   });
-// =======
-  useEffect(()=>{
-    takeRecipeUserNickName(renderRecipe.user_id)
-  },)
-
-  useEffect(()=>{
-    handleLikeCount()
-  },)
+  useEffect(() => {
+    handleRenderingRecipe(clickNumRecipe);
+    takeRecipeUserNickName(renderRecipe.user_id);
+    handleLikeCount();
+  });
 
   return (
     <div className="rp">
@@ -180,7 +171,7 @@ function Recipes({ totalRecipes, clickNumRecipe, userInfo }) {
           <div className="rp-wrap">
             <div className="rp-desc">{renderRecipe.recipe_content}</div>
             <div className="r-likes">
-              <div className="r-img" onClick={()=>handleLikeClick()}></div>
+              <div className="r-img" onClick={() => handleLikeClick()}></div>
               <div className="r-c">{like}</div>
             </div>
           </div>
